@@ -98,32 +98,8 @@ export default function InformationPage() {
 
           <div className="w-full px-5 lg:w-1/4">
             <Header header='Identitas Toko' subHeader='Lengkapi Informasi Toko'/>
-            {/* <header className='border-b-2 border-slate-300 mb-5 text-blue-950'>
-              <h1 className="font-bold text-3xl mb-2">Identitas Toko</h1>
-              <h2 className="text-md mb-5">Lengkapi Informasi Toko</h2>
-            </header> */}
 
             <form action="" onSubmit={handleSubmit}>
-              {/* <div className='mb-5'>
-                <label htmlFor="" className='flex'>
-                  <h1 className=''>Logo Toko</h1>
-                </label>
-                <div className='flex justify-items-stretch items-center mt-3'>
-                  <div className='flex w-fit mr-5'>
-                    <img src={file} className='w-20 h-20 bg-slate-300  rounded-full'/>
-                  </div>
-                  <div className='w-2/3'>
-                    <div className='cursor-pointer'>
-                      <input type="file" name="input" id="input-file" className='cursor-pointer relative z-50 mt-3 opacity-0 -ml-20' onChange= {handleUpload} />
-                      <span className='cursor-pointer absolute z-10 bg-blue-500 text-white px-4 py-2 rounded-lg top-32 mt-7 text-sm'>Unggah Gambar</span>
-                    </div>
-                    <div className='mt-2'>
-                      <h1 className='text-xs font-semibold'>PNG, JPG or JPEG, 2MB max.</h1>
-                      <h1 className='text-xs text-slate-500'>Anda bisa unggah gambar nanti</h1>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
 
               <div className='mb-3'>
                 <div className='mb-2'>
@@ -167,16 +143,14 @@ export default function InformationPage() {
 
               <div className='flex items-start my-3 font-inter text-sm'>
                 <input type="checkbox" name='checkbox' className='w-5 h-5' onChange={handleChange} /> 
-                <p className='mx-2 text-slate-500'>Saya setuju mengikuti layanan  <span className='text-blue-500'> kebijakan privasi </span>
-                  pengguna</p>
+                <p className='mx-2 text-slate-500'>Saya setuju mengikuti layanan  
+                  <Link to={'/kebijakan-privasi-pengguna'}>
+                    <span className='text-blue-500'> kebijakan privasi </span>
+                  </Link>
+                pengguna</p>
               </div>  
 
               <div className='flex w-full items-center mt-5'>
-                {/* <div className='w-1/2 mr-3'>
-                  <Link to={'/'}>
-                    <button className='bg-white w-full h-12 rounded-lg text-blue-500 border-blue-500 border-2 disabled:text-slate-300 disabled:border-2 disabled:border-slate-300 disabled:bg-white' disabled={btnStatus}>Batal Daftar</button>
-                  </Link>
-                </div> */}
 
                 <div className='w-full font-inter'>
                   <Link to={'/dashboard'}>

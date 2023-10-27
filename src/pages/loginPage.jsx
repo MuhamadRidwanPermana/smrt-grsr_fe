@@ -8,6 +8,7 @@ import Subtract3 from '../assets/img/Subtract3.svg';
 
 import InputForm from '../Components/Elements/Input/InputForm';
 import Button from '../Components/Elements/Button';
+import Header from '../Components/LoginRegisterComponents/Header';
 
 import { FcGoogle } from 'react-icons/fc';
 
@@ -54,10 +55,8 @@ export default function Login() {
           </div>
 
           <div className="w-full lg:px-5 lg:w-1/4 lg:pt-10">
-            <header className='text-blue-950'>
-              <h1 className="font-bold text-3xl mb-2">Selamat Datang</h1>
-              <h2 className="text-md mb-5">Silahkan daftar/ masuk melalui akun Google</h2>
-            </header>
+            <Header header='Selamat Datang' subHeader='Silahkan daftar/ masuk melalui akun Google'/>
+
             <button className="flex items-center justify-center w-full my-3 p-3 bg-white text-dark rounded-lg border-2 border-slate-300">
               <FcGoogle className='text-2xl mr-3'/>
               <span className='font-semibold'>Lanjutkan dengan Google</span>

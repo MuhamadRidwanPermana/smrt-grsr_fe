@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Carousel } from 'antd';
+import { Carousel, Input } from 'antd';
 
 import Image from '../assets/img/image_landingpage.png';
 import Image2 from '../assets/img/image_landingpage2.png';
@@ -8,7 +8,7 @@ import Subtract3 from '../assets/img/Subtract3.svg';
 
 import Button from '../Components/Elements/Button';
 import InputForm from '../Components/Elements/Input/InputForm';
-import { Input } from 'antd';
+import Header from '../Components/LoginRegisterComponents/Header';
 
 export default function registerPage() {
 
@@ -52,10 +52,7 @@ export default function registerPage() {
           </div>
 
           <div className=" w-full h-fit lg:px-5 lg:w-1/4 lg:pt-10">
-            <header className='border-b-2 border-slate-300 mb-5 text-blue-950'>
-              <h1 className="font-bold text-3xl mb-2">Identitas Pemilik</h1>
-              <h2 className="text-md mb-5">Harap masukan Identitas yang sesuai</h2>
-            </header>
+            <Header header='Identitas Pemilik' subHeader='Harap masukan Identitas yang sesuai'/>
 
             <form onSubmit={handleSubmit} action="">
 

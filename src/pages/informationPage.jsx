@@ -9,8 +9,9 @@ import Image2 from '../assets/img/image_landingpage2.png';
 import Subtract3 from '../assets/img/Subtract3.svg';
 
 import InputForm from '../Components/Elements/Input/InputForm';
+import Header from '../Components/LoginRegisterComponents/Header';
 
-export default function registerPage() {
+export default function InformationPage() {
 
   const [Logo, setLogo] = useState('');
   const [Name, setName] = useState('');
@@ -103,10 +104,11 @@ export default function registerPage() {
           </div>
 
           <div className="w-full px-5 lg:w-1/4">
-            <header className='border-b-2 border-slate-300 mb-5 text-blue-950'>
+            <Header header='Identitas Toko' subHeader='Lengkapi Informasi Toko'/>
+            {/* <header className='border-b-2 border-slate-300 mb-5 text-blue-950'>
               <h1 className="font-bold text-3xl mb-2">Identitas Toko</h1>
               <h2 className="text-md mb-5">Lengkapi Informasi Toko</h2>
-            </header>
+            </header> */}
 
             <form action="" onSubmit={handleSubmit}>
               {/* <div className='mb-5'>

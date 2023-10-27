@@ -79,14 +79,14 @@ function App() {
           </div>
         </nav>
 
-        <Link to={'/contact-center'}>
+        <a href="https://wa.me/+6281223918932?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target='_blank'>
           <div className='sticky overflow-hidden top-3/4 z-30 float-right w-64 font-inter text-blue-900'>
             <div className='flex items-center w-60 z-20 p-3 pr-8 rounded-s-full bg-blue-950 ml-auto -mr-40 hover:-translate-x-40 hover:duration-300 hover:delay-100'>
               <img src={IconHeadset} alt="" className='rotate-12 w-10 h-auto mr-7' />
               <p className='text-sm text-white underline underline-offset-4 duration-300'>Ada hal yang ingin di tanyakan?</p>
             </div>
           </div>
-        </Link>
+        </a>
 
         <body className='w-full h-fit p-5 lg:px-36'>
           <div className='lg:block hidden w-fit h-fit'>
@@ -336,9 +336,11 @@ function App() {
                 <ul className='mx-5 cursor-pointer'>
                   <li>Bantuan</li>
                 </ul>
-                <ul className='mx-5 cursor-pointer'>
-                  <li>Kebijakan Privasi</li>
-                </ul>
+                <Link to={'/kebijakan-privasi-pengguna'}>
+                  <ul className='mx-5 cursor-pointer'>
+                    <li>Kebijakan Privasi</li>
+                  </ul>
+                </Link>
               </div>
             </div>
           </div>

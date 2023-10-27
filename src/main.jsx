@@ -20,6 +20,7 @@ import SatuanDanHarga from './pages/MasterData/Produk/UbahDataItem/satuanDanHarg
 import DataSplier from './pages/MasterData/dataSuplier'
 import DataPelanggan from './pages/MasterData/dataPelanggan'
 import Pengaturan from './pages/settings'
+import KebijakanPrivasiPengguna from './pages/kebijakanPrivasiPengguna'
 
 import Coba from './pages/coba'
 
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
   {
     path:"/settings",
     element: <Pengaturan />
+  },
+  {
+    path:"/kebijakan-privasi-pengguna",
+    element: <KebijakanPrivasiPengguna />
   },
 ]);
 

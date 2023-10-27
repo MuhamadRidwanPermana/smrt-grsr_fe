@@ -35,25 +35,19 @@ export default function Navbar({ openSidebar, setOpenSidebar, openDropdownProfil
         </div>
         <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
           <span className={`mx-10 py-2 text-dark w-40 bg-white border border-slate-100 rounded-xl ${openDropdownProfile ? 'absolute block z-50 top-16 right-0' : 'hidden'}`}>
-              <Link to={'/profile'}>
-                <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
-                  <BsPerson className='text-xl mr-3'/>
-                  <li className='list-none text-md'>Profile</li>
-                </div>
-              </Link>
-              <Link to={'/settings'}>
-              <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
-                <SlSettings className='text-xl mr-3'/>
-                <li className='list-none text-md'>Settings</li>
+            <Link to={'/settings'}>
+            <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
+              <SlSettings className='text-xl mr-3'/>
+              <li className='list-none text-md'>Settings</li>
+            </div>
+            </Link>
+            <div className='border-t border-slate-200 w-full h-1'></div>
+            <Link to={'/'}>
+              <div className="flex items-center mt-3 mb-2 mx-5 text-slate-700 hover:text-blue-500">
+                <IoLogOutOutline className='text-xl mr-3'/>
+                <li className='list-none text-md'>Logout</li>
               </div>
-              </Link>
-              <div className='border-t border-slate-200 w-full h-1'></div>
-              <Link to={'/'}>
-                <div className="flex items-center mt-3 mb-2 mx-5 text-slate-700 hover:text-blue-500">
-                  <IoLogOutOutline className='text-xl mr-3'/>
-                  <li className='list-none text-md'>Logout</li>
-                </div>
-              </Link>
+            </Link>
           </span>
       </div>
     </nav>

@@ -48,18 +48,11 @@ export default function InformationPage() {
     console.log(Name, Alamat, NoKontak);
   }
 
-  // const [file, setFile] = useState();
-  //   function handleUpload(e) {
-  //     console.log(e.target.files);
-  //     setFile(URL.createObjectURL(e.target.files[0]));
-  //   }
-
     const [fileList, setFileList] = useState([
       {
         uid: '-1',
         name: 'image.jpg',
         status: 'done',
-        // url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
         url: 'https://lh3.googleusercontent.com/pw/ADCreHc55u48dIILFqmiRzYwgkF8ugG5wn6a7WerMbIFlY_pM2N9REQyh__mb17hD2zqt8AD2oKGbPSf4_SfGWva_B91Sprv1kfbBUks3l1tpASLfHDu8R_4YEmcTRh6J0T87HiAp1OUtsww5FfXlM6JbVSqOlIf9u5-KQvw3gw0C8ITsuadT3kT-kYenNXbQe7eF1NCby2CfpAMxhzrw6PvES6wHmJLrdKEtV2XLI_Z4nAV7KzZ77aXNj1qd3qKAyaAuQrn5MZyPoObtD2NCZ8ec8ovurxt9RMrFcGN4Buc4MnPGrbKIHVujw7jGeX8sj-bqw3kAsu5LEeGb8zOjjai6yE22moTZVCTCyVoBT28DuTYOZvOYppV2Bm5JqSgT0QEvcDq17bHUDXi1g-24bqjF_t29sDEBalQUFXtwcgg6hR3Y-XrViZObtEjyR6haKRwu0Aa5na96mvLETHZYYL9rDwKpsZ6P8QzUZzmP-vAa22kl1Z-8EfyfmiGTOBu2NUx9R1WiRKk6K-Cft6IjC6bED7-nNU5O_hYeGt4brJP2TVaZ1MGJ6_nO6W3TMQV-a8dYbAUZPCw7B75GlHuA0kHk9sd1j4dVl1vT18TypfXTDD48IFpX8hB0BKEv270mlRBCfhTQL99QuuMleN78tiaF4btHn0pZGo8RhI0l5kQ9xXuuQdLrHR3-t2FvVtTX2JOI_OIeBY5aBgHbjQnMPIioLkcObKaDeAtCgSAVZ6mr88zuS5l_i4iEdfftBCmuhA6lIFV1bbV3Zhu7_gysczbEWs9sEAJsAQek5mNy7gjfXiopFdHSVY-FjLdgSR49ug-XexJxHfo01UYJPhL7jYcfzIMpe-7xfhreQ2jYGgYxBChJZslzR57V-OU-4Sg7yMfmSwEMMBuO8G5vMC-4Lggnu9uRH0QWvrXLgWGfRI63t0O0qEUbOlM0Xavt905TxI-7jMUfA1spOlBowE0m8UAyd_KM77KTxOO9WMNrznI5I3ciwrLlxF2aiXFXIrK8JS4knijQw=w196-h196-s-no-gm?authuser=3',
       },
     ]);

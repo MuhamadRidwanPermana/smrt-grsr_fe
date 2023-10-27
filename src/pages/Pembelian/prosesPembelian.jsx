@@ -456,7 +456,7 @@ export default function Pembelian() {
   
   return(
     
-    <main className="flex bg-blue-500 w-full h-full">
+    <main className="flex bg-blue-500 w-full h-full font-inter">
       
       <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
 

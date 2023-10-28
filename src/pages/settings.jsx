@@ -68,11 +68,11 @@ export default function Penjualan(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
-        <div className=' bg-slate-100 w-full h-auto p-7 pb-72'>
-          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl py-16'>
+        <div className=' bg-slate-100 w-full h-auto p-7 lg:pb-72'>
+          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl lg:py-16'>
             <form action="" onSubmit={handleSubmit}>
-              <div className='flex justify-between'>
-                <div className='w-full border-r-2 border-slate-300 px-24 py-16'>
+              <div className='block lg:flex lg:justify-between'>
+                <div className='w-full lg:border-r-2 border-slate-300 lg:px-24 lg:py-16 px-10 py-10'>
                   <Header header='Pengaturan Toko' subHeader='Ubah informasi toko'/>
 
                       <div className='mb-3'>
@@ -117,7 +117,7 @@ export default function Penjualan(){
 
                 </div>
 
-                <div className='w-full px-24 py-16'>
+                <div className='w-full lg:px-24 lg:py-16 p-10 lg:border-0 border-t-2 border-slate-300'>
                   <Header header='Pengaturan Akun' subHeader='Ubah informasi akun'/>
                   <div className='mb-3'>
                     <InputForm label='Nama Pemilik' placeholder="Masukan nama pemilik" name="name" onChange={e=>setName(e.target.value)}/>
@@ -147,7 +147,7 @@ export default function Penjualan(){
                     {error ? <span className='text-red-500 text-sm'>Kata Sandi harus lebih dari 8 karakter</span> : null}
                   </div>
 
-                  <button className='w-1/2 my-3 p-3 bg-blue-500 text-white rounded-lg' >Simpan Perubahan</button>
+                  <button className='lg:w-1/2 w-full lg:my-3 mt-5 p-3 bg-blue-500 text-white rounded-lg' >Simpan Perubahan</button>
                 </div>
               </div>
             </form>

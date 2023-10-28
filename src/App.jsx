@@ -100,7 +100,7 @@ function App() {
             </div>
 
             <div className='lg:w-1/2 p-0 lg:pb-0 pb-10 lg:pr-36'>
-              <h1 className='text-3xl lg:text-5xl font-medium text-blue-900 pb-6 pt-5 lg:pt-0'>Gak perlu lagi pusing mengelola data grosir!</h1>
+              <h1 className='lg:w-[40rem] text-3xl lg:text-5xl font-source_sans text-blue-900 pb-6 pt-5 lg:pt-0'>Gak perlu lagi pusing mengelola data grosir!</h1>
               <p className='text-md lg:text-xl font-inter text-blue-900 pb-8'>SmartGrosir memungkinkan kamu dengan mudah mengorganisir produk, memastikan katalogmu selalu <i>update.</i></p>
               <Link to={'/login'}>
                 <div className=' flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer'>
@@ -120,7 +120,7 @@ function App() {
               <img src={Image2} alt="" />
             </div>
             <div className='lg:w-1/2 p-0 lg:pl-36'>
-              <h1 className='text-3xl lg:text-5xl font-medium text-blue-900 pb-6'>Analisis Data Grosir</h1>
+              <h1 className='text-3xl lg:text-5xl font-source_sans text-blue-900 pb-6'>Analisis Data Grosir</h1>
               <p className='text-base lg:text-xl font-inter text-blue-900 pb-8'>Dapatkan wawasan berharga dari analisis data grosir untuk pengambilan keputusan yang lebih cerdas.</p>
               <Link to={'/login'}>
                 <div className=' flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer'>
@@ -141,7 +141,7 @@ function App() {
             </div>
 
             <div className='lg:w-1/2 p-0 lg:pb-0 pb-10 lg:pr-36'>
-              <h1 className='text-3xl lg:text-5xl font-medium text-blue-900 pb-6 pt-5 lg:pt-0 lg:w-[35rem]'>Lebih Banyak Waktu, Lebih Banyak Pelanggan</h1>
+              <h1 className='text-3xl lg:text-5xl font-source_sans text-blue-900 pb-6 pt-5 lg:pt-0 lg:w-[35rem]'>Lebih Banyak Waktu, Lebih Banyak Pelanggan</h1>
               <p className='text-base lg:text-xl font-inter text-blue-900 pb-8'>Tingkatkan layanan pelanggan Anda dengan menghemat waktu yang dapat Anda habiskan untuk menjalin hubungan yang lebih baik.</p>
               <Link to={'/login'}>
                 <div className='flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer'>
@@ -162,36 +162,36 @@ function App() {
 
           <div className='w-full justify-center items-center mt-5 lg:my-72'>
             <header className='text-center mx-auto lg:w-2/3 h-fit w-full'>
-              <h1 className='text-3xl lg:text-5xl font-medium text-blue-900 pb-5 pt-5 lg:pt-0'>Manfaatkan Kemudahan Grosir</h1>
+              <h1 className='text-3xl lg:text-5xl font-source_sans text-blue-900 pb-5 pt-5 lg:pt-0'>Manfaatkan Kemudahan Grosir</h1>
               <p className='mx-auto text-lg lg:text-xl font-inter text-blue-900 lg:w-[35rem]'>SmartGrosir - Solusi terbaik untuk mengelola bisnis grosir Anda tanpa kerumitan.</p>
             </header>
             <body className='lg:flex mb-36 mt-20 grid gap-8'>
               <div className='w-full bg-blue-50 rounded-xl p-7'>
                 <img src={IconItems} alt="" className='mt-5 mb-7'/>
-                <h1 className='text-2xl text-blue-900 my-5'>Optimalkan Bisnis Grosir Anda</h1>
+                <h1 className='text-2xl text-blue-900 font-source_sans my-5'>Optimalkan Bisnis Grosir Anda</h1>
                 <p className='text-base text-slate-400 my-5 font-inter'>Kelola data grosir dengan efisien dan tingkatkan produktivitas bisnis Anda.</p>
               </div>
               <div className='w-full bg-blue-50 rounded-xl p-7'>
                 <img src={IconFolder} alt="" className='mt-5 mb-7'/>
-                <h1 className='text-2xl text-blue-900 my-5 pr-5'>Sederhana dan Efisien</h1>
+                <h1 className='text-2xl text-blue-900 font-source_sans my-5 pr-5'>Sederhana dan Efisien</h1>
                 <p className='text-base text-slate-400 my-5 font-inter'>Pengelolaan informasi grosir menjadi lebih sederhana dan efisien daripada sebelumnya.</p>
               </div>
               <div className='w-full bg-blue-50 rounded-xl p-7'>
                 <img src={IconDrone} alt="" className='mt-5 mb-7'/>
-                <h1 className='text-2xl text-blue-900 my-5'>Fleksibilitas yang Tak Tertandingi</h1>
+                <h1 className='text-2xl text-blue-900 font-source_sans my-5'>Fleksibilitas yang Tak Tertandingi</h1>
                 <p className='text-base text-slate-400 my-5 font-inter'>Sesuaikan platform kami dengan kebutuhan bisnis Anda untuk hasil terbaik.</p>
               </div>
               <div className='w-full bg-blue-50 rounded-xl p-7'>
                 <img src={IconHeadset} alt="" className='mt-5 mb-7'/>
-                <h1 className='text-2xl text-blue-900 my-5'>Dukungan Pelanggan Terbaik</h1>
+                <h1 className='text-2xl text-blue-900 font-source_sans my-5'>Dukungan Pelanggan Terbaik</h1>
                 <p className='text-base text-slate-400 my-5 font-inter'>Tim kami siap membantu Anda dalam mengoptimalkan penggunaan platform kami.</p>
               </div>
             </body>
           </div>
 
           <div className='w-full h-fit mx-auto align-center grid justify-center items-center mt-5 mb-10 my-72'>
-            <header className='mx-auto text-center lg:w-2/3 h-fit w-full'>
-              <h1 className='text-3xl lg:text-5xl font-medium text-blue-900 pb-5 pt-5 lg:pt-0'>Solusi yang Didesain Sesuai Kebutuhan</h1>
+            <header className='mx-auto text-center lg:w-3/4 h-fit w-full'>
+              <h1 className='text-3xl lg:text-5xl font-source_sans text-blue-900 pb-5 pt-5 lg:pt-0'>Solusi yang Didesain Sesuai Kebutuhan</h1>
               <p className='text-lg lg:text-xl font-inter text-blue-900'>Platform kami disesuaikan untuk memenuhi kebutuhan unik bisnis grosir Anda.</p>
             </header>
             <span ref={ref}></span>
@@ -333,10 +333,12 @@ function App() {
                 <img src={Logo_SGP} alt="" className='lg:w-52 lg:-mt-2 w-40 -mt-2'/>
               </div>
               <div className='flex text-blue-900'>
-                <ul className='mx-5 cursor-pointer'>
-                  <li>Bantuan</li>
-                </ul>
-                <Link to={'/kebijakan-privasi-pengguna'}>
+                <a href="https://wa.me/+6281223918932?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target='_blank'>
+                  <ul className='mx-5 cursor-pointer'>
+                    <li>Bantuan</li>
+                  </ul>
+                </a>
+                <Link to={'/kebijakan-privasi-pengguna'} target='_blank'>
                   <ul className='mx-5 cursor-pointer'>
                     <li>Kebijakan Privasi</li>
                   </ul>

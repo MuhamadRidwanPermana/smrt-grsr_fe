@@ -107,7 +107,7 @@ export default function kebijakanPrivasiPengguna() {
       </ul>
       <h1 className="text-4xl font-semibold my-5">Collecting and Using Your Personal Data</h1>
       <h2 className="text-2xl font-semibold my-3">Types of Data Collected</h2>
-      <h3 className="text-xl font-semibold my-3">Personal Data</h3>
+      <h3 className="text-2xl font-semibold my-3">Personal Data</h3>
       <p>
         While using Our Service, We may ask You to provide Us with certain
         personally identifiable information that can be used to contact or
@@ -130,7 +130,8 @@ export default function kebijakanPrivasiPengguna() {
         <li>
           <p>Usage Data</p>
         </li>
-      </ul>      <h3 className="">Usage Data</h3>
+      </ul>
+      <h3 className="">Usage Data</h3>
       <p>Usage Data is collected automatically when using the Service.</p>
       <p>
         Usage Data may include information such as Your Device's Internet
@@ -151,7 +152,8 @@ export default function kebijakanPrivasiPengguna() {
         We may also collect information that Your browser sends whenever You
         visit our Service or when You access the Service by or through a mobile
         device.
-      </p>      <h3 className="">Tracking Technologies and Cookies</h3>
+      </p>
+      <h3 className="">Tracking Technologies and Cookies</h3>
       <p>
         We use Cookies and similar tracking technologies to track the activity
         on Our Service and store certain information. Tracking technologies used
@@ -382,18 +384,21 @@ export default function kebijakanPrivasiPengguna() {
         However, please note that we may need to retain certain information when
         we have a legal obligation or legal basis to do so.
       </p>
-      <h2 className="text-2xl font-semibold my-3">Disclosure of Your Personal Data</h2>      <h3 className="">Business Transactions</h3>
+      <h2 className="text-2xl font-semibold my-3">Disclosure of Your Personal Data</h2>
+      <h3 className="">Business Transactions</h3>
       <p>
         If the Company is involved in a merger, acquisition or asset sale, Your
         Personal Data may be transferred. We will provide notice before Your
         Personal Data is transferred and becomes subject to a different Privacy
         Policy.
-      </p>      <h3 className="">Law enforcement</h3>
+      </p>
+      <h3 className="">Law enforcement</h3>
       <p>
         Under certain circumstances, the Company may be required to disclose
         Your Personal Data if required to do so by law or in response to valid
         requests by public authorities (e.g. a court or a government agency).
-      </p>      <h3 className="">Other legal requirements</h3>
+      </p>
+      <h3 className="">Other legal requirements</h3>
       <p>
         The Company may disclose Your Personal Data in the good faith belief
         that such action is necessary to:
@@ -424,7 +429,8 @@ export default function kebijakanPrivasiPengguna() {
         management platform. To maintain the quality of our service and
         infrastructure, we have implemented certain policies that apply to free
         account users, including limitations on the number of menus you can add.
-      </p>      <h3 className="">Limitation on the Number of Menus:</h3>
+      </p>
+      <h3 className="">Limitation on the Number of Menus:</h3>
       <ul className="list-disc ml-5">
         <li>
           Free Account Users can add a maximum of up to 50 menus to their
@@ -434,7 +440,8 @@ export default function kebijakanPrivasiPengguna() {
           Free Account Users can only add one Image per menu item to their
           account.
         </li>
-      </ul>      <h3 className="">Users with More than 50 Menus:</h3>
+      </ul>
+      <h3 className="">Users with More than 50 Menus:</h3>
       <p>
         If you are a free account user who registered with us in a previous
         version and already have more than 50 menus in your account, we will
@@ -449,7 +456,8 @@ export default function kebijakanPrivasiPengguna() {
           Menu Status Deactivated: Alternatively, we will change the status of
           menus that exceed the 50-menu limit to "Inactive."
         </li>
-      </ul>      <h3 className="">Menu Management:</h3>
+      </ul>
+      <h3 className="">Menu Management:</h3>
       <p>
         You have full control over the menus you add to your account. You can
         decide which menus will remain active and which ones will be

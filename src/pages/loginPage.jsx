@@ -36,7 +36,7 @@ export default function Login() {
 
   return (
     <>
-      <section className='w-full h-fit p-5 lg:px-0 py-10'>
+      <section className='w-full h-fit p-5 lg:px-0 py-10 font-inter'>
         
         <div className='lg:block hidden w-fit h-fit'>
           <img src={Subtract3} alt="" className='absolute z-10 w-fit h-fit left-52 ml-3'/>

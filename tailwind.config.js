@@ -5,11 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
-  fontFamily: {
-    source: ['Source Sans 3', 'sans-serif'],
-    inter: ['Inter', 'sans-serif'],
-  },
   theme: {
+    fontFamily: {
+      source_sans: ['Source Sans Pro', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [require("tw-elements/dist/plugin.cjs")],

@@ -78,7 +78,7 @@ export default function InformationPage() {
 
   return (
     <>
-      <section className='w-full h-fit p-5 lg:px-0 py-1'>
+      <section className='w-full h-fit p-5 lg:px-0 py-1 font-inter'>
         
         <div className='lg:block hidden w-fit h-fit'>
           <img src={Subtract3} alt="" className='absolute z-10 w-fit h-fit left-52 ml-3'/>

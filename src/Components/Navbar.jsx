@@ -15,7 +15,7 @@ export default function Navbar({ openSidebar, setOpenSidebar, openDropdownProfil
           <RxHamburgerMenu className={`text-2xl my-4 mx-4 cursor-pointer text-blue-500 ${openSidebar ? '0' : 'rotate-180'}`} onClick={() => setOpenSidebar(!openSidebar)}/>
         </span>
         <div className='flex py-4 mx-0 lg:mx-6'>
-          <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='lg:w-52 lg:-mt-2 w-40 -mt-2'>
+          <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#3F86F0"/>
           <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#3F86F0"/>
           <path d="M9.73389 24V12.8669L0 7.23956V17.0038C0 17.45 0.106689 17.8555 0.319946 18.2205C0.533325 18.5856 0.832275 18.8796 1.21667 19.1027L9.73389 24Z" fill="#3F86F0"/>

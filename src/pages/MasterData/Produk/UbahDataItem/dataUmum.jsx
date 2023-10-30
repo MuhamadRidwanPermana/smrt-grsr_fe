@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Input, Select, InputNumber } from 'antd';
 
 // Icon
-import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { BsGrid3X3GapFill } from '../../../../utils/icons';
 
 // Component
 import Sidebar from '../../../../Components/Sidebar';

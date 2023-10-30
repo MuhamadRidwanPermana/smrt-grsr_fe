@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import Logo_SGP from '../../assets/img/LogoPremium.svg';
+import { LogoPremium } from '../../utils/icons'
 
 export default function Footer() {
   return (
@@ -9,7 +9,7 @@ export default function Footer() {
       <div className='flex w-full justify-center items-center'>
         <div className='lg:flex lg:justify-between grid justify-center items-center lg:w-3/5 w-4/5 h-fit pb-5 border-b-2 border-blue-950'>
           <div className='mb-14 lg:mb-0 text-center lg:ms-0 mx-auto'>
-            <img src={Logo_SGP} alt="" className='lg:w-52 lg:-mt-2 w-40 -mt-2'/>
+            <img src={LogoPremium} alt="" className='lg:w-52 lg:-mt-2 w-40 -mt-2'/>
           </div>
           <div className='flex text-blue-900'>
             <a href="https://wa.me/+6281223918932?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target='_blank'>

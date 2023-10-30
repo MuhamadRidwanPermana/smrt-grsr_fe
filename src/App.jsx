@@ -1,34 +1,13 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import "../src/assets/style.css";
 
-import image from "./assets/img/image_loginPage.png";
-
-import LoginPage from "./pages/loginPage";
-import RegisterPage from "./pages/registerPage";
 import Navbar from "./Components/LandingPageComponents/Navbar";
 import Body from "./Components/LandingPageComponents/Body";
 import Footer from "./Components/LandingPageComponents/Footer";
-import { Link } from "react-router-dom";
 
-import Logo from "./assets/img/Logo.svg";
-import Logo_SGP from "./assets/img/LogoPremium.svg";
-import Image from "./assets/img/image_landingpage.png";
-import Image2 from "./assets/img/image_landingpage2.png";
-import IconItems from "./assets/img/Icon_Items.svg";
-import IconFolder from "./assets/img/Icon_Folder.svg";
-import IconDrone from "./assets/img/Icon_Drone.svg";
-import IconHeadset from "./assets/img/Icon_Headset.svg";
-
-import Subtract from "./assets/img/Subtract.svg";
-import Subtract2 from "./assets/img/Subtract2.svg";
-import Logo2 from "./assets/img/Logo2.svg";
-import Rect from "./assets/img/rect.svg";
-
-import { FaArrowRightLong } from "react-icons/fa6";
-import { BsCheck2 } from "react-icons/bs";
-import { CgClose } from "react-icons/cg";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { LogoApp, Logo, LogoPremium, Image, Image2, IconItems, IconFolder, IconDrone, IconHeadset, IconSubtract, IconSubtract2, IconRect, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';
 
 function App() {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -70,7 +49,7 @@ function App() {
         </div>
 
         <div className="flex cursor-pointer items-center pt-2">
-          <img src={Logo} alt="" className="lg:w-52 lg:-mt-2 w-40 -mt-2" />
+          <img src={LogoApp} alt="" className="lg:w-52 lg:-mt-2 w-40 -mt-2" />
         </div>
 
         <div className="flex items-center cursor-pointer text-slate-500">
@@ -114,9 +93,9 @@ function App() {
 
       <body className="w-full h-fit p-5 lg:px-36">
         <div className="lg:block hidden w-fit h-fit">
-          <img src={Subtract} alt="" className="absolute z-10 w-fit h-fit" />
+          <img src={IconSubtract} alt="" className="absolute z-10 w-fit h-fit" />
           <img
-            src={Logo2}
+            src={Logo}
             alt=""
             className="absolute z-10 w-fit h-fit top-96 mt-80"
           />
@@ -171,7 +150,7 @@ function App() {
 
         <div className="lg:block hidden w-fit h-fit">
           <img
-            src={Subtract2}
+            src={IconSubtract2}
             alt=""
             className="absolute z-10 w-fit h-fit top-full mt-96 pt-52"
           />
@@ -205,7 +184,7 @@ function App() {
 
         <div className="lg:block hidden">
           <img
-            src={Rect}
+            src={IconRect}
             alt=""
             className="absolute z-10 w-fit h-fit right-24 -mt-20"
           />
@@ -281,7 +260,7 @@ function App() {
               <header>
                 <div className="flex">
                   <img
-                    src={Logo}
+                    src={LogoApp}
                     alt=""
                     className="lg:w-52 lg:-mt-2 w-40 -mt-2"
                   />
@@ -363,7 +342,7 @@ function App() {
               <header>
                 <div className="flex">
                   <img
-                    src={Logo_SGP}
+                    src={LogoPremium}
                     alt=""
                     className="lg:w-52 lg:-mt-2 w-40 -mt-2"
                   />

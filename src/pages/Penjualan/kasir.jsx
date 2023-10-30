@@ -2,17 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Select, Modal, Button, Input, Space, Table, Form, InputNumber} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
-
 import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
-
-// const MySwal = withReactContent(Swal)
 
 // Icon
-import { BsCartPlusFill } from 'react-icons/bs';
-import { BiSolidEditAlt } from 'react-icons/bi';
-import { BiSolidTrashAlt } from 'react-icons/bi';
-import { PiMagnifyingGlassBold } from 'react-icons/pi';
+import { BsCartPlusFill, BiSolidEditAlt, BiSolidTrashAlt, PiMagnifyingGlassBold } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
@@ -488,7 +481,7 @@ export default function Pembelian() {
       render: (_, record) =>
         tambahDataKasir.length >= 1 ? (
           <>
-            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataKasir(record.no)}>
+            <div className='cursor-pointer flex items-center justify-centertext-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataKasir(record.no)}>
               <BsCartPlusFill className='mr-1 text-xl'/>
               <span>Pilih</span>
             </div>
@@ -547,51 +540,51 @@ export default function Pembelian() {
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             <div className='grid lg:flex lg:justify-between'>
-              <div className=''>
+              <div>
                 <table className='flex'>
                   <tleft>
                     <tr>
-                      <td className=' text-left w-fit h-14'>Kode</td>
+                      <td className='text-left w-fit h-14'>Kode</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-fit h-14'>Tanggal</td>
+                    <tr>
+                      <td className='text-left w-fit h-14'>Tanggal</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-fit h-14'>Pelanggan</td>
+                    <tr>
+                      <td className='text-left w-fit h-14'>Pelanggan</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-fit h-14'>Nama Pelanggan</td>
+                    <tr>
+                      <td className='text-left w-fit h-14'>Nama Pelanggan</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-fit h-14'>No HP</td>
+                    <tr>
+                      <td className='text-left w-fit h-14'>No HP</td>
                     </tr>
                   </tleft>
                   <tcenter>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
                   </tcenter>
                   <tright>
-                    <tr className=''>
-                      <td className=' text-left w-52 h-14'>PRJM-UTN-0006</td>
+                    <tr>
+                      <td className='text-left w-52 h-14'>PRJM-UTN-0006</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-52 h-14'>07-10-2023 15:06:07</td>
+                    <tr>
+                      <td className='text-left w-52 h-14'>07-10-2023 15:06:07</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-left w-52 h-14'>
+                    <tr>
+                      <td className='text-left w-52 h-14'>
                         <Select
                         className='border border-black w-52 h-11 -mt-2 bg-white rounded-lg select'
                         showSearch
@@ -617,12 +610,12 @@ export default function Pembelian() {
                       />
                       </td>
                     </tr>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-52 h-14'>
                         <Input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/>
                       </td>
                     </tr>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-52 h-14'>
                       <InputNumber min={1} max={1000} onChange={onInputNumber} className='border-black border w-52 py-1.5 -mt-2 bg-white rounded-lg'/>
                       </td>
@@ -630,26 +623,26 @@ export default function Pembelian() {
                   </tright>
                 </table>
               </div>
-              <div className=''>
+              <div>
                 <table className='flex'>
                   <tleft>
                     <tr>
                       <td className=' text-left w-auto h-14'>Keluar dari</td>
                     </tr>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-auto h-14'>Sales</td>
                     </tr>
                   </tleft>
                   <tcenter>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
-                    <tr className=''>
-                      <td className=' text-center w-10 h-14'>:</td>
+                    <tr>
+                      <td className='text-center w-10 h-14'>:</td>
                     </tr>
                   </tcenter>
                   <tright>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-52 h-14'>
                       <Select
                         className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'
@@ -676,7 +669,7 @@ export default function Pembelian() {
                       />
                       </td>
                     </tr>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-52 h-14'>
                       <Select
                         className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'
@@ -706,7 +699,7 @@ export default function Pembelian() {
                 <table className='flex'>
                   <tright>
                     <span className='font-semibold my-10'>Total</span>
-                    <tr className=''>
+                    <tr>
                       <td className=' text-left w-full'>
                         <input type="text" className='border-slate-500 bg-blue-200 border w-full h-24 px-2 rounded-lg'/>
                       </td>

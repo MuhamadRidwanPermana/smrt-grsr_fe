@@ -1,13 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Select, InputNumber } from 'antd';
-import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
 
 // Icon
-import { MdSave } from 'react-icons/md';
-import { PiTrashSimpleBold } from 'react-icons/pi';
-import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { BsGrid3X3GapFill } from '../../../../utils/icons';
 
 // Component
 import Sidebar from '../../../../Components/Sidebar';

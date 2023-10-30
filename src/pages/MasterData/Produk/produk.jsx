@@ -5,9 +5,7 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 
 // Icon
-import { MdSave } from 'react-icons/md';
-import { BiSolidTrashAlt } from 'react-icons/bi';
-import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { MdSave, BiSolidTrashAlt, BsGrid3X3GapFill } from '../../../utils/icons';
 
 // Component
 import Sidebar from '../../../Components/Sidebar';

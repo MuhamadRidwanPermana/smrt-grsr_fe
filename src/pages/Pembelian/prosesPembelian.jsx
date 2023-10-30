@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import DataTable from 'react-data-table-component';
 import { Select, Modal, Button, Input, Space, Table, Form, InputNumber, DatePicker } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 
 // Icon
-import { BiSolidTrashAlt } from 'react-icons/bi';
-import { BsGrid3X3GapFill } from 'react-icons/bs';
-import { BsCartPlusFill } from 'react-icons/bs';
-import { PiMagnifyingGlassBold } from 'react-icons/pi';
-import { BiSolidEditAlt } from 'react-icons/bi';
-import { MdSave } from 'react-icons/md';
+import { BiSolidTrashAlt, BsGrid3X3GapFill, BsCartPlusFill,PiMagnifyingGlassBold, BiSolidEditAlt } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';

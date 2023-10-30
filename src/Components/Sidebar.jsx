@@ -2,15 +2,7 @@ import  { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 // Icon
-import { RxDoubleArrowLeft } from 'react-icons/rx';
-import { AiFillHome } from 'react-icons/ai';
-import { BsChevronRight } from 'react-icons/bs';
-import { HiMiniShoppingBag } from 'react-icons/hi2';
-import { ImPriceTag } from 'react-icons/im';
-import { FaBoxArchive } from 'react-icons/fa6';
-
-// Logo
-import Logo from '../../public/icon.svg'
+import { RxDoubleArrowLeft, AiFillHome, BsChevronRight, HiMiniShoppingBag, ImPriceTag, FaBoxArchive } from '../utils/icons';
 
 export default function Sidebar({openSidebar, setOpenSidebar, submenuOpen, setSubmenuOpen, submenuOpen2, setSubmenuOpen2}) {
   

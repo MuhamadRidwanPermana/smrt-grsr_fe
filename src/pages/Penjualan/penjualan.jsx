@@ -207,57 +207,57 @@ export default function Penjualan(){
     },
   ]
 
-  // const data = [
-  //   {
-  //     no: 1,
-  //     kode: 'PRJM-UTN-001',
-  //     waktu_transaksi: '09-10-2023 14:40:08',
-  //     nama: 'Ridwan',
-  //     no_hp: '081234567890',
-  //     status_transaksi: <span className='text-green-500 font-semibold'>Selesai</span>,
-  //   },
-  //   {
-  //     no: 2,
-  //     kode: 'PRJM-UTN-002',
-  //     waktu_transaksi: '20-01-2023 09:10:58',
-  //     nama: 'Fairuz',
-  //     no_hp: '081234567890',
-  //     status_transaksi: <span className='text-red-500 font-semibold'>Belum Selesai</span>,
-  //   },
-  //   {
-  //     no: 3,
-  //     kode: 'PRJM-UTN-003',
-  //     waktu_transaksi: '22-12-2023 11:28:43',
-  //     nama: 'Agung',
-  //     no_hp: '081234567890',
-  //     status_transaksi: <span className='text-orange-300 font-semibold'>Pending</span>,
-  //   },
-  // ]
+  const data = [
+    {
+      no: 1,
+      kode: 'PRJM-UTN-001',
+      waktu_transaksi: '09-10-2023 14:40:08',
+      nama: 'Ridwan',
+      no_hp: '081234567890',
+      status_transaksi: <span className='text-green-500 font-semibold'>Selesai</span>,
+    },
+    {
+      no: 2,
+      kode: 'PRJM-UTN-002',
+      waktu_transaksi: '20-01-2023 09:10:58',
+      nama: 'Fairuz',
+      no_hp: '081234567890',
+      status_transaksi: <span className='text-red-500 font-semibold'>Belum Selesai</span>,
+    },
+    {
+      no: 3,
+      kode: 'PRJM-UTN-003',
+      waktu_transaksi: '22-12-2023 11:28:43',
+      nama: 'Agung',
+      no_hp: '081234567890',
+      status_transaksi: <span className='text-orange-300 font-semibold'>Pending</span>,
+    },
+  ]
 
   
   // Generate Random String
-  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  function generateString(length) {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
+  // const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  // function generateString(length) {
+  //   let result = ' ';
+  //   const charactersLength = characters.length;
+  //   for ( let i = 0; i < length; i++ ) {
+  //       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
-  const data = []
-  for (let i = 1; i < 100 ; i++) {
-    data.push({
-      no: i,
-      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      waktu_transaksi: '09-10-2023 14:40:08',
-      nama: generateString(5),
-      no_hp: '082' + Math.floor(Math.random() * 1000000000),
-      status_transaksi: 'Selesai', 
-    });
-  }
+  // const data = []
+  // for (let i = 1; i < 100 ; i++) {
+  //   data.push({
+  //     no: i,
+  //     kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+  //     waktu_transaksi: '09-10-2023 14:40:08',
+  //     nama: generateString(5),
+  //     no_hp: '082' + Math.floor(Math.random() * 1000000000),
+  //     status_transaksi: 'Selesai', 
+  //   });
+  // }
 
 
   const onChange = (pagination, filters, sorter, extra) => {

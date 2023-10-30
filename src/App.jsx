@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 import "../src/assets/style.css";
 
-import Navbar from "./Components/LandingPageComponents/Navbar";
-import Body from "./Components/LandingPageComponents/Body";
 import Footer from "./Components/LandingPageComponents/Footer";
 
 import { LogoApp, Logo, LogoPremium, Image, Image2, IconItems, IconFolder, IconDrone, IconHeadset, IconSubtract, IconSubtract2, IconRect, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';

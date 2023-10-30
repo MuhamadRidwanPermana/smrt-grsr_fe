@@ -14,3 +14,12 @@
 .ant-btn-primary{
   background: #3B82F6;
 }
+
+.swal2-popup {
+  font-family: 'Inter', sans-serif;
+}
+
+h2#swal2-title{
+  font-size: 21px;
+  padding: 20px 50px 5px 50px;
+}

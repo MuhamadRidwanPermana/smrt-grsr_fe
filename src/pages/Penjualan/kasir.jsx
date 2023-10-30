@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Select, Modal, Button, Input, Space, Table, Form } from 'antd';
+import { Select, Modal, Button, Input, Space, Table, Form, InputNumber} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
+
+import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
+
+// const MySwal = withReactContent(Swal)
 
 // Icon
 import { BsCartPlusFill } from 'react-icons/bs';
@@ -200,7 +205,6 @@ export default function Pembelian() {
       dataIndex: 'no',
       width: '5%',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.no - b.no,
     },
     {
@@ -208,7 +212,6 @@ export default function Pembelian() {
       dataIndex: 'kode',
       width: '15%',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.no - b.no,
     },
     {
@@ -217,24 +220,21 @@ export default function Pembelian() {
       width: '20px',
       align: 'center',
       ...getColumnSearchProps('nama'),
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      // sorter: (a, b) => a.nama.length - b.nama.length,
     },
     {
       title: 'Qty',
       dataIndex: 'qty',
       width: '5%',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.qty - b.qty,
     },
     {
       title: 'Satuan',
       dataIndex: 'satuan',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.satuan.length - b.satuan.length,
       filters: [
         {
           text: 'Kilogram',
@@ -256,32 +256,28 @@ export default function Pembelian() {
       dataIndex: 'harga',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.harga - b.harga,
     },
     {
       title: 'Disc',
       dataIndex: 'disc',
       width: '5%',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.disc - b.disc,
     },
     {
       title: 'Potongan Member',
       dataIndex: 'potongan_member',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.potongan_member - b.potongan_member,
     },
     {
       title: 'Total',
       dataIndex: 'total',
       width: '15%',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.total - b.total,
     },
     {
       title: 'Aksi',
@@ -293,54 +289,98 @@ export default function Pembelian() {
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
               <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
-              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg'><BiSolidTrashAlt/></button>
+              {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.no)}> */}
+                <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.no)}><BiSolidTrashAlt/></button>
+              {/* </Popconfirm> */}
             </div>
           </>
         ) : null,
     },
   ]
 
-  // const DataKasir = [
-  //   {
-  //     no: '1',
-  //     kode : '001',
-  //     nama: 'Beras',
-  //     qty: 1,
-  //     satuan: 3 + ' kg',
-  //     harga: 20,
-  //     disc: 20 + '%',
-  //     potongan_member: 20 + '%',
-  //     total: '20.000',
-  //   },
-  // ]
+  const handleDelete = (no) => {
+    Swal.fire({
+      title: 'Apakah anda yakin ingin mengahpus data ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Dihapus!',
+          'Data berhasil dihapus!',
+          'success'
+          )
+        const newData = DataKasir.filter((item) => item.no !== no);
+        setDataKasir(newData);
+      }
+    })
+  };
 
-  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  function generateString(length) {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-  }
-
-  const DataKasir = []
-  for (let i = 1; i < 100 ; i++) {
-    DataKasir.push({
-      no: i,
-      kode : 'PRJM-UTN-0' + Math.floor(Math.random() * 1000),
-      nama: generateString(5),
+  const [DataKasir, setDataKasir] = useState([
+    {
+      no: 1,
+      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+      nama: 'Beras',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
       harga: Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
       potongan_member: 20 + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
-    });
+    },
+    {
+      no: 2,
+      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+      nama: 'Beras',
+      qty: Math.floor(Math.random() * 10),
+      satuan: 'Kg',
+      harga: Math.floor(Math.random() * 220000),
+      disc: Math.floor(Math.random() * 10) + '%',
+      potongan_member: 20 + '%',
+      total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
+    },
+    {
+      no: 3,
+      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+      nama: 'Beras',
+      qty: Math.floor(Math.random() * 10),
+      satuan: 'Kg',
+      harga: Math.floor(Math.random() * 220000),
+      disc: Math.floor(Math.random() * 10) + '%',
+      potongan_member: 20 + '%',
+      total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
+    }
+  ])
+  
+  // const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  // function generateString(length) {
+  //   let result = ' ';
+  //   const charactersLength = characters.length;
+  //   for ( let i = 0; i < length; i++ ) {
+  //       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
 
+  //   return result;
+  // }
 
-  }  
+  // const [DataKasir, setDataKasir] = useState([])
+  // for (let i = 1; i < 10 ; i++) {
+  //   DataKasir.push({
+  //     no: i,
+  //     kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+  //     nama: generateString(5),
+  //     qty: Math.floor(Math.random() * 10),
+  //     satuan: 'Kg',
+  //     harga: Math.floor(Math.random() * 220000),
+  //     disc: Math.floor(Math.random() * 10) + '%',
+  //     potongan_member: 20 + '%',
+  //     total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
+  //   });
+  // }
 
   // Cari Barang
   const onChange = (value) => {
@@ -362,7 +402,6 @@ export default function Pembelian() {
     setOpen(false);
   };
 
-
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -380,16 +419,30 @@ export default function Pembelian() {
     console.log('params', pagination, filters, sorter, extra);
   };
 
+  const handleAddDataKasir = () => {
+    const newData = DataKasir.concat({
+      no: DataKasir.length + 1,
+      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
+      nama: 'Kopi',
+      qty: Math.floor(Math.random() * 10),
+      satuan: 'Kg',
+      harga: Math.floor(Math.random() * 220000),
+      disc: Math.floor(Math.random() * 10) + '%',
+      potongan_member: 20 + '%',
+      total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
+    });
+    setDataKasir(newData);
+  }
 
   const [tambahDataKasir, setTambahDataKasir] = useState([
     {
-      no: '1',
+      no: 1,
       nama_barang: 'Beras',
       stok: 3 + ' kg',
       qty: 1,
     },
     {
-      no: '2',
+      no: 2,
       nama_barang: 'Gandum',
       stok: 5 + ' kg',
       qty: 3,
@@ -402,7 +455,6 @@ export default function Pembelian() {
       dataIndex: 'no',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.no - b.no,
     },
     {
@@ -411,7 +463,6 @@ export default function Pembelian() {
       width: '50%',
       align: 'center',
       ...getColumnSearchProps('nama_barang'),
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.nama_barang.length - b.nama_barang.length,
     },
     {
@@ -419,7 +470,6 @@ export default function Pembelian() {
       dataIndex: 'stok',
       width: '100px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.stok - b.stok,
     },
     {
@@ -428,7 +478,6 @@ export default function Pembelian() {
       width: '100px',
       editable: true,
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.qty - b.qty,
     },
     {
@@ -439,7 +488,7 @@ export default function Pembelian() {
       render: (_, record) =>
         tambahDataKasir.length >= 1 ? (
           <>
-            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg'>
+            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataKasir(record.no)}>
               <BsCartPlusFill className='mr-1 text-xl'/>
               <span>Pilih</span>
             </div>
@@ -481,8 +530,11 @@ export default function Pembelian() {
     };
   });
 
+  const onInputNumber = (value) => {
+    console.log('changed', value);
+  };
+
   return(
-    
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
       <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
@@ -499,30 +551,36 @@ export default function Pembelian() {
                 <table className='flex'>
                   <tleft>
                     <tr>
-                      <td className=' text-left w-40 h-14'>Kode</td>
+                      <td className=' text-left w-fit h-14'>Kode</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-left w-40 h-14'>Tanggal</td>
+                      <td className=' text-left w-fit h-14'>Tanggal</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-left w-40 h-14'>Toko</td>
+                      <td className=' text-left w-fit h-14'>Pelanggan</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-left w-40 h-14'>Suplier</td>
+                      <td className=' text-left w-fit h-14'>Nama Pelanggan</td>
+                    </tr>
+                    <tr className=''>
+                      <td className=' text-left w-fit h-14'>No HP</td>
                     </tr>
                   </tleft>
                   <tcenter>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
+                    </tr>
+                    <tr className=''>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                   </tcenter>
                   <tright>
@@ -534,7 +592,6 @@ export default function Pembelian() {
                     </tr>
                     <tr className=''>
                       <td className=' text-left w-52 h-14'>
-                        {/* <input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/> */}
                         <Select
                         className='border border-black w-52 h-11 -mt-2 bg-white rounded-lg select'
                         showSearch
@@ -565,6 +622,11 @@ export default function Pembelian() {
                         <Input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/>
                       </td>
                     </tr>
+                    <tr className=''>
+                      <td className=' text-left w-52 h-14'>
+                      <InputNumber min={1} max={1000} onChange={onInputNumber} className='border-black border w-52 py-1.5 -mt-2 bg-white rounded-lg'/>
+                      </td>
+                    </tr>
                   </tright>
                 </table>
               </div>
@@ -572,18 +634,18 @@ export default function Pembelian() {
                 <table className='flex'>
                   <tleft>
                     <tr>
-                      <td className=' text-left w-40 h-14'>Keluar dari</td>
+                      <td className=' text-left w-auto h-14'>Keluar dari</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-left w-40 h-14'>Sales</td>
+                      <td className=' text-left w-auto h-14'>Sales</td>
                     </tr>
                   </tleft>
                   <tcenter>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                     <tr className=''>
-                      <td className=' text-center w-5 h-14'>:</td>
+                      <td className=' text-center w-10 h-14'>:</td>
                     </tr>
                   </tcenter>
                   <tright>
@@ -646,7 +708,7 @@ export default function Pembelian() {
                     <span className='font-semibold my-10'>Total</span>
                     <tr className=''>
                       <td className=' text-left w-full'>
-                        <input type="text" className='border-slate-500 bg-blue-200 border w-full h-24 rounded-lg'/>
+                        <input type="text" className='border-slate-500 bg-blue-200 border w-full h-24 px-2 rounded-lg'/>
                       </td>
                     </tr>
                   </tright>

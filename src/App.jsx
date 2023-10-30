@@ -11,7 +11,7 @@ import Body from "./Components/LandingPageComponents/Body";
 import Footer from "./Components/LandingPageComponents/Footer";
 import { Link } from "react-router-dom";
 
-import Logo from "./assets/img/logo.svg";
+import Logo from "./assets/img/Logo.svg";
 import Logo_SGP from "./assets/img/LogoPremium.svg";
 import Image from "./assets/img/image_landingpage.png";
 import Image2 from "./assets/img/image_landingpage2.png";

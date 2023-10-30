@@ -15,6 +15,10 @@
   background: #3B82F6;
 }
 
+.modal-suplier .ant-modal-footer{
+  display: none !important;
+}
+
 .swal2-popup {
   font-family: 'Inter', sans-serif;
 }

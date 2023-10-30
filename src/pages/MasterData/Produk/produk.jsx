@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
+import Swal from 'sweetalert2'
 
 // Icon
 import { MdSave, BiSolidTrashAlt, BsGrid3X3GapFill } from '../../../utils/icons';
@@ -127,19 +128,24 @@ export default function DataProduk() {
     setSearchText('');
   };
 
-  const columns = [
+  const onChange = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
+  };
+
+  const columnsProduk = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '5%',
       align: 'center',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Kode',
       dataIndex: 'kode',
       width: '20px',
       align: 'center',
+      ...getColumnSearchProps('kode'),
       sorter: (a, b) => a.kode - b.kode,
     },
     {
@@ -185,74 +191,51 @@ export default function DataProduk() {
       align: 'center',
       width: '5%',
       render: (_, record) =>
-        data.length >= 1 ? (
+        dataProduk.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
               <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button>
-              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg'><BiSolidTrashAlt/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
         ) : null,
     },
   ]
 
-  const data = [
-    {
-      no: 1,
-      kode: 123,
-      toko: 'Toko Sawarga',
-      nama_item: 'Beras',
-      stok: '1',
-      harga_pokok: 'Rp 20.000',
-      harga_jual: 'Rp 25.000',
-    }
-  ]
-
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Apakah anda yakin ingin mengahpus data ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Dihapus!',
+          'Data berhasil dihapus!',
+          'success'
+          )
+        const newData = dataProduk.filter((item) => item.id !== id);
+        setDataProduk(newData);
+      }
+    })
   };
 
-  // const customStyles = {
-  //   rows: {
-  //     style: {
-  //       width: 'auto',
-  //       height: 'auto',
-  //       fontSize: '14px',
-  //       padding: '0',
-  //       borderCollapse: "collapse",
-  //     },
-  //   },
-  //   headCells: {
-  //     style: {
-  //       align: 'center',
-  //       backgroundColor: '#eaeaea',
-  //       fontSize: '14px',
-  //       fontStyle: 'bold',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       padding: '0px',
-  //     },
-  //   },
-  //   cells: {
-  //     style: {
-  //       align: 'center',
-  //       width: '20px',
-  //       height: 'auto',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       padding: '0px',
-  //     },
-  //   },
-  //   columns: {
-  //     style: {
-  //       width: '20px',
-  //       height: 'auto',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       color: 'red',
-  //     }
-  //   }
-  // }
+  const [dataProduk, setDataProduk] = useState([])
+  for(let i = 0; i < 10; i++){
+    dataProduk.push({
+      id: dataProduk.length + 1,
+      kode: 'PRD-' + dataProduk.length,
+      toko: 'Toko Sawarga',
+      nama_item: 'Beras',
+      stok: Math.floor(Math.random() * 100),
+      harga_pokok: 'Rp 20.000',
+      harga_jual: 'Rp 25.000',
+    })
+  }
 
   return(
     <main className="flex bg-blue-500 w-full h-full font-inter">
@@ -279,14 +262,13 @@ export default function DataProduk() {
 
             <div className='bg-red w-full h-screen mt-12'>
               <div>
-                {/* <DataTable columns={columns} data={data} fixedHeader pagination customStyles={customStyles}/> */}
                 <Table
-                    bordered
-                    dataSource={data}
-                    columns={columns}
-                    onChange={onChange}
-                    className='mb-10 overflow-x-auto'
-                  />
+                  bordered
+                  dataSource={dataProduk}
+                  columns={columnsProduk}
+                  onChange={onChange}
+                  className='mb-10 overflow-x-auto'
+                />
               </div>
 
             </div>

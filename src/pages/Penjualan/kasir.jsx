@@ -192,19 +192,73 @@ export default function Pembelian() {
       ),
   });
 
+  const onChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log('search:', value);
+  };
+  // Filter `option.label` match the user type `input`
+  const filterOption = (input, option) =>
+  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+  // Modal
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
+
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const onClick = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
+  };
+
+  const handleSave = (row) => {
+    const newData = [...tambahDataKasir];
+    const index = newData.findIndex((item) => row.key === item.key);
+    const item = newData[index];
+    newData.splice(index, 1, {
+      ...item,
+      ...row,
+    });
+    setTambahDataKasir(newData);
+  };
+  const components = {
+    body: {
+      row: EditableRow,
+      cell: EditableCell,
+    },
+  };
+
   const ColumnsKasir = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '5%',
       align: 'center',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Kode',
       dataIndex: 'kode',
       width: '15%',
       align: 'center',
+      ...getColumnSearchProps('kode'),
       sorter: (a, b) => a.no - b.no,
     },
     {
@@ -213,7 +267,7 @@ export default function Pembelian() {
       width: '20px',
       align: 'center',
       ...getColumnSearchProps('nama'),
-      // sorter: (a, b) => a.nama.length - b.nama.length,
+      sorter: (a, b) => a.nama.length - b.nama.length,
     },
     {
       title: 'Qty',
@@ -282,16 +336,14 @@ export default function Pembelian() {
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
               <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
-              {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.no)}> */}
-                <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.no)}><BiSolidTrashAlt/></button>
-              {/* </Popconfirm> */}
+              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDeleteDataKasir(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
         ) : null,
     },
   ]
 
-  const handleDelete = (no) => {
+  const handleDeleteDataKasir = (id) => {
     Swal.fire({
       title: 'Apakah anda yakin ingin mengahpus data ini?',
       icon: 'warning',
@@ -307,7 +359,7 @@ export default function Pembelian() {
           'Data berhasil dihapus!',
           'success'
           )
-        const newData = DataKasir.filter((item) => item.no !== no);
+        const newData = DataKasir.filter((item) => item.id !== id);
         setDataKasir(newData);
       }
     })
@@ -315,36 +367,36 @@ export default function Pembelian() {
 
   const [DataKasir, setDataKasir] = useState([
     {
-      no: 1,
+      id: 1,
       kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
       nama: 'Beras',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
       harga: Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: 20 + '%',
+      potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
     },
     {
-      no: 2,
+      id: 2,
       kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Beras',
+      nama: 'Kopi',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
       harga: Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: 20 + '%',
+      potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
     },
     {
-      no: 3,
+      id: 3,
       kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Beras',
+      nama: 'Gandum',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
       harga: Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: 20 + '%',
+      potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
     }
   ])
@@ -376,52 +428,17 @@ export default function Pembelian() {
   // }
 
   // Cari Barang
-  const onChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const onSearch = (value) => {
-    console.log('search:', value);
-  };
-  // Filter `option.label` match the user type `input`
-  const filterOption = (input, option) =>
-  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
-
-  // Modal
-  const [open, setOpen] = useState(false);
-  const showModal = () => {
-    setOpen(true);
-  };
-  const hideModal = () => {
-    setOpen(false);
-  };
-
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
-  const searchInput = useRef(null);
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText('');
-  };
-
-  const onClick = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-  };
 
   const handleAddDataKasir = () => {
     const newData = DataKasir.concat({
-      no: DataKasir.length + 1,
+      id: DataKasir.length + 1,
       kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Kopi',
+      nama: 'Beras',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
       harga: Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: 20 + '%',
+      potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
     });
     setDataKasir(newData);
@@ -429,13 +446,13 @@ export default function Pembelian() {
 
   const [tambahDataKasir, setTambahDataKasir] = useState([
     {
-      no: 1,
+      id: 1,
       nama_barang: 'Beras',
       stok: 3 + ' kg',
       qty: 1,
     },
     {
-      no: 2,
+      id: 2,
       nama_barang: 'Gandum',
       stok: 5 + ' kg',
       qty: 3,
@@ -445,10 +462,10 @@ export default function Pembelian() {
   const tambahcolumnsKasir = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '20px',
       align: 'center',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Nama Barang',
@@ -491,22 +508,6 @@ export default function Pembelian() {
     
   ];
   
-  const handleSave = (row) => {
-    const newData = [...tambahDataKasir];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, {
-      ...item,
-      ...row,
-    });
-    setTambahDataKasir(newData);
-  };
-  const components = {
-    body: {
-      row: EditableRow,
-      cell: EditableCell,
-    },
-  };
   const columns = tambahcolumnsKasir.map((col) => {
     if (!col.editable) {
       return col;

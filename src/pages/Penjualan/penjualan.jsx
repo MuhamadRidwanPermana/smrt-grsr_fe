@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
+import Swal from 'sweetalert2'
 
 // Icon
 import { MdSave, BiSolidTrashAlt, BsGrid3X3GapFill } from '../../utils/icons';
@@ -131,10 +132,10 @@ export default function Penjualan(){
   const columns = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '5%',
       align: 'center',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Kode Transaksi',
@@ -194,20 +195,20 @@ export default function Penjualan(){
       align: 'center',
       width: '5%',
       render: (_, record) =>
-        data.length >= 1 ? (
+        dataPenjualan.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
               <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button>
-              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDeleteItem(data.no)}><BiSolidTrashAlt/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
         ) : null,
     },
   ]
 
-  const data = [
+  const [dataPenjualan, setDataPenjualan] = useState([
     {
-      no: 1,
+      id: 1,
       kode: 'PRJM-UTN-001',
       waktu_transaksi: '09-10-2023 14:40:08',
       nama: 'Ridwan',
@@ -215,7 +216,7 @@ export default function Penjualan(){
       status_transaksi: <span className='text-green-500 font-semibold'>Selesai</span>,
     },
     {
-      no: 2,
+      id: 2,
       kode: 'PRJM-UTN-002',
       waktu_transaksi: '20-01-2023 09:10:58',
       nama: 'Fairuz',
@@ -223,16 +224,37 @@ export default function Penjualan(){
       status_transaksi: <span className='text-red-500 font-semibold'>Belum Selesai</span>,
     },
     {
-      no: 3,
+      id: 3,
       kode: 'PRJM-UTN-003',
       waktu_transaksi: '22-12-2023 11:28:43',
       nama: 'Agung',
       no_hp: '081234567890',
       status_transaksi: <span className='text-orange-300 font-semibold'>Pending</span>,
     },
-  ]
+  ])
 
-  
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Apakah anda yakin ingin mengahpus data ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Dihapus!',
+          'Data berhasil dihapus!',
+          'success'
+          )
+        const newData = dataPenjualan.filter((item) => item.id !== id);
+        setDataPenjualan(newData);
+      }
+    })
+  };
+
   // Generate Random String
   // const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   // function generateString(length) {
@@ -282,7 +304,7 @@ export default function Penjualan(){
               <div className='w-auto h-auto'>
                 <Table
                   bordered
-                  dataSource={data}
+                  dataSource={dataPenjualan}
                   columns={columns}
                   onChange={onChange}
                   className='mb-10 overflow-x-auto'

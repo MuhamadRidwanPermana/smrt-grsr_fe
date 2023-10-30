@@ -4,6 +4,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { Select, Modal, Button, Input, Space, Table, Form, InputNumber, DatePicker } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
+import Swal from 'sweetalert2'
 
 // Icon
 import { BiSolidTrashAlt, BsGrid3X3GapFill, BsCartPlusFill,PiMagnifyingGlassBold, BiSolidEditAlt } from '../../utils/icons';
@@ -91,7 +92,7 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
-export default function Pembelian() {
+export default function ProsesPembelian() {
 
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -194,14 +195,13 @@ export default function Pembelian() {
   });
 
   // Data yang di Tampilkan
-  const Columns = [
+  const columnsPembelian = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Nama Barang',
@@ -209,7 +209,6 @@ export default function Pembelian() {
       width: '20px',
       align: 'center',
       ...getColumnSearchProps('nama_barang'),
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.nama_barang.length - b.nama_barang.length,
     },
     {
@@ -217,7 +216,6 @@ export default function Pembelian() {
       dataIndex: 'satuan',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.satuan - b.satuan,
     },
     {
@@ -225,7 +223,6 @@ export default function Pembelian() {
       dataIndex: 'jual',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.jual - b.jual,
     },
     {
@@ -233,7 +230,6 @@ export default function Pembelian() {
       dataIndex: 'pokok',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.pokok - b.pokok,
     },
     {
@@ -241,7 +237,6 @@ export default function Pembelian() {
       dataIndex: 'qty',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.qty - b.qty,
     },
     {
@@ -249,7 +244,6 @@ export default function Pembelian() {
       dataIndex: 'total',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.total - b.total,
     },
     {
@@ -258,28 +252,69 @@ export default function Pembelian() {
       align: 'center',
       width: '20px',
       render: (_, record) =>
-        Data.length >= 1 ? (
+        dataPembelian.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
               <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
-              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg'><BiSolidTrashAlt/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
         ) : null,
     },
   ]
 
-  const Data = [
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Apakah anda yakin ingin mengahpus data ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Dihapus!',
+          'Data berhasil dihapus!',
+          'success'
+          )
+        const newData = dataPembelian.filter((item) => item.id !== id);
+        setDataPembelian(newData);
+      }
+    })
+  };
+
+  const [dataPembelian, setDataPembelian] = useState([
     {
-      no: 1,
+      id: 1,
       nama_barang: 'Beras',
       satuan: 'Ton',
-      jual: 'Rp 200.000',
+      jual: 'Rp 190.000',
       pokok: 'Rp 200.000',
-      qty: 1,
+      qty: 5,
       total: 'Rp 200.000',
-    }
-  ]
+    },
+    {
+      id: 2,
+      nama_barang: 'Kopi',
+      satuan: 'Pcs',
+      jual: 'Rp 5.000',
+      pokok: 'Rp 7.000',
+      qty: 10,
+      total: 'Rp 7.000',
+    },
+    {
+      id: 3,
+      nama_barang: 'Gandum',
+      satuan: 'Kg',
+      jual: 'Rp 180.000',
+      pokok: 'Rp 200.000',
+      qty: 7,
+      total: 'Rp 200.000',
+    },
+  ])
+
 
   // Data di Table Cari Barang
   const [dataSource, setDataSource] = useState([
@@ -300,6 +335,19 @@ export default function Pembelian() {
       qty: 3,
     },
   ]);
+
+  const handleAddDataPembelian = () => {
+    const newData = dataPembelian.concat({
+      id: dataPembelian.length + 1,
+      nama_barang: 'Beras',
+      satuan: 'Ton',
+      jual: 'Rp 190.000',
+      pokok: 'Rp 200.000',
+      qty: 5,
+      total: 'Rp 200.000',
+    });
+    setDataPembelian(newData);
+  }
   
   const defaultColumns = [
     {
@@ -307,7 +355,6 @@ export default function Pembelian() {
       dataIndex: 'no',
       width: '20px',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.no - b.no,
     },
     {
@@ -316,14 +363,12 @@ export default function Pembelian() {
       width: '30%',
       align: 'center',
       ...getColumnSearchProps('nama_barang'),
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.nama_barang.length - b.nama_barang.length,
     },
     {
       title: 'Satuan',
       dataIndex: 'satuan',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.satuan - b.satuan,
     },
     {
@@ -331,7 +376,6 @@ export default function Pembelian() {
       dataIndex: 'harga_jual',
       editable: true,
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.harga_jual - b.harga_jual,
     },
     {
@@ -339,7 +383,6 @@ export default function Pembelian() {
       dataIndex: 'harga_beli',
       editable: true,
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.harga_beli - b.harga_beli,
     },
     {
@@ -347,7 +390,6 @@ export default function Pembelian() {
       dataIndex: 'qty',
       editable: true,
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => a.qty - b.qty,
     },
     {
@@ -357,7 +399,7 @@ export default function Pembelian() {
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <>
-            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg'>
+            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataPembelian()}>
               <BsCartPlusFill className='mr-1 text-xl'/>
               <span>Pilih</span>
             </div>
@@ -458,8 +500,8 @@ export default function Pembelian() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
-        <div className=' bg-slate-100 w-full h-screen p-7'>
-          <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
+        <div className=' bg-slate-100 w-full h-auto p-7'>
+          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             {/* Menu Proses Pembelian */}
             <div className='Proses Pembelian'>
@@ -591,8 +633,8 @@ export default function Pembelian() {
                     <Table
                         components={components}
                         bordered
-                        dataSource={Data}
-                        columns={Columns}
+                        dataSource={dataPembelian}
+                        columns={columnsPembelian}
                         className='my-10 overflow-x-auto'
                       />
 

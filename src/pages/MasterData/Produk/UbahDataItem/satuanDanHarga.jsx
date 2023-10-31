@@ -56,28 +56,28 @@ export default function satuanDanHarga(){
               </Link>
             </div>
 
-            <div className='flex justify-between w-full h-fit'>
+            <div className='lg:flex grid justify-between w-full h-fit'>
               <div className='block w-full h-full  m-5 ml-0'>
                 <div className='w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-white mb-5'>
                   <h1 className='font-semibold text-lg p-5'>Daftar Konversi</h1>
                   <div className='flex items-center justify-center'>
-                    <p className='flex items-center justify-center mt-10'>Anda belum mempunyai Konversi</p>
+                    <p className='flex items-center justify-center mt-10 lg:px-0 px-3'>Anda belum mempunyai Konversi</p>
                   </div>
                 </div>
-                <div className='flex items-center justify-center w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-green-200 mb-5'>
+                <div className='flex items-center lg:px-14 px-5 justify-center w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-green-200 mb-5'>
                   <div className='text-green-700'>
                     <h1 className='font-semibold text-lg'>KETERANGAN :</h1>
                     <p>Satuan yang pertama dimasukan akan menjadi satuan dasar</p>
                   </div>
                 </div>
-                <div className='flex items-center px-14 w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-red-200 mb-5'>
+                <div className='flex items-center lg:px-14 px-5 w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-red-200 mb-5'>
                   <div className='text-red-700'>
                     <h1 className='font-semibold text-lg'>WARNING :</h1>
                     <p>Mohon masukan minimal 1 data konversi</p>
                   </div>
                 </div>
               </div>
-              <div className=' w-full h-fit m-5 mr-0'>
+              <div className=' w-full h-fit lg:m-5 mr-0'>
                 <div className='bg-white shadow-slate-400 shadow-md w-full h-fit rounded-lg  p-5'>
                   <h1 className='font-semibold text-lg '>Tambah Satuan</h1>
                   <div>

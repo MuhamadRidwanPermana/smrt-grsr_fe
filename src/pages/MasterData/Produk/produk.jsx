@@ -247,7 +247,7 @@ export default function DataProduk() {
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
         <div className=' bg-slate-100 w-full h-full p-7'>
-          <div className='w-full h-full border-2 bg-white border-slate-300 rounded-xl p-5'>
+          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300 justify-between'>
               <div className='flex'>
                 <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
@@ -260,7 +260,7 @@ export default function DataProduk() {
               </Link>
             </div>
 
-            <div className='bg-red w-full h-screen mt-12'>
+            <div className='bg-red w-full h-auto mt-12'>
               <div>
                 <Table
                   bordered

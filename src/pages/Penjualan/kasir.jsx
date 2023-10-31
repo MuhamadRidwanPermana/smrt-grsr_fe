@@ -746,7 +746,7 @@ export default function Pembelian() {
                     bordered
                     dataSource={tambahDataKasir}
                     columns={columns}
-                    className='my-10'
+                    className='my-10 overflow-x-auto'
                   />
                 </Modal>
                 </div>

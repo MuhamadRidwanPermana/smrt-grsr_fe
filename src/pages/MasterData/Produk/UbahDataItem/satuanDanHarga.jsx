@@ -56,35 +56,35 @@ export default function satuanDanHarga(){
               </Link>
             </div>
 
-            <div className='lg:flex grid justify-between w-full h-fit'>
-              <div className='block w-full h-full  m-5 ml-0'>
-                <div className='w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-white mb-5'>
+            <div className='lg:flex lg:p-3 grid justify-between w-full h-fit'>
+              <div className='block w-fit h-full m-5 ml-0'>
+                <div className='lg:w-full lg:text-left text-center w-fit h-52 shadow-slate-400 shadow-md rounded-lg bg-white mb-5'>
                   <h1 className='font-semibold text-lg p-5'>Daftar Konversi</h1>
                   <div className='flex items-center justify-center'>
                     <p className='flex items-center justify-center mt-10 lg:px-0 px-3'>Anda belum mempunyai Konversi</p>
                   </div>
                 </div>
-                <div className='flex items-center lg:px-14 px-5 justify-center w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-green-200 mb-5'>
+                <div className='flex items-center lg:px-14 px-5 justify-center lg:w-full w-[17rem] h-52 shadow-slate-400 shadow-md rounded-lg bg-green-200 mb-5'>
                   <div className='text-green-700'>
                     <h1 className='font-semibold text-lg'>KETERANGAN :</h1>
                     <p>Satuan yang pertama dimasukan akan menjadi satuan dasar</p>
                   </div>
                 </div>
-                <div className='flex items-center lg:px-14 px-5 w-full h-52 shadow-slate-400 shadow-md rounded-lg bg-red-200 mb-5'>
+                <div className='flex items-center lg:px-14 px-5 lg:w-full w-[17rem] h-52 shadow-slate-400 shadow-md rounded-lg bg-red-200 mb-5'>
                   <div className='text-red-700'>
                     <h1 className='font-semibold text-lg'>WARNING :</h1>
                     <p>Mohon masukan minimal 1 data konversi</p>
                   </div>
                 </div>
               </div>
-              <div className=' w-full h-fit lg:m-5 mr-0'>
-                <div className='bg-white shadow-slate-400 shadow-md w-full h-fit rounded-lg  p-5'>
+              <div className='lg:w-full w-[17rem] h-fit lg:m-5 mr-0'>
+                <div className='bg-white shadow-slate-400 shadow-md w-full h-fit rounded-lg p-5'>
                   <h1 className='font-semibold text-lg '>Tambah Satuan</h1>
                   <div>
-                    <div className='flex my-5 align-middle items-center'>
+                    <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Satuan</label>
                       <Select
-                        className='w-3/4 h-9 mt-2'
+                        className='lg:w-3/4 h-9 mt-2'
                         showSearch
                         placeholder="Pilih Satuan"
                         optionFilterProp="children"
@@ -111,11 +111,11 @@ export default function satuanDanHarga(){
                         ]}
                       />
                     </div>
-                    <div className='flex my-5 align-middle items-center'>
+                    <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Jumlah Konversi</label>
-                      <InputNumber min={1} max={10} onChange={onChange} className='w-3/4 h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
+                      <InputNumber min={1} max={10} onChange={onChange} className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
                     </div>
-                    <div className='flex my-5 align-middle items-center'>
+                    <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Harga Pokok</label>
                       <InputNumber 
                         min={1} 
@@ -123,10 +123,10 @@ export default function satuanDanHarga(){
                         onChange={onChange} 
                         formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         parser={(value) => value.replace(/\$\s?|(,*)/g, '')} 
-                        className='w-3/4 h-9 border border-slate-300 rounded-md mt-2 bg-white'
+                        className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'
                       />
                     </div>
-                    <div className='flex my-5 align-middle items-center'>
+                    <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Harga Jual</label>
                       <InputNumber 
                         min={1} 
@@ -134,7 +134,7 @@ export default function satuanDanHarga(){
                         onChange={onChange} 
                         formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         parser={(value) => value.replace(/\$\s?|(,*)/g, '')} 
-                        className='w-3/4 h-9 border border-slate-300 rounded-md mt-2 bg-white'
+                        className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'
                       />
                     </div>
                   </div>

@@ -18,15 +18,15 @@ function App() {
 
   return (
     <>
-      <section className="w-fit h-fit">
-        <nav className="flex justify-between items-center sticky z-50 bg-white bg-opacity-70 top-0 backdrop-blur background-blur-lg  w-full h-16 p-5 lg:px-28 py-5 lg:py-10 font-inter text-blue-900">
+      <section className="w-full h-full">
+        <nav className="flex justify-between items-center sticky z-50 bg-white bg-opacity-70 top-0 backdrop-blur background-blur-lg  w-full h-16 p-5 lg:px-28 px-3 py-5 lg:py-10 font-inter text-blue-900">
           {/* Mobile */}
           <span
             className="flex lg:hidden cursor-pointer"
             onClick={() => setOpenNavbar(!openNavbar)}
           >
             <RxHamburgerMenu
-              className={`text-2xl my-4 mx-4 cursor-pointer text-blue-900`}
+              className={`text-2xl my-4 lg:mx-4 mr-3 cursor-pointer text-blue-900`}
             />
           </span>
           <div
@@ -83,7 +83,7 @@ function App() {
             </Link>
 
             <Link to={"/login"}>
-              <ul className="mx-5 bg-blue-500 rounded-lg text-white px-3 py-1">
+              <ul className="ml-5 bg-blue-500 rounded-lg text-white px-3 py-1 text-sm lg:text-md">
                 <li>Masuk</li>
               </ul>
             </Link>
@@ -106,7 +106,7 @@ function App() {
           </div>
         </div>
 
-        <body className="w-full h-fit p-5 lg:px-36">
+        <body className="w-full h-fit p-5 lg:px-28">
           <div className="lg:block hidden w-fit h-fit">
             <svg width="1170" height="1170" viewBox="0 0 1170 1170" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M1071.41 259.992C1135.69 356.194 1170 469.298 1170 585H1053C1053 492.439 1025.55 401.956 974.128 324.993C922.703 248.031 849.612 188.046 764.096 152.625C678.58 117.203 584.481 107.935 493.698 125.993C402.915 144.051 319.525 188.623 254.074 254.074C188.623 319.525 144.051 402.915 125.993 493.698C107.935 584.481 117.203 678.58 152.625 764.096C188.046 849.612 248.031 922.704 324.993 974.128C397.793 1022.77 482.69 1049.96 570 1052.76V1169.81C459.544 1166.98 352.033 1132.91 259.992 1071.41C163.789 1007.13 88.808 915.765 44.5307 808.87C0.253471 701.975 -11.3315 584.351 11.2409 470.872C33.8132 357.394 89.5291 253.157 171.343 171.343C253.157 89.5291 357.394 33.8132 470.872 11.2409C584.351 -11.3315 701.975 0.253469 808.87 44.5307C915.765 88.808 1007.13 163.789 1071.41 259.992Z" fill="url(#paint0_linear_109_1952)"/>
@@ -348,9 +348,10 @@ function App() {
             </body>
           </div>
 
-          <div className="w-full h-fit mx-auto align-center grid justify-center items-center mt-5 mb-10 my-72">
+          <div className="lg:grid w-full justify-center align-center mx-auto items-center mt-5 lg:my-72">
+          {/* <div className="w-full h-fit mx-auto align-center grid justify-center items-center mt-5 mb-10 my-72"> */}
             <header className="mx-auto text-center lg:w-3/4 h-fit w-full">
-              <h1 className="text-3xl lg:text-5xl font-source_sans text-blue-900 pb-5 pt-5 lg:pt-0 w-full">
+              <h1 className="text-3xl lg:text-5xl font-source_sans text-blue-900 pb-5 pt-5 lg:pt-0">
                 Solusi yang Didesain Sesuai Kebutuhan
               </h1>
               <p className="text-lg lg:text-xl w-full font-inter text-blue-900">
@@ -359,11 +360,12 @@ function App() {
               </p>
             </header>
             <span ref={ref}></span>
-            <body className="lg:flex mb-36 mt-20 font-inter">
-              <div className="lg:mx-5 lg:mb-0 mb-10 w-full h-fit p-10 border-2 border-slate-300 rounded-xl">
+            <body className="lg:flex mb-36 mt-20 grid gap-8 font-inter">
+            {/* <body className="lg:flex grid mb-36 mt-20 font-inter w-full"> */}
+              <div className="lg:mx-5 mx-0 lg:w-fit sm:w-fit w-full h-fit lg:p-10 p-7 lg:mb-0 mb-10 border-2 border-slate-300 rounded-xl">
                 <header>
                   <div className="flex">
-                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-56 h-auto">
+                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-56 w-44 h-auto">
                     <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#3F86F0"/>
                     <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#3F86F0"/>
                     <path d="M9.73389 24V12.8669L0 7.23956V17.0038C0 17.45 0.106689 17.8555 0.319946 18.2205C0.533325 18.5856 0.832275 18.8796 1.21667 19.1027L9.73389 24Z" fill="#3F86F0"/>
@@ -381,10 +383,7 @@ function App() {
                     <path d="M158.195 21V7.90909H161.28V21H158.195ZM159.746 6.05114C159.257 6.05114 158.837 5.8892 158.484 5.56534C158.132 5.23579 157.956 4.84091 157.956 4.38068C157.956 3.91477 158.132 3.51989 158.484 3.19602C158.837 2.86648 159.257 2.7017 159.746 2.7017C160.24 2.7017 160.661 2.86648 161.007 3.19602C161.359 3.51989 161.536 3.91477 161.536 4.38068C161.536 4.84091 161.359 5.23579 161.007 5.56534C160.661 5.8892 160.24 6.05114 159.746 6.05114Z" fill="#3F86F0"/>
                     <path d="M164.452 21V7.90909H167.444V10.0909H167.58C167.819 9.33523 168.228 8.75284 168.808 8.34375C169.393 7.92898 170.06 7.72159 170.81 7.72159C170.981 7.72159 171.171 7.73011 171.381 7.74716C171.597 7.75852 171.776 7.77841 171.918 7.80682V10.6449C171.788 10.5994 171.58 10.5597 171.296 10.5256C171.018 10.4858 170.748 10.4659 170.487 10.4659C169.924 10.4659 169.418 10.5881 168.969 10.8324C168.526 11.071 168.177 11.4034 167.921 11.8295C167.665 12.2557 167.538 12.7472 167.538 13.304V21H164.452Z" fill="#3F86F0"/>
                     </svg>
-
-                    <span className="text-xs text-blue-400 mt-2 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">
-                      Lite
-                    </span>
+                    <span className="text-xs text-blue-400 mt-2 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">Lite</span>
                   </div>
                   <div>
                     <p className="text-slate-500 text-sm mt-6 mb-3">
@@ -395,71 +394,71 @@ function App() {
                 </header>
                 <div>
                   <span className="flex items-center mt-5">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Dashboard Menu</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Dashboard Menu</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Statistik Penjualan dan Pembelian
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Master Data (Sederhana)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Data <i>Suplier</i> (limit 5)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Hanya untuk satu akun
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <CgClose className="text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 text-md">Scan Barcode</p>
+                    <CgClose className="lg:text-xl text-red-700 mr-3" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Scan Barcode</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <CgClose className="text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 text-md">Laporan keuangan</p>
+                    <CgClose className="lg:text-xl text-red-700 mr-3" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Laporan keuangan</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <CgClose className="text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 text-md">
+                    <CgClose className="lg:text-xl text-red-700 mr-3" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Laporan barang terlaris
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <CgClose className="text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 text-md">
+                    <CgClose className="lg:text-xl text-red-700 mr-3" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Laporan utang dan piutang
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <CgClose className="text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 text-md">Fitur akuntansi</p>
+                    <CgClose className="lg:text-xl text-red-700 mr-3" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Fitur akuntansi</p>
                   </span>
                 </div>
                 <div>
                   <Link to={"/login"}>
-                    <div className="mt-7 justify-center flex border-2 border-blue-400 text-blue-500 w-full h-9 rounded-lg items-center cursor-pointer">
-                      <span className="px-3 font-inter">Coba Gratis</span>
+                    <div className="mt-7 justify-center flex border-2 border-blue-400 text-blue-500 w-full lg:h-9 h-7 rounded-lg items-center cursor-pointer">
+                      <span className="px-3 font-inter lg:text-[16px] md:text-xs text-sm">Coba Gratis</span>
                     </div>
                   </Link>
                 </div>
               </div>
 
-              <div className="lg:mx-5 w-full h-auto p-10 border-2 border-blue-950 rounded-xl">
+              <div className="lg:mx-5 mx-0 lg:w-fit sm:w-fit w-full h-auto lg:p-10 p-7 border-2 border-blue-950 rounded-xl">
                 <header>
                   <div className="flex">
-                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-auto h-8 -mt-3">
+                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-auto w-36 h-8 -mt-3">
                     <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#1A3865"/>
                     <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#1A3865"/>
                     <path d="M9.73389 24V12.8669L0 7.23956V17.0038C0 17.45 0.106689 17.8555 0.319946 18.2205C0.533325 18.5856 0.832275 18.8796 1.21667 19.1027L9.73389 24Z" fill="#1A3865"/>
@@ -478,73 +477,73 @@ function App() {
                     <path d="M164.452 21V7.90909H167.444V10.0909H167.58C167.819 9.33523 168.228 8.75284 168.808 8.34375C169.393 7.92898 170.06 7.72159 170.81 7.72159C170.981 7.72159 171.171 7.73011 171.381 7.74716C171.597 7.75852 171.776 7.77841 171.918 7.80682V10.6449C171.788 10.5994 171.58 10.5597 171.296 10.5256C171.018 10.4858 170.748 10.4659 170.487 10.4659C169.924 10.4659 169.418 10.5881 168.969 10.8324C168.526 11.071 168.177 11.4034 167.921 11.8295C167.665 12.2557 167.538 12.7472 167.538 13.304V21H164.452Z" fill="#1A3865"/>
                     </svg>
 
-                    <span className="text-xs text-white -mt-1 w-16 h-6 mx-1.5 text-center pt-1 bg-blue-950 rounded-md">
+                    <span className="text-xs text-white lg:-mt-1 -mt-2 w-16 h-6 mx-1.5 text-center pt-1 bg-blue-950 rounded-md">
                       Premium
                     </span>
                   </div>
                   <div>
-                    <p className="text-slate-500 text-sm mt-5 mb-3">
+                    <p className="text-slate-500 lg:text-sm text-xs mt-5 mb-3">
                       Kelola Grosir Lebih Produktif!
                     </p>
-                    <p className="text-4xl text-blue-950 font-semibold my-3">
+                    <p className="lg:text-4xl text-2xl text-blue-950 font-semibold my-3">
                       Rp. 75k/3 bulan
                     </p>
                   </div>
                 </header>
                 <div>
                   <span className="flex items-center mt-5">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Dashboard Menu</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Dashboard Menu</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Statistik Penjualan dan Pembelian
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Master Data</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Master Data</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Data <i>Suplier</i> (Unlimited)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Akun Lebih dari 1 (admin, kasir, dll)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Scan Barkode</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Scan Barkode</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Laporan keuangan</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Laporan keuangan</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Laporan barang terlaris
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Laporan Utang Piutang
                     </p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">Fitur akuntansi</p>
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Fitur akuntansi</p>
                   </span>
                   <span className="flex items-center my-3">
-                    <BsCheck2 className="text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 text-md">
+                    <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
+                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
                       Fitur Menarik Lainnya
                     </p>
                   </span>
@@ -552,9 +551,9 @@ function App() {
                 <div>
                   <a
                     href=""
-                    className="mt-7 justify-center flex bg-blue-950 text-white w-full h-9 rounded-lg items-center cursor-pointer"
+                    className="mt-7 justify-center flex bg-blue-950 text-white w-full lg:h-9 h-7 rounded-lg items-center cursor-pointer"
                   >
-                    <span className="px-3">Berlangganan</span>
+                    <span className="px-3 lg:text-[16px] md:text-xs text-sm">Berlangganan</span>
                   </a>
                 </div>
               </div>

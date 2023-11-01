@@ -80,7 +80,7 @@ export default function Login() {
                 {error ? <span className='text-red-500 text-sm'>Kata Sandi harus di isi</span> : null}
               </div>
 
-              <a href="#" className='block ml-auto text-blue-500 text-sm text-end mt-5 mb-2'>Lupa kata sandi?</a>
+              <a href="#" className='w-fit block ml-auto text-blue-500 text-sm text-end mt-5 mb-2'>Lupa kata sandi?</a>
 
               <Button title="Masuk"/>
             </form>

@@ -14,9 +14,8 @@ import Navbar from '../../Components/Navbar';
 export default function Penjualan(){
 
   const [openSidebar, setOpenSidebar] = useState(true);
-  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(true);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
   // Cari Berdasarkan Nama
   const getColumnSearchProps = (dataIndex) => ({
@@ -285,32 +284,30 @@ export default function Penjualan(){
   };
 
   return(
-    <main className="flex bg-blue-500 w-full h-fit font-inter">
+    <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-auto p-7 pb-72'>
-          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
+        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+          <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300'>
               <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
               <h1 className='text-xl font-semibold'>Data Penjualan</h1>
             </div>
 
             <div className='w-auto h-auto mt-12'>
-              <div className='w-auto h-auto'>
-                <Table
-                  bordered
-                  dataSource={dataPenjualan}
-                  columns={columns}
-                  onChange={onChange}
-                  className='mb-10 overflow-x-auto'
-                  >
-                </Table>
-              </div>
+              <Table
+                bordered
+                dataSource={dataPenjualan}
+                columns={columns}
+                onChange={onChange}
+                className='mb-10 overflow-x-auto'
+                >
+              </Table>
             </div>
           </div>
         </div>

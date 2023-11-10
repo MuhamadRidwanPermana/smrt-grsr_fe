@@ -5,7 +5,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
 
 // Icon
-import { MdSave, BsGrid3X3GapFill, BiSolidTrashAlt } from '../../utils/icons';
+import { MdSave, BsGrid3X3GapFill, BiSolidTrashAlt, FaPlus } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
@@ -15,8 +15,7 @@ export default function DataSuplier(){
   
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
-  const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
+  const [submenuOpen2, setSubmenuOpen2] = useState(true);
 
   
   // Cari Berdasarkan Nama
@@ -297,23 +296,27 @@ export default function DataSuplier(){
   return(
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-full p-7'>
-          <div className='w-full h-full border-2 bg-white border-slate-300 rounded-xl p-5'>
+        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
           <div className='flex items-center pb-5 border-b-2 border-slate-300 justify-between'>
               <div className='flex items-center'>
                 <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
                 <h1 className='text-xl font-semibold'>Data Suplier</h1>
               </div>
-              <button className='px-5 py-2 ml-auto rounded-lg text-white bg-blue-500' onClick={showModal}>Tambah Data</button>
+              <div className='flex items-center'>
+                <button className='px-5 py-2 ml-auto rounded-lg text-white bg-blue-500 lg:flex hidden' onClick={showModal}>Tambah Data</button>
+                <button className='px-2 py-2 rounded-lg text-white bg-blue-500 flex lg:hidden' onClick={showModal}>
+                  <FaPlus/>
+                </button>
+              </div>
             </div>
 
-            <div className='bg-red w-full h-screen mt-12'>
               <div>
                 <Table
                   bordered={true}
@@ -322,7 +325,6 @@ export default function DataSuplier(){
                   onChange={onChange}
                   className='mb-10 overflow-x-auto'
                 />
-              </div>
 
               <Modal
                 className="modal-suplier"

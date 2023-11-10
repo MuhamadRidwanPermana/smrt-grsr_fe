@@ -500,7 +500,7 @@ export default function ProsesPembelian() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
-        <div className=' bg-slate-100 w-full h-auto p-7'>
+        <div className=' bg-slate-100 w-full h-auto lg:p-7 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             {/* Menu Proses Pembelian */}

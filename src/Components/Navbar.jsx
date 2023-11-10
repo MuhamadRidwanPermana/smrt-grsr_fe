@@ -1,10 +1,27 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
+import { Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 
 // Icon
 import { Image_Admin, RxHamburgerMenu, RxDoubleArrowLeft, IoLogOutOutline, SlSettings } from '../utils/icons';
 
-export default function Navbar({ openSidebar, setOpenSidebar, openDropdownProfile, setOpenDropdownProfile }) {
+const items = [
+  {
+    icon: <SlSettings className='text-xl mr-3 icon-settings'/>,
+    label: <Link to={'/settings'}>Settings</Link>,
+    key: '0',
+  },
+  {
+    type: 'divider',
+  },
+  {
+    icon: <IoLogOutOutline className='text-xl mr-3 icon-logout'/>,
+    label: <Link to={'/'}>Logout</Link>,
+    key: '1',
+  },
+];
+
+export default function Navbar({ openSidebar, setOpenSidebar }) {
   return(
     <nav className='flex w-full sticky top-0 h-16 bg-white justify-between z-10'>
       <div className='flex w-fit h-16'>
@@ -37,11 +54,24 @@ export default function Navbar({ openSidebar, setOpenSidebar, openDropdownProfil
         <span className="text-xs text-blue-400 lg:mt-1 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">Lite</span>
         </div>
       </div>
-      <div className='flex w-fit h-16 mx-5 items-center cursor-pointer' onClick={() => setOpenDropdownProfile(!openDropdownProfile)}>
-        <div className='flex'>
-          <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
-        </div>
-        <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
+      <div className='flex w-fit h-16 mx-5 items-center cursor-pointer'>
+        
+
+        <Dropdown
+          menu={{
+            items,
+          }}
+          trigger={['click']}
+        >
+          <div className='flex items-center'>
+            <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
+            <a className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden' onClick={(e) => e.preventDefault()}>
+              Admin
+            </a>
+          </div>
+        </Dropdown>
+
+        {/* <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
           <span className={`mx-10 py-2 text-dark w-40 bg-white border border-slate-100 rounded-xl ${openDropdownProfile ? 'absolute block z-50 top-16 right-0' : 'hidden'}`}>
             <Link to={'/settings'}>
             <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
@@ -56,8 +86,8 @@ export default function Navbar({ openSidebar, setOpenSidebar, openDropdownProfil
                 <li className='list-none text-md'>Logout</li>
               </div>
             </Link>
-          </span>
-      </div>
+          </span>*/}
+      </div> 
     </nav>
   )
 }

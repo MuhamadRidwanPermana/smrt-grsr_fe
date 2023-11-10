@@ -9,6 +9,7 @@ export default {
     fontFamily: {
       source_sans: ['Source Sans Pro', 'sans-serif'],
       inter: ['Inter', 'sans-serif'],
+      //fira_sans: ['Fira Sans', 'sans-serif'],
     },
     extend: {},
   },

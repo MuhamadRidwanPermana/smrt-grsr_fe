@@ -1,6 +1,7 @@
 export { default as IconApp } from '../assets/img/app_icon.jpg';
 export { default as Image } from '../assets/img/image_landingpage.png';
 export { default as Image2 } from '../assets/img/image_landingpage2.png';
+export { default as Image3 } from '../assets/img/image_landingpage3.png';
 export { default as Image_Admin } from '../assets/img/admin.png';
 
 export { RxHamburgerMenu } from "react-icons/rx";
@@ -22,3 +23,5 @@ export { FaBoxArchive } from 'react-icons/fa6';
 export { MdSave } from 'react-icons/md';
 export { BsGrid3X3GapFill } from 'react-icons/bs';
 export { RiEditLine } from 'react-icons/ri';
+export { RxDotFilled } from 'react-icons/rx';
+export { FaPlus } from 'react-icons/fa';

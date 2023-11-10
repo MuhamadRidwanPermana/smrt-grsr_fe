@@ -68,11 +68,11 @@ export default function Penjualan(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
-        <div className=' bg-slate-100 w-full h-auto p-7 lg:pb-72'>
+        <div className=' bg-slate-100 w-full h-auto lg:p-7 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl lg:py-16'>
             <form action="" onSubmit={handleSubmit}>
               <div className='block lg:flex lg:justify-between'>
-                <div className='w-full lg:border-r-2 border-slate-300 lg:px-24 lg:py-16 px-10 py-10'>
+                <div className='w-full lg:border-r-2 border-slate-300 lg:px-24 lg:py-16 p-10'>
                   <Header header='Pengaturan Toko' subHeader='Ubah informasi toko'/>
 
                       <div className='mb-3'>

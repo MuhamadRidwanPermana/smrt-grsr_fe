@@ -13,8 +13,7 @@ export default function dataUmum(){
 
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
-  const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
+  const [submenuOpen2, setSubmenuOpen2] = useState(true);
 
   // Cari Barang
   const onInput = (value) => {
@@ -35,13 +34,13 @@ export default function dataUmum(){
   return(
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-screen p-7'>
+        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300'>
               <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
@@ -49,10 +48,10 @@ export default function dataUmum(){
             </div>
 
             <div className='flex my-5'>
-              <Link to={'/data-umum'}>
+              <Link to={'/master-data/produk/data-umum'}>
                 <button className='px-5 py-2 rounded-lg text-white bg-blue-500 mr-5 duration-300'>Data Umum</button>
               </Link>
-              <Link to={'/satuan-dan-harga'}>
+              <Link to={'/master-data/produk/satuan-dan-harga'}>
                 <button className='px-5 py-2 rounded-lg hover:text-white  hover:bg-blue-500 hover:duration-300'>Satuan dan Harga</button>
               </Link>
             </div>
@@ -153,7 +152,7 @@ export default function dataUmum(){
                       options={[
                         {
                           value: 'masih_dijual',
-                          label: 'Masih DiJual',
+                          label: 'Masih di Jual',
                         },
                         {
                           value: 'sudah_terjual',

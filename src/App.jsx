@@ -5,7 +5,7 @@ import "../src/assets/style.css";
 
 import Footer from "./Components/LandingPageComponents/Footer";
 
-import { Image, Image2, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';
+import { Image, Image2, Image3, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';
 
 function App() {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <section className="w-full h-full">
-        <nav className="flex justify-between items-center sticky z-50 bg-white bg-opacity-70 top-0 backdrop-blur background-blur-lg  w-full h-16 p-5 lg:px-28 px-3 py-5 lg:py-10 font-inter text-blue-900">
+        <nav className="flex justify-between items-center sticky top-0 z-50 bg-white bg-opacity-70 backdrop-blur background-blur-lg  w-full h-16 p-5 lg:px-28 px-4 py-10 lg:py-10 font-inter text-blue-900 border-b border-slate-200">
           {/* Mobile */}
           <span
             className="flex lg:hidden cursor-pointer"
@@ -47,8 +47,8 @@ function App() {
             </Link>
           </div>
 
-          <div className="flex cursor-pointer items-center pt-2">
-            <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-52 lg:-mt-2 w-40 -mt-2">
+          <div className=" flex cursor-pointer items-center pt-2">
+            <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-fit lg:-mt-2 w-fit -mt-2">
             <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#3F86F0"/>
             <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#3F86F0"/>
             <path d="M9.73389 24V12.8669L0 7.23956V17.0038C0 17.45 0.106689 17.8555 0.319946 18.2205C0.533325 18.5856 0.832275 18.8796 1.21667 19.1027L9.73389 24Z" fill="#3F86F0"/>
@@ -83,7 +83,7 @@ function App() {
             </Link>
 
             <Link to={"/login"}>
-              <ul className="ml-5 bg-blue-500 rounded-lg text-white px-3 py-1 text-sm lg:text-md">
+              <ul className="lg:text-base text-sm ml-5 flex bg-blue-500 text-white lg:w-20 lg:h-10 w-16 h-8 rounded-md justify-center items-center cursor-pointer">
                 <li>Masuk</li>
               </ul>
             </Link>
@@ -106,7 +106,7 @@ function App() {
           </div>
         </div>
 
-        <body className="w-full h-fit p-5 lg:px-28">
+        <body className="w-full h-fit p-4 lg:px-28">
           <div className="lg:block hidden w-fit h-fit">
             <svg width="1170" height="1170" viewBox="0 0 1170 1170" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M1071.41 259.992C1135.69 356.194 1170 469.298 1170 585H1053C1053 492.439 1025.55 401.956 974.128 324.993C922.703 248.031 849.612 188.046 764.096 152.625C678.58 117.203 584.481 107.935 493.698 125.993C402.915 144.051 319.525 188.623 254.074 254.074C188.623 319.525 144.051 402.915 125.993 493.698C107.935 584.481 117.203 678.58 152.625 764.096C188.046 849.612 248.031 922.704 324.993 974.128C397.793 1022.77 482.69 1049.96 570 1052.76V1169.81C459.544 1166.98 352.033 1132.91 259.992 1071.41C163.789 1007.13 88.808 915.765 44.5307 808.87C0.253471 701.975 -11.3315 584.351 11.2409 470.872C33.8132 357.394 89.5291 253.157 171.343 171.343C253.157 89.5291 357.394 33.8132 470.872 11.2409C584.351 -11.3315 701.975 0.253469 808.87 44.5307C915.765 88.808 1007.13 163.789 1071.41 259.992Z" fill="url(#paint0_linear_109_1952)"/>
@@ -139,7 +139,7 @@ function App() {
                 memastikan katalogmu selalu <i>update.</i>
               </p>
               <Link to={"/login"}>
-                <div className=" flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer">
+                <div className="lg:text-base text-sm flex bg-blue-500 text-white lg:w-40 lg:h-10 w-36 h-8 rounded-lg items-center cursor-pointer">
                   <span className="px-4 font-inter">Coba Gratis</span>
                   <FaArrowRightLong />
                 </div>
@@ -164,7 +164,7 @@ function App() {
                 pengambilan keputusan yang lebih cerdas.
               </p>
               <Link to={"/login"}>
-                <div className=" flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer">
+                <div className="lg:text-base text-sm flex bg-blue-500 text-white lg:w-40 lg:h-10 w-36 h-8 rounded-lg items-center cursor-pointer">
                   <span className="px-4 font-inter">Coba Gratis</span>
                   <FaArrowRightLong />
                 </div>
@@ -189,7 +189,7 @@ function App() {
 
           <div className="relative z-20 lg:flex w-full justify-center lg:justify-between items-center mt-5 mb-32 lg:my-72">
             <div className="w-fit flex lg:hidden">
-              <img src={Image} alt="" />
+              <img src={Image3} alt="" />
             </div>
 
             <div className="lg:w-1/2 p-0 lg:pb-0 pb-10 lg:pr-36">
@@ -201,7 +201,7 @@ function App() {
                 dapat Anda habiskan untuk menjalin hubungan yang lebih baik.
               </p>
               <Link to={"/login"}>
-                <div className="flex bg-blue-500 text-white w-40 h-10 rounded-lg items-center cursor-pointer">
+                <div className="lg:text-base text-sm flex bg-blue-500 text-white lg:w-40 lg:h-10 w-36 h-8 rounded-lg items-center cursor-pointer">
                   <span className="px-4 font-inter">Coba Gratis</span>
                   <FaArrowRightLong />
                 </div>
@@ -209,7 +209,7 @@ function App() {
             </div>
 
             <div className="w-1/2 h-fit pl-10 hidden lg:flex">
-              <img src={Image} alt="" />
+              <img src={Image3} alt="" />
             </div>
           </div>
 
@@ -395,61 +395,61 @@ function App() {
                 <div>
                   <span className="flex items-center mt-5">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Dashboard Menu</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Dashboard Menu</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Statistik Penjualan dan Pembelian
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Master Data (Sederhana)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Data <i>Suplier</i> (limit 5)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Hanya untuk satu akun
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <CgClose className="lg:text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Scan Barcode</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Scan Barcode</p>
                   </span>
                   <span className="flex items-center my-3">
                     <CgClose className="lg:text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Laporan keuangan</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Laporan keuangan</p>
                   </span>
                   <span className="flex items-center my-3">
                     <CgClose className="lg:text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Laporan barang terlaris
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <CgClose className="lg:text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Laporan utang dan piutang
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <CgClose className="lg:text-xl text-red-700 mr-3" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Fitur akuntansi</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Fitur akuntansi</p>
                   </span>
                 </div>
                 <div>
                   <Link to={"/login"}>
-                    <div className="mt-7 justify-center flex border-2 border-blue-400 text-blue-500 w-full lg:h-9 h-7 rounded-lg items-center cursor-pointer">
-                      <span className="px-3 font-inter lg:text-[16px] md:text-xs text-sm">Coba Gratis</span>
+                    <div className="mt-7 justify-center flex border-2 border-blue-400 text-blue-500 w-full h-10 rounded-lg items-center lg:text-base text-xs cursor-pointer">
+                      <span className="lg:text-base md:text-xs text-[15px]">Coba Gratis</span>
                     </div>
                   </Link>
                 </div>
@@ -458,7 +458,7 @@ function App() {
               <div className="lg:mx-5 mx-0 lg:w-fit sm:w-fit w-full h-auto lg:p-10 p-7 border-2 border-blue-950 rounded-xl">
                 <header>
                   <div className="flex">
-                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-auto w-36 h-8 -mt-3">
+                    <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-auto w-48 h-8 ">
                     <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#1A3865"/>
                     <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#1A3865"/>
                     <path d="M9.73389 24V12.8669L0 7.23956V17.0038C0 17.45 0.106689 17.8555 0.319946 18.2205C0.533325 18.5856 0.832275 18.8796 1.21667 19.1027L9.73389 24Z" fill="#1A3865"/>
@@ -477,7 +477,7 @@ function App() {
                     <path d="M164.452 21V7.90909H167.444V10.0909H167.58C167.819 9.33523 168.228 8.75284 168.808 8.34375C169.393 7.92898 170.06 7.72159 170.81 7.72159C170.981 7.72159 171.171 7.73011 171.381 7.74716C171.597 7.75852 171.776 7.77841 171.918 7.80682V10.6449C171.788 10.5994 171.58 10.5597 171.296 10.5256C171.018 10.4858 170.748 10.4659 170.487 10.4659C169.924 10.4659 169.418 10.5881 168.969 10.8324C168.526 11.071 168.177 11.4034 167.921 11.8295C167.665 12.2557 167.538 12.7472 167.538 13.304V21H164.452Z" fill="#1A3865"/>
                     </svg>
 
-                    <span className="text-xs text-white lg:-mt-1 -mt-2 w-16 h-6 mx-1.5 text-center pt-1 bg-blue-950 rounded-md">
+                    <span className="text-xs text-white mt-2 w-16 h-6 mx-1.5 text-center pt-1 bg-blue-950 rounded-md">
                       Premium
                     </span>
                   </div>
@@ -493,57 +493,57 @@ function App() {
                 <div>
                   <span className="flex items-center mt-5">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Dashboard Menu</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Dashboard Menu</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Statistik Penjualan dan Pembelian
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Master Data</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Master Data</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Data <i>Suplier</i> (Unlimited)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Akun Lebih dari 1 (admin, kasir, dll)
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Scan Barkode</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Scan Barkode</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Laporan keuangan</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Laporan keuangan</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Laporan barang terlaris
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Laporan Utang Piutang
                     </p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">Fitur akuntansi</p>
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">Fitur akuntansi</p>
                   </span>
                   <span className="flex items-center my-3">
                     <BsCheck2 className="lg:text-2xl text-green-500 mr-2" />
-                    <p className="text-slate-500 lg:text-[16px] md:text-xs text-sm">
+                    <p className="text-slate-500 lg:text-base md:text-xs text-sm">
                       Fitur Menarik Lainnya
                     </p>
                   </span>
@@ -551,9 +551,9 @@ function App() {
                 <div>
                   <a
                     href=""
-                    className="mt-7 justify-center flex bg-blue-950 text-white w-full lg:h-9 h-7 rounded-lg items-center cursor-pointer"
+                    className="mt-7 justify-center flex bg-blue-950 text-white w-full h-10 rounded-lg items-center cursor-pointer"
                   >
-                    <span className="px-3 lg:text-[16px] md:text-xs text-sm">Berlangganan</span>
+                    <span className="lg:text-base md:text-xs text-md">Berlangganan</span>
                   </a>
                 </div>
               </div>

@@ -10,19 +10,9 @@ import { BsCartPlusFill, BiSolidEditAlt, BiSolidTrashAlt, PiMagnifyingGlassBold 
 // Component
 import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
+import TypedInputNumber from 'antd/es/input-number';
 
-// Edit Row
-const EditableContext = React.createContext(null);
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
+
 const EditableCell = ({
   title,
   editable,
@@ -34,7 +24,6 @@ const EditableCell = ({
 }) => {
   const [editing, setEditing] = useState(false);
   const inputRef = useRef(null);
-  const form = useContext(EditableContext);
   useEffect(() => {
     if (editing) {
       inputRef.current.focus();
@@ -73,7 +62,7 @@ const EditableCell = ({
           },
         ]}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+        <TypedInputNumber ref={inputRef} onPressEnter={save} onBlur={save} />
       </Form.Item>
     ) : (
       <div
@@ -93,7 +82,7 @@ const EditableCell = ({
 export default function Pembelian() {
 
   const [openSidebar, setOpenSidebar] = useState(true);
-  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(true);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
   const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
@@ -240,7 +229,6 @@ export default function Pembelian() {
   };
   const components = {
     body: {
-      row: EditableRow,
       cell: EditableCell,
     },
   };
@@ -376,28 +364,6 @@ export default function Pembelian() {
       disc: Math.floor(Math.random() * 10) + '%',
       potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
-    },
-    {
-      id: 2,
-      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Kopi',
-      qty: Math.floor(Math.random() * 10),
-      satuan: 'Kg',
-      harga: Math.floor(Math.random() * 220000),
-      disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: Math.floor(Math.random() * 10) + '%',
-      total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
-    },
-    {
-      id: 3,
-      kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Gandum',
-      qty: Math.floor(Math.random() * 10),
-      satuan: 'Kg',
-      harga: Math.floor(Math.random() * 220000),
-      disc: Math.floor(Math.random() * 10) + '%',
-      potongan_member: Math.floor(Math.random() * 10) + '%',
-      total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
     }
   ])
   
@@ -436,7 +402,7 @@ export default function Pembelian() {
       nama: 'Beras',
       qty: Math.floor(Math.random() * 10),
       satuan: 'Kg',
-      harga: Math.floor(Math.random() * 220000),
+      harga: 'Rp. ' + Math.floor(Math.random() * 220000),
       disc: Math.floor(Math.random() * 10) + '%',
       potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
@@ -453,6 +419,12 @@ export default function Pembelian() {
     },
     {
       id: 2,
+      nama_barang: 'Gula',
+      stok: 5 + ' kg',
+      qty: 10,
+    },
+    {
+      id: 3,
       nama_barang: 'Gandum',
       stok: 5 + ' kg',
       qty: 3,
@@ -485,7 +457,7 @@ export default function Pembelian() {
     {
       title: 'Qty',
       dataIndex: 'qty',
-      width: '100px',
+      width: '13%',
       editable: true,
       align: 'center',
       sorter: (a, b) => a.qty - b.qty,
@@ -498,7 +470,7 @@ export default function Pembelian() {
       render: (_, record) =>
         tambahDataKasir.length >= 1 ? (
           <>
-            <div className='cursor-pointer flex items-center justify-centertext-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataKasir(record.no)}>
+            <div className={`cursor-pointer flex items-center justify-centertext-center mx-auto bg-blue-500 hover:bg-blue-600 active:bg-blue-700 w-fit h-auto text-white px-3 py-2 rounded-lg`} onClick={() => handleAddDataKasir(record.no)}>
               <BsCartPlusFill className='mr-1 text-xl'/>
               <span>Pilih</span>
             </div>
@@ -524,21 +496,17 @@ export default function Pembelian() {
     };
   });
 
-  const onInputNumber = (value) => {
-    console.log('changed', value);
-  };
-
   return(
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-auto p-7 pb-24'>
-          <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
+        <div className='bg-slate-100 w-full lg:min-h-[738px] lg:p-7 p-4'>
+          <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             <div className='grid lg:flex lg:justify-between'>
               <div>
@@ -618,7 +586,7 @@ export default function Pembelian() {
                     </tr>
                     <tr>
                       <td className=' text-left w-52 h-14'>
-                      <InputNumber min={1} max={1000} onChange={onInputNumber} className='border-black border w-52 py-1.5 -mt-2 bg-white rounded-lg'/>
+                      <Input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/>
                       </td>
                     </tr>
                   </tright>

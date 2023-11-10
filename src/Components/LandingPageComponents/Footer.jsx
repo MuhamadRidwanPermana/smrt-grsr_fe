@@ -5,7 +5,7 @@ export default function Footer() {
   return (
   <footer className='grid bg-blue-100 w-full py-24 items-center font-inter text-blue-900'>
       <div className='flex w-full justify-center items-center'>
-        <div className='lg:flex lg:justify-between grid justify-center items-center lg:w-3/5 w-4/5 h-fit pb-5 border-b-2 border-blue-950'>
+        <div className='lg:flex lg:justify-between grid justify-center items-center lg:w-3/5 w-4/5 h-fit pb-5 border-b border-slate-400'>
           <div className='mb-14 lg:mb-0 text-center lg:ms-0 mx-auto'>
             <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='lg:w-52 lg:-mt-2 w-40 -mt-2'>
             <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#1A3865"/>
@@ -27,7 +27,7 @@ export default function Footer() {
             </svg>
 
           </div>
-          <div className='flex text-blue-900'>
+          <div className='flex text-blue-500'>
             <a href="https://wa.me/+6281223918932?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target='_blank'>
               <ul className='mx-5 cursor-pointer'>
                 <li>Bantuan</li>
@@ -42,9 +42,9 @@ export default function Footer() {
         </div>
       </div>
       <div className='text-center mt-5 text-blue-950'>
-        <p className='hidden lg:block'>© 202X SmartGrosir by PT. Sawarga Digital Indonesia</p>
+        <p className='hidden lg:block'>© 202X SmartGrosir by <a href="https://www.sadigit.co.id/" className='text-blue-500'>PT. Sawarga Digital Indonesia</a></p>
 
-        <p className='block lg:hidden'>© 202X SmartGrosir by PT. Sawarga Digital <br /> Indonesia</p>
+        {/* <p className='block lg:hidden'>© 202X SmartGrosir by PT. Sawarga Digital <br /> Indonesia</p> */}
       </div>
     </footer>
   )

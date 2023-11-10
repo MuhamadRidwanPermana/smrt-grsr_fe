@@ -6,7 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
 
 // Icon
-import { BiSolidTrashAlt, BsGrid3X3GapFill, MdSave } from '../../utils/icons';
+import { BiSolidTrashAlt, BsGrid3X3GapFill, MdSave, FaPlus } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
@@ -96,7 +96,6 @@ export default function Pembelian() {
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
@@ -278,7 +277,7 @@ export default function Pembelian() {
 
   const characters ='abcdefghijklmnopqrstuvwxyz';
   function generateString(length) {
-    let result = ' ';
+    let result = '';
     const charactersLength = characters.length;
     for ( let i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -286,27 +285,26 @@ export default function Pembelian() {
     return result;
   }
 
-  const [dataPembelian, setDataPembelian] = useState([])
-  for (let i = 1; i < 10 ; i++) {
-    dataPembelian.push({
-      id: dataPembelian.length + 1,
+  const [dataPembelian, setDataPembelian] = useState([
+    {
+      id: 1,
       kode: 'PRJM-UTN-'+ Math.floor(Math.random() * 10000),
       nama_sales: 'Toko ' + generateString(5),
       tanggal: '01-01-2022',
     }
-  )}
+  ])
 
   return(
     
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-auto p-7'>
+        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             <div className='Pembelian'>
@@ -315,9 +313,12 @@ export default function Pembelian() {
                   <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
                   <h1 className='text-xl font-semibold'>Data Pembelian</h1>
                 </div>
-                <Link to={'/proses-pembelian'}>
+                <Link to={'/pembelian/proses-pembelian'}>
                   <div className='flex'>
-                    <button className='px-5 py-2 rounded-lg text-white bg-blue-500'>Tambah Data</button>
+                    <button className='px-5 py-2 rounded-lg text-white bg-blue-500 lg:flex hidden'>Tambah Data</button>
+                    <button className='px-2 py-2 rounded-lg text-white bg-blue-500 flex lg:hidden'>
+                      <FaPlus/>
+                    </button>
                   </div>
                 </Link>
               </header>

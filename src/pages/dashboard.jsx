@@ -95,20 +95,19 @@ export default function Dashboard() {
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
   return(
-    <main className="flex bg-slate-100 w-full h-fit font-inter">
+    <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-full p-7'>
+        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
           <div className="lg:grid lg:grid-cols-3 gap-7 block">
-            <div className='bg-white w-full h-fit p-7 rounded-2xl mb-5 lg:mb-0'>
+            <div className='bg-white w-full h-auto p-7 rounded-2xl mb-5 lg:mb-0'>
               <div className='mb-7'>
                 <h1 className='font-medium text-lg text-slate-400'>Total Pendapatan Bulan ini</h1>
                 <h1 className='font-bold text-2xl'>Rp. 0</h1>
@@ -162,7 +161,6 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-
       </div>
     </main>
   )

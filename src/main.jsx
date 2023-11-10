@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import './assets/style.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 //page
@@ -51,15 +52,15 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
-    path:"/kasir",
+    path:"penjualan/kasir",
     element: <Kasir />
   },
   {
-    path:"/penjualan",
+    path:"penjualan/penjualan",
     element: <Penjualan />
   },
   {
-    path:"/persediaan",
+    path:"penjualan/persediaan",
     element: <Persediaan />
   },
   {
@@ -67,27 +68,27 @@ const router = createBrowserRouter([
     element: <Pembelian />
   },
   {
-    path:"/proses-pembelian",
+    path:"pembelian/proses-pembelian",
     element: <ProsesPembelian />
   },
   {
-    path:"/produk",
+    path:"master-data/produk",
     element: <DataProduk />
   },
   {
-    path:"/data-umum",
+    path:"master-data/produk/data-umum",
     element: <DataUmum />
   },
   {
-    path:"/satuan-dan-harga",
+    path:"master-data/produk/satuan-dan-harga",
     element: <SatuanDanHarga />
   },
   {
-    path:"/data-suplier",
+    path:"master-data/data-suplier",
     element: <DataSplier />
   },
   {
-    path:"/data-pelanggan",
+    path:"master-data/data-pelanggan",
     element: <DataPelanggan />
   },
   {

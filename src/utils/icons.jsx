@@ -25,3 +25,5 @@ export { BsGrid3X3GapFill } from 'react-icons/bs';
 export { RiEditLine } from 'react-icons/ri';
 export { RxDotFilled } from 'react-icons/rx';
 export { FaPlus } from 'react-icons/fa';
+export { IoClose } from 'react-icons/io5';
+export { PiCheckBold } from 'react-icons/pi';

@@ -2,28 +2,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
+/* Link Active Sidebar */
 .active{
   background-color: #fff;
   color: #3B82F6 !important;
 }
 
+/* -------------------------------------------------------------------------------- */
+
+
+/* Modal */
 .ant-btn-primary{
   background: #3B82F6 !important;
 }
 
-.modal-suplier .ant-modal-footer{
+.ant-modal-footer{
   display: none !important;
 }
 
+/* ------------------------------------------------------------------------------ */
+
+/* SweetAlert2 */
 .swal2-popup {
   font-family: 'Inter', sans-serif;
 }
 
 h2#swal2-title{
-  font-size: 21px;
+  font-size: 23px;
   padding: 20px 50px 5px 50px;
 }
 
+/* ------------------------------------------------------------------------------ */
+
+
+/* Carousel in Login, Register and Information */
 .slick-dots{
   margin-top: 20px !important;
 }
@@ -37,7 +49,28 @@ h2#swal2-title{
   background-color: #3B82F6 !important;
 }
 
-.ant-dropdown-menu{
+/* ------------------------------------------------------------------------------ */
+
+
+
+/* Filter in Table */
+.ant-table-filter-dropdown .ant-dropdown-menu-without-submenu{
+  width: fit-content !important;
+  height:auto;
+}
+
+.ant-table-filter-dropdown .ant-dropdown-menu-without-submenu li:nth-child(3){
+  background-color: #fff !important;
+}
+.ant-dropdown-menu-item-selected{
+  background-color: #fff !important;
+}
+
+/* ------------------------------------------------------------------------------ */
+
+
+/* Dropdown Profile */
+.ant-dropdown-placement-bottomRight .ant-dropdown-menu, .ant-dropdown-placement-bottomLeft .ant-dropdown-menu{
   width: 120px;
   height: auto;
   padding: 10px !important;
@@ -48,21 +81,23 @@ h2#swal2-title{
   height: 15px;
 }
 
-.ant-dropdown-menu li:hover{
-  /* background-color: #3B82F6 !important; */
-  color: #3B82F6 !important;
-}
-
-.ant-dropdown-menu li:nth-child(3){
+/* Button Logout */
+.ant-dropdown-placement-bottomRight .ant-dropdown-menu li:nth-child(3), .ant-dropdown-placement-bottomLeft .ant-dropdown-menu li:nth-child(3){
   background-color: #3B82F6;
-  color: #fff !important;
+  color: #fff;
+}
+.ant-dropdown-placement-bottomRight .ant-dropdown-menu li:nth-child(3):hover, .ant-dropdown-placement-bottomLeft .ant-dropdown-menu li:nth-child(3):hover{
+  background-color: #2377ff;
+  color: #fff;
+}
+.ant-dropdown-placement-bottomRight .ant-dropdown-menu li:nth-child(1):hover, .ant-dropdown-placement-bottomLeft .ant-dropdown-menu li:nth-child(1):hover{
+  color: #3B82F6;
 }
 
-.ant-dropdown-menu li:nth-child(3):hover{
-  background-color: #428aff !important;
-  color: #fff !important;
-}
+/* ------------------------------------------------------------------------------ */
 
+
+/* Edit Table Cell */
 .editable-cell {
   position: relative;
 }
@@ -75,5 +110,8 @@ h2#swal2-title{
 .editable-row .editable-cell-value-wrap {
   padding: 4px 11px;
   border: 1px solid #dfdfdf;
+  background: #fff;
   border-radius: 7px;
 }
+
+/* ------------------------------------------------------------------------------ */

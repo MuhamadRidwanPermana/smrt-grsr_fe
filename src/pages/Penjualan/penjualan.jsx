@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Space, Table, Tag } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
 
 // Icon
-import { MdSave, BiSolidTrashAlt, BsGrid3X3GapFill } from '../../utils/icons';
+import { BiSolidTrashAlt, BsGrid3X3GapFill } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
@@ -169,6 +169,7 @@ export default function Penjualan(){
     {
       title: 'Status Transaksi',
       dataIndex: 'status_transaksi',
+      key: 'status_transaksi',
       width: '17%',
       align: 'center',
       sorter: (a, b) => a.status_transaksi.length - b.status_transaksi.length,
@@ -187,6 +188,25 @@ export default function Penjualan(){
         },
       ],
       onFilter: (value, record) => record.status_transaksi.indexOf(value) === 0,
+      render: (_, { status_transaksi }) => (
+        <>
+          {status_transaksi.map((bg_status_transaksi) => {
+            let color;
+            if (bg_status_transaksi === 'Pending') {
+              color = '#FFB700';
+            }else if (bg_status_transaksi === 'Selesai') {
+              color = '#00B74B';
+            }else if (bg_status_transaksi === 'Belum Selesai') {
+              color = '#EF4444';
+            }
+            return (
+              <Tag color={color} key={bg_status_transaksi}>
+                {bg_status_transaksi.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
     },
     {
       title: 'Aksi',
@@ -197,7 +217,7 @@ export default function Penjualan(){
         dataPenjualan.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button>
+              {/* <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button> */}
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -212,7 +232,7 @@ export default function Penjualan(){
       waktu_transaksi: '09-10-2023 14:40:08',
       nama: 'Ridwan',
       no_hp: '081234567890',
-      status_transaksi: <span className='text-green-500 font-semibold'>Selesai</span>,
+      status_transaksi: ['Selesai'],
     },
     {
       id: 2,
@@ -220,7 +240,7 @@ export default function Penjualan(){
       waktu_transaksi: '20-01-2023 09:10:58',
       nama: 'Fairuz',
       no_hp: '081234567890',
-      status_transaksi: <span className='text-red-500 font-semibold'>Belum Selesai</span>,
+      status_transaksi: ['Belum Selesai'],
     },
     {
       id: 3,
@@ -228,7 +248,7 @@ export default function Penjualan(){
       waktu_transaksi: '22-12-2023 11:28:43',
       nama: 'Agung',
       no_hp: '081234567890',
-      status_transaksi: <span className='text-orange-300 font-semibold'>Pending</span>,
+      status_transaksi: ['Pending'],
     },
   ])
 
@@ -292,7 +312,7 @@ export default function Penjualan(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300'>
               <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>

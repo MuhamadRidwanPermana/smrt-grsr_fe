@@ -40,7 +40,7 @@ export default function dataUmum(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300'>
               <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>

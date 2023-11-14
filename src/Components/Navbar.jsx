@@ -51,25 +51,24 @@ export default function Navbar({ openSidebar, setOpenSidebar }) {
           <path d="M164.452 21V7.90909H167.444V10.0909H167.58C167.819 9.33523 168.228 8.75284 168.808 8.34375C169.393 7.92898 170.06 7.72159 170.81 7.72159C170.981 7.72159 171.171 7.73011 171.381 7.74716C171.597 7.75852 171.776 7.77841 171.918 7.80682V10.6449C171.788 10.5994 171.58 10.5597 171.296 10.5256C171.018 10.4858 170.748 10.4659 170.487 10.4659C169.924 10.4659 169.418 10.5881 168.969 10.8324C168.526 11.071 168.177 11.4034 167.921 11.8295C167.665 12.2557 167.538 12.7472 167.538 13.304V21H164.452Z" fill="#3F86F0"/>
           </svg>
 
-        <span className="text-xs text-blue-400 lg:mt-1 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">Lite</span>
+        <span className="text-xs text-blue-400 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">Lite</span>
         </div>
       </div>
       <div className='flex w-fit h-16 mx-5 items-center cursor-pointer'>
         
-
-        <Dropdown
-          menu={{
-            items,
-          }}
-          trigger={['click']}
-        >
-          <div className='flex items-center'>
-            <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
-            <a className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden' onClick={(e) => e.preventDefault()}>
-              Admin
-            </a>
-          </div>
-        </Dropdown>
+      <Dropdown
+        menu={{
+          items,
+        }}
+        trigger={['click']}
+      >
+        <div className='flex items-center'>
+          <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
+          <a className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden' onClick={(e) => e.preventDefault()}>
+            Admin
+          </a>
+        </div>
+      </Dropdown>
 
         {/* <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
           <span className={`mx-10 py-2 text-dark w-40 bg-white border border-slate-100 rounded-xl ${openDropdownProfile ? 'absolute block z-50 top-16 right-0' : 'hidden'}`}>

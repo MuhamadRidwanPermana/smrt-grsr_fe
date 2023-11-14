@@ -105,7 +105,7 @@ export default function Dashboard() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className="lg:grid lg:grid-cols-3 gap-7 block">
             <div className='bg-white w-full h-auto p-7 rounded-2xl mb-5 lg:mb-0'>
               <div className='mb-7'>

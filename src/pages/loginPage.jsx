@@ -34,7 +34,7 @@ export default function Login() {
 
   return (
     <>
-      <section className='w-full h-screen p-5 lg:px-0 py-10 font-inter'>
+      <section className='w-full h-screen p-5 lg:px-0 font-inter'>
         
         <div className='lg:block hidden w-fit h-fit'>
           <svg width="1092" height="810" viewBox="0 0 1092 810" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute z-10 w-[66%] h-fit left-52 ml-3'>
@@ -61,7 +61,7 @@ export default function Login() {
             </Carousel>
           </div>
 
-          <div className="w-full lg:px-5 lg:w-1/4 lg:pt-10">
+          <div className="w-full lg:px-5 lg:w-1/4">
             <Header header='Selamat Datang' subHeader='Silahkan daftar/ masuk melalui akun Google'/>
 
             <button className="flex items-center justify-center w-full my-3 p-3 bg-white text-dark rounded-lg border-2 border-slate-300">
@@ -83,7 +83,7 @@ export default function Login() {
 
               <div className='mb-3'>
                 <label htmlFor="password"  className="text-blue-950 font-inter font-medium">Kata sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Masukan kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3'/>
+                <Input.Password placeholder="Masukan kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setPassword(e.target.value)}/>
                 {error ? <span className='text-red-500 text-sm'>Kata Sandi harus di isi</span> : null}
               </div>
 

@@ -39,7 +39,7 @@ export default function satuanDanHarga(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-full border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300'>
               <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
@@ -117,22 +117,20 @@ export default function satuanDanHarga(){
                     <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Harga Pokok</label>
                       <InputNumber 
-                        min={1} 
-                        max={100000000} 
-                        onChange={onChange} 
-                        formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                        parser={(value) => value.replace(/\$\s?|(,*)/g, '')} 
+                        min={1}
+                        formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                        parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                        onChange={(value) => onChange(value ? value : [])}
                         className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'
                       />
                     </div>
                     <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Harga Jual</label>
                       <InputNumber 
-                        min={1} 
-                        max={100000000} 
-                        onChange={onChange} 
-                        formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                        parser={(value) => value.replace(/\$\s?|(,*)/g, '')} 
+                        min={1}
+                        formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                        parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                        onChange={(value) => onChange(value ? value : [])}
                         className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'
                       />
                     </div>

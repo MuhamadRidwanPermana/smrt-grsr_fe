@@ -105,7 +105,7 @@ export default function InformationPage() {
             </Carousel>
           </div>
 
-          <div className="w-full px-5 lg:w-1/4">
+          <div className="w-full px-5 lg:w-1/4 lg:-mt-7 mb-10">
             <Header header='Identitas Toko' subHeader='Lengkapi Informasi Toko'/>
 
             <form action="" onSubmit={handleSubmit}>

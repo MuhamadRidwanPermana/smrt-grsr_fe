@@ -61,6 +61,7 @@ const EditableCell = ({
     }
   };
   let childNode = children;
+  // const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
   if (editable) {
     childNode = editing ? (
       <Form.Item
@@ -75,7 +76,15 @@ const EditableCell = ({
           },
         ]}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+        <InputNumber 
+          ref={inputRef} 
+          onPressEnter={save} 
+          onBlur={save} 
+          min={1} 
+          formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+          parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+          onChange={(value) => onChange(value ? value : [])}
+          className='w-full'/>
       </Form.Item>
     ) : (
       <div
@@ -92,12 +101,15 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+const onChange = (value) => {
+  console.log('changed', value);
+};
+
 export default function ProsesPembelian() {
 
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
@@ -199,7 +211,7 @@ export default function ProsesPembelian() {
     {
       title: 'No',
       dataIndex: 'id',
-      width: '20px',
+      width: '5%',
       align: 'center',
       sorter: (a, b) => a.id - b.id,
     },
@@ -217,6 +229,21 @@ export default function ProsesPembelian() {
       width: '20px',
       align: 'center',
       sorter: (a, b) => a.satuan - b.satuan,
+      filters: [
+        {
+          text: 'Kilogram',
+          value: 'Kg',
+        },
+        {
+          text: 'Gram',
+          value: 'g',
+        },
+        {
+          text: 'Ons',
+          value: 'ons',
+        },
+      ],
+      onFilter: (value, record) => record.satuan.indexOf(value) === 0,
     },
     {
       title: 'Jual',
@@ -250,12 +277,11 @@ export default function ProsesPembelian() {
       title: 'Aksi',
       dataIndex: 'aksi',
       align: 'center',
-      width: '20px',
+      width: '5%',
       render: (_, record) =>
         dataPembelian.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -289,28 +315,10 @@ export default function ProsesPembelian() {
     {
       id: 1,
       nama_barang: 'Beras',
-      satuan: 'Ton',
+      satuan: 'Kg',
       jual: 'Rp 190.000',
       pokok: 'Rp 200.000',
       qty: 5,
-      total: 'Rp 200.000',
-    },
-    {
-      id: 2,
-      nama_barang: 'Kopi',
-      satuan: 'Pcs',
-      jual: 'Rp 5.000',
-      pokok: 'Rp 7.000',
-      qty: 10,
-      total: 'Rp 7.000',
-    },
-    {
-      id: 3,
-      nama_barang: 'Gandum',
-      satuan: 'Kg',
-      jual: 'Rp 180.000',
-      pokok: 'Rp 200.000',
-      qty: 7,
       total: 'Rp 200.000',
     },
   ])
@@ -319,19 +327,19 @@ export default function ProsesPembelian() {
   // Data di Table Cari Barang
   const [dataSource, setDataSource] = useState([
     {
-      no: '1',
+      id: '1',
       nama_barang: 'Beras',
-      satuan: 'kg',
-      harga_jual: 'Rp. 20.000',
-      harga_beli: 'Rp. 25.000',
+      satuan: 'Kg',
+      harga_jual: 15000,
+      harga_beli: 17000,
       qty: 1,
     },
     {
-      no: '2',
+      id: '2',
       nama_barang: 'Gandum',
-      satuan: 'ton',
-      harga_jual: 'Rp. 10.000',
-      harga_beli: 'Rp. 15.000',
+      satuan: 'Ons',
+      harga_jual: 10000,
+      harga_beli: 13000,
       qty: 3,
     },
   ]);
@@ -352,10 +360,10 @@ export default function ProsesPembelian() {
   const defaultColumns = [
     {
       title: 'No',
-      dataIndex: 'no',
+      dataIndex: 'id',
       width: '20px',
       align: 'center',
-      sorter: (a, b) => a.no - b.no,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Nama Barang',
@@ -368,12 +376,29 @@ export default function ProsesPembelian() {
     {
       title: 'Satuan',
       dataIndex: 'satuan',
+      width: '20px',
       align: 'center',
       sorter: (a, b) => a.satuan - b.satuan,
+      filters: [
+        {
+          text: 'Kilogram',
+          value: 'Kg',
+        },
+        {
+          text: 'Gram',
+          value: 'g',
+        },
+        {
+          text: 'Ons',
+          value: 'ons',
+        },
+      ],
+      onFilter: (value, record) => record.satuan.indexOf(value) === 0,
     },
     {
       title: 'Harga Jual',
       dataIndex: 'harga_jual',
+      width: '17%',
       editable: true,
       align: 'center',
       sorter: (a, b) => a.harga_jual - b.harga_jual,
@@ -381,6 +406,7 @@ export default function ProsesPembelian() {
     {
       title: 'Harga Beli',
       dataIndex: 'harga_beli',
+      width: '17%',
       editable: true,
       align: 'center',
       sorter: (a, b) => a.harga_beli - b.harga_beli,
@@ -388,6 +414,7 @@ export default function ProsesPembelian() {
     {
       title: 'Qty',
       dataIndex: 'qty',
+      width: '17%',
       editable: true,
       align: 'center',
       sorter: (a, b) => a.qty - b.qty,
@@ -399,7 +426,7 @@ export default function ProsesPembelian() {
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <>
-            <div className='cursor-pointer flex items-center justify-center text-center mx-auto bg-blue-500 w-fit h-auto text-white px-3 py-2 rounded-lg' onClick={() => handleAddDataPembelian()}>
+            <div className={`cursor-pointer flex items-center justify-centertext-center mx-auto bg-blue-500 hover:bg-blue-600 active:bg-blue-700 w-fit h-auto text-white px-3 py-2 rounded-lg`} onClick={() => handleAddDataPembelian(record.id)}>
               <BsCartPlusFill className='mr-1 text-xl'/>
               <span>Pilih</span>
             </div>
@@ -453,7 +480,7 @@ export default function ProsesPembelian() {
   // Edit kemudian simpan di row yang di edit
   const handleSave = (row) => {
     const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
+    const index = newData.findIndex((item) => row.id === item.id);
     const item = newData[index];
     newData.splice(index, 1, {
       ...item,
@@ -494,13 +521,13 @@ export default function ProsesPembelian() {
     
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} setOpenDropdownProfile={setOpenDropdownProfile}/>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} submenuOpen={submenuOpen} setSubmenuOpen={setSubmenuOpen} submenuOpen2={submenuOpen2} setSubmenuOpen2={setSubmenuOpen2} />
 
       <div className='w-full h-fit z-5 lg:-z-0'>
 
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className=' bg-slate-100 w-full h-auto lg:p-7 p-4'>
+        <div className=' bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             {/* Menu Proses Pembelian */}
@@ -512,7 +539,7 @@ export default function ProsesPembelian() {
                 </div>
               </div>
 
-              <div className='grid lg:flex lg:justify-between mt-10'>
+              {/* <div className='grid lg:flex lg:justify-between mt-10'>
                 <div className=''>
                   <table className='flex'>
                     <tleft>
@@ -619,7 +646,141 @@ export default function ProsesPembelian() {
                     </tright>
                   </table>
                 </div>
+              </div> */}
+
+              <div className='grid lg:flex w-full h-fit mt-10'>
+              <div className='grid w-full'>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-32 h-11'>Kode</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <p className='flex items-center w-52 h-11'>PRJM-UTN-0001</p>
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-32 h-11'>Toko</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg'
+                      showSearch
+                      placeholder="Pilih Toko"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'toko1',
+                          label: 'Toko 1',
+                        },
+                        {
+                          value: 'toko2',
+                          label: 'Toko 2',
+                        },
+                        {
+                          value: 'toko3',
+                          label: 'Toko 3',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-32 h-11'>Suplier</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg'
+                      showSearch
+                      placeholder="Pilih Suplier"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'suplier1',
+                          label: 'Suplier 1',
+                        },
+                        {
+                          value: 'suplier2',
+                          label: 'Suplier 2',
+                        },
+                        {
+                          value: 'suplier3',
+                          label: 'Suplier 3',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
               </div>
+              {/* <div className='grid w-full h-fit lg:px-5'>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Keluar dari</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg select'
+                      showSearch
+                      placeholder="Pilih Pelanggan"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'toko1',
+                          label: 'Toko1',
+                        },
+                        {
+                          value: 'toko2',
+                          label: 'Toko2',
+                        },
+                        {
+                          value: 'toko3',
+                          label: 'Toko3',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Sales</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg select'
+                      showSearch
+                      placeholder="Pilih Pelanggan"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'sales',
+                          label: 'Sales',
+                        },
+                        {
+                          value: 'non_sales',
+                          label: 'Non Sales',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+              </div> */}
+              <div className='grid lg:relative lg:w-full w-full'>
+                <div className='mt-7 lg:absolute bottom-0 right-0 w-full h-fit'>
+                  <div className='w-full h-7 font-bold text-xl'>Total</div>
+                  <div className='flex items-center px-3 justify-end w-full h-32 bg-blue-200 rounded-lg'>
+                    <p className='text-6xl font-bold'>0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
               <div className='w-full h-fit mt-12'>
                 <div>
@@ -639,11 +800,9 @@ export default function ProsesPembelian() {
                       />
 
                     <Modal
-                    title="Tambah Barang"
                     open={open}
                     onOk={hideModal}
                     onCancel={hideModal}
-                    className='w-96 h-full'
                     okText="Selesai"
                     cancelText="Batal"
                     width={1000}
@@ -654,18 +813,16 @@ export default function ProsesPembelian() {
                         bordered
                         dataSource={dataSource}
                         columns={columns}
-                        className='my-10 overflow-x-auto'
+                        className='lg:mt-10 mb-5 my-1 overflow-x-auto'
                       />
                     </Modal>
 
                     <button className='flex ml-auto mt-5 bg-blue-500 text-white rounded-lg px-3 py-2' onClick={showModalProses}>Proses</button>
 
                     <Modal
-                    // title="Proses Pembelian"
                     open={openModal}
                     onOk={hideModalProses}
                     onCancel={hideModalProses}
-                    className='w-96 h-full'
                     okText="Checkout"
                     cancelText="Simpan"
                     width={700}
@@ -674,20 +831,22 @@ export default function ProsesPembelian() {
                         <div className='flex items-center mb-2'>
                           <label className='text-start w-1/2 font-semibold'>Total</label>
                           <InputNumber
-                            defaultValue={1000}
-                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            onChange={onChange}
+                            min={0}
+                            defaultValue={0}
+                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                            onChange={(value) => onChange(value ? value : [])}
                             className='w-full h-9 border border-slate-300 rounded-lg'
                           />
                         </div>
                         <div className='flex items-center mb-2'>
                           <label className='text-start w-1/2 font-semibold'>Diskon</label>
                           <InputNumber
-                            defaultValue={1000}
-                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            onChange={onChange}
+                            min={0}
+                            defaultValue={0}
+                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                            onChange={(value) => onChange(value ? value : [])}
                             className='w-full h-9 border border-slate-300 rounded-lg'
                           />
                         </div>
@@ -695,8 +854,7 @@ export default function ProsesPembelian() {
                           <label className='text-start w-1/2 font-semibold'>PPN</label>
                           <InputNumber
                             defaultValue={100}
-                            min={0}
-                            max={100}
+                            min={1}
                             formatter={(value) => `${value}%`}
                             parser={(value) => value.replace('%', '')}
                             onChange={onInput}
@@ -706,10 +864,11 @@ export default function ProsesPembelian() {
                         <div className='flex items-center mb-2'>
                           <label className='text-start w-1/2 font-semibold'>Total Akhir</label>
                           <InputNumber
-                            defaultValue={1000}
-                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            onChange={onChange}
+                            min={0}
+                            defaultValue={0}
+                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                            onChange={(value) => onChange(value ? value : [])}
                             className='w-full h-9 border border-slate-300 rounded-lg'
                           />
                         </div>
@@ -740,20 +899,22 @@ export default function ProsesPembelian() {
                         <div className='flex items-center mb-2'>
                           <label className='text-start w-1/2 font-semibold'>Pembayaran</label>
                           <InputNumber
-                            defaultValue={1000}
-                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            onChange={onChange}
+                            min={0}
+                            defaultValue={0}
+                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                            onChange={(value) => onChange(value ? value : [])}
                             className='w-full h-9 border border-slate-300 rounded-lg'
                           />
                         </div>
                         <div className='flex items-center mb-2'>
                           <label className='text-start w-1/2 font-semibold'>Kredit</label>
                           <InputNumber
-                            defaultValue={1000}
-                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            onChange={onChange}
+                            min={0}
+                            defaultValue={0}
+                            formatter={(value) => `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                            parser={value => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, "")}
+                            onChange={(value) => onChange(value ? value : [])}
                             className='w-full h-9 border border-slate-300 rounded-lg'
                           />
                         </div>
@@ -762,6 +923,11 @@ export default function ProsesPembelian() {
                           <DatePicker defaultValue={dayjs('01/01/2023', dateFormatList[0])} format={dateFormatList} 
                           className='w-full h-9 border border-slate-300 rounded-lg'/>
                         </div>
+                      </div>
+
+                      <div className='flex justify-end'>
+                        <button type='submit' className="text-slate-700 bg-white border border-slate-400 px-5 py-1.5 rounded-lg mx-3" onClick={hideModalProses}>Batal</button>
+                        <button type='submit' className="text-white bg-blue-500 px-5 py-1.5 rounded-lg">Checkout</button>
                       </div>
                     </Modal>
                   </div>

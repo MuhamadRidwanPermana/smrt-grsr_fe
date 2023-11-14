@@ -60,7 +60,7 @@ export default function registerPage() {
             </Carousel>
           </div>
 
-          <div className=" w-full h-fit lg:px-5 lg:w-1/4 lg:pt-10">
+          <div className=" w-full h-fit lg:px-5 lg:w-1/4">
             <Header header='Identitas Pemilik' subHeader='Harap masukan Identitas yang sesuai'/>
 
             <form onSubmit={handleSubmit} action="">
@@ -77,13 +77,13 @@ export default function registerPage() {
 
               <div className='mb-3'>
                 <label htmlFor="password" className="text-blue-950 font-inter font-medium">Kata Sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Buat kata sandi akun SmartGrosir" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3'/>
+                <Input.Password placeholder="Buat kata sandi akun SmartGrosir" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setPassword(e.target.value)}/>
                 {error ? <span className='text-red-500 text-sm'>Kata Sandi harus lebih dari 8 karakter</span> : null}
               </div>
 
               <div className='mb-3'>
                 <label htmlFor="password" className="text-blue-950 font-inter font-medium">Konfirmasi Kata Sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Konfirmasi kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3'/>
+                <Input.Password placeholder="Konfirmasi kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setConfirmPassword(e.target.value)}/>
                 {error ? <span className='text-red-500 text-sm'>Kata Sandi harus lebih dari 8 karakter</span> : null}
               </div>
 

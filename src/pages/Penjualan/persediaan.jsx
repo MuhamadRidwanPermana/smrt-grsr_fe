@@ -1,5 +1,5 @@
-import  { useRef, useState } from 'react';
-import { Select, Modal, Button, Input, Space, Table, InputNumber } from 'antd';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { Select, Modal, Button, Input, Space, Table, InputNumber, Form } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
@@ -10,6 +10,89 @@ import { BsGrid3X3GapFill, BiSolidEditAlt, BiSolidTrashAlt } from '../../utils/i
 // Component
 import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
+
+const EditableContext = React.createContext(null);
+const EditableRow = ({ index, ...props }) => {
+  const [form] = Form.useForm();
+  return (
+    <Form form={form} component={false}>
+      <EditableContext.Provider value={form}>
+        <tr {...props} />
+      </EditableContext.Provider>
+    </Form>
+  );
+};
+
+const EditableCell = ({
+  title,
+  editable,
+  children,
+  dataIndex,
+  record,
+  handleSave,
+  ...restProps
+}) => {
+  const [editing, setEditing] = useState(false);
+  const inputRef = useRef(null);
+  const form = useContext(EditableContext);
+  useEffect(() => {
+    if (editing) {
+      inputRef.current.focus();
+    }
+  }, [editing]);
+  const toggleEdit = () => {
+    setEditing(!editing);
+    form.setFieldsValue({
+      [dataIndex]: record[dataIndex],
+    });
+  };
+  const save = async () => {
+    try {
+      const values = await form.validateFields();
+      toggleEdit();
+      handleSave({
+        ...record,
+        ...values,
+      });
+    } catch (errInfo) {
+      console.log('Save failed:', errInfo);
+    }
+  };
+  let childNode = children;
+  if (editable) {
+    childNode = editing ? (
+      <Form.Item
+        style={{
+          margin: 0,
+        }}
+        name={dataIndex}
+        rules={[
+          {
+            required: true,
+            message: `Harap Masukan ${title}!`,
+          },
+        ]}
+      >
+        <InputNumber ref={inputRef} onPressEnter={save} onBlur={save} min={1} max={10000} defaultValue={3} onChange={onChange} className='w-full'/>
+      </Form.Item>
+    ) : (
+      <div
+        className="editable-cell-value-wrap"
+        style={{
+          paddingRight: 1,
+        }}
+        onClick={toggleEdit}
+      >
+        {children}
+      </div>
+    );
+  }
+  return <td {...restProps}>{childNode}</td>;
+};
+
+const onChange = (value) => {
+  console.log('changed', value);
+};
 
 export default function Persediaan(){
 
@@ -126,32 +209,29 @@ export default function Persediaan(){
     setSearchText('');
   };
 
-  // Cari Barang
-  // const onInput = (value) => {
-  //   console.log(`selected ${value}`);
-  // };
-  // const onSearch = (value) => {
-  //   console.log('search:', value);
-  // };
-
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };
-  
-  // Modal
-  // const [open, setOpen] = useState(false);
-  // const showModal = () => {
-  //   setOpen(true);
-  // };
-  // const hideModal = () => {
-  //   setOpen(false);
-  // };
-  // Filter `option.label` match the user type `input`
-  // const filterOption = (input, option) =>
-  // (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+  const handleSave = (row) => {
+    const newData = [...dataPersediaan];
+    const index = newData.findIndex((item) => row.id === item.id);
+    const item = newData[index];
+    newData.splice(index, 1, {
+      ...item,
+      ...row,
+    });
+    setDataPersediaan(newData);
+  };
+  const components = {
+    body: {
+      row: EditableRow,
+      cell: EditableCell,
+    },
+  };
 
   // Data
-  const columns = [
+  const columnsPersediaan = [
     {
       title: 'No',
       dataIndex: 'id',
@@ -164,6 +244,7 @@ export default function Persediaan(){
       dataIndex: 'kode_barang',
       width: '50px',
       align: 'center',
+      ...getColumnSearchProps('kode_barang'),
       sorter: (a, b) => a.kode_barang - b.kode_barang,
     },
     {
@@ -178,6 +259,7 @@ export default function Persediaan(){
       title: 'Stok Awal',
       dataIndex: 'stok_awal',
       width: '50px',
+      editable: true,
       align: 'center',
       sorter: (a, b) => a.stok_awal - b.stok_awal,
     },
@@ -187,6 +269,21 @@ export default function Persediaan(){
       width: '50px',
       align: 'center',
       sorter: (a, b) => a.satuan - b.satuan,
+      filters: [
+        {
+          text: 'Kilogram',
+          value: 'Kg',
+        },
+        {
+          text: 'Gram',
+          value: 'g',
+        },
+        {
+          text: 'Ons',
+          value: 'ons',
+        },
+      ],
+      onFilter: (value, record) => record.satuan.indexOf(value) === 0,
     },
     {
       title: 'Tanggal Input',
@@ -204,7 +301,6 @@ export default function Persediaan(){
         dataPersediaan.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -212,13 +308,29 @@ export default function Persediaan(){
     },
   ]
 
+  const columns = columnsPersediaan.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        editable: col.editable,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        handleSave,
+      }),
+    };
+  });
+
   const [dataPersediaan, setDataPersediaan] = useState([
     {
       id: 1,
       kode_barang: 123,
       nama_barang: 'Gula',
       stok_awal: '5',
-      satuan: 'Bungkus',
+      satuan: 'Kg',
       tanggal_input: '09-10-2023',
     },
   ])
@@ -245,10 +357,6 @@ export default function Persediaan(){
     })
   };
 
-  // const onInputNumber = (value) => {
-  //   console.log('changed', value);
-  // };
-
   return(
     <main className="flex bg-blue-500 w-full h-full font-inter">
       
@@ -258,7 +366,7 @@ export default function Persediaan(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300 justify-between'>
               <div className='flex items-center'>
@@ -270,7 +378,9 @@ export default function Persediaan(){
 
               <div>
                 <Table
+                    components={components}
                     bordered={true}
+                    rowClassName={() => 'editable-row'}
                     dataSource={dataPersediaan}
                     columns={columns}
                     onChange={onChange}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Select, Modal, Button, Input, Space, Table, Form, InputNumber} from 'antd';
+import { Select, Modal, Button, Input, Space, Table, Form, InputNumber } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
@@ -12,7 +12,17 @@ import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
 import TypedInputNumber from 'antd/es/input-number';
 
-
+const EditableContext = React.createContext(null);
+const EditableRow = ({ index, ...props }) => {
+  const [form] = Form.useForm();
+  return (
+    <Form form={form} component={false}>
+      <EditableContext.Provider value={form}>
+        <tr {...props} />
+      </EditableContext.Provider>
+    </Form>
+  );
+};
 const EditableCell = ({
   title,
   editable,
@@ -24,6 +34,7 @@ const EditableCell = ({
 }) => {
   const [editing, setEditing] = useState(false);
   const inputRef = useRef(null);
+  const form = useContext(EditableContext);
   useEffect(() => {
     if (editing) {
       inputRef.current.focus();
@@ -58,11 +69,11 @@ const EditableCell = ({
         rules={[
           {
             required: true,
-            message: `${title} is required.`,
+            message: `Harap Masukan ${title}!`,
           },
         ]}
       >
-        <TypedInputNumber ref={inputRef} onPressEnter={save} onBlur={save} />
+        <InputNumber ref={inputRef} onPressEnter={save} onBlur={save} min={1} max={10000} onChange={onChange} />
       </Form.Item>
     ) : (
       <div
@@ -79,12 +90,15 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+const onChange = (value) => {
+  console.log('changed', value);
+};
+
 export default function Pembelian() {
 
   const [openSidebar, setOpenSidebar] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(true);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
-  const [openDropdownProfile, setOpenDropdownProfile] = useState(false);
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
@@ -219,7 +233,7 @@ export default function Pembelian() {
 
   const handleSave = (row) => {
     const newData = [...tambahDataKasir];
-    const index = newData.findIndex((item) => row.key === item.key);
+    const index = newData.findIndex((item) => row.id === item.id);
     const item = newData[index];
     newData.splice(index, 1, {
       ...item,
@@ -229,6 +243,7 @@ export default function Pembelian() {
   };
   const components = {
     body: {
+      row: EditableRow,
       cell: EditableCell,
     },
   };
@@ -261,6 +276,7 @@ export default function Pembelian() {
       title: 'Qty',
       dataIndex: 'qty',
       width: '5%',
+      editable: true,
       align: 'center',
       sorter: (a, b) => a.qty - b.qty,
     },
@@ -281,7 +297,7 @@ export default function Pembelian() {
         },
         {
           text: 'Ons',
-          value: 'Ons',
+          value: 'ons',
         },
       ],
       onFilter: (value, record) => record.satuan.indexOf(value) === 0,
@@ -323,7 +339,7 @@ export default function Pembelian() {
         tambahDataKasir.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button>
+              {/* <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><BiSolidEditAlt/></button> */}
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDeleteDataKasir(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -357,10 +373,10 @@ export default function Pembelian() {
     {
       id: 1,
       kode: 'PRJM-UTN-' + Math.floor(Math.random() * 10000),
-      nama: 'Beras',
-      qty: Math.floor(Math.random() * 10),
+      nama: 'Gandum',
+      qty: 1,
       satuan: 'Kg',
-      harga: Math.floor(Math.random() * 220000),
+      harga: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
       disc: Math.floor(Math.random() * 10) + '%',
       potongan_member: Math.floor(Math.random() * 10) + '%',
       total: 'Rp. ' + Math.floor(Math.random() * 100) + '.' + Math.floor(Math.random() * 1000),
@@ -414,24 +430,24 @@ export default function Pembelian() {
     {
       id: 1,
       nama_barang: 'Beras',
-      stok: 3 + ' kg',
-      qty: 1,
+      stok: 3,
+      qty: 5,
     },
     {
       id: 2,
       nama_barang: 'Gula',
-      stok: 5 + ' kg',
-      qty: 10,
+      stok: 5,
+      qty: 2,
     },
     {
       id: 3,
       nama_barang: 'Gandum',
-      stok: 5 + ' kg',
+      stok: 10,
       qty: 3,
     },
   ]);
   
-  const tambahcolumnsKasir = [
+  const tambahColumnsKasir = [
     {
       title: 'No',
       dataIndex: 'id',
@@ -468,19 +484,25 @@ export default function Pembelian() {
       align: 'center',
       width: '10%',
       render: (_, record) =>
-        tambahDataKasir.length >= 1 ? (
-          <>
-            <div className={`cursor-pointer flex items-center justify-centertext-center mx-auto bg-blue-500 hover:bg-blue-600 active:bg-blue-700 w-fit h-auto text-white px-3 py-2 rounded-lg`} onClick={() => handleAddDataKasir(record.no)}>
-              <BsCartPlusFill className='mr-1 text-xl'/>
-              <span>Pilih</span>
-            </div>
-          </>
-        ) : null,
+      tambahDataKasir.length >= 1 ? (
+        <>
+          {/* Jika QTY > Stok, Button === hidden */}
+          <div className={`cursor-pointer flex items-center justify-center text-center mx-auto ${ record.qty > record.stok ? 'bg-slate-300 cursor-not-allowed' : 'hidden' } w-fit h-auto text-white px-3 py-2 rounded-lg`}>
+            <BsCartPlusFill className='mr-1 text-xl' />
+            <span>Pilih</span>
+          </div>
+          {/* Jika QTY < Stok, Button === show */}
+          <div className={`cursor-pointer flex items-center justify-center text-center mx-auto ${ record.qty > record.stok ? 'hidden' : 'bg-blue-500 hover:bg-blue-600 active:bg-blue-700' } w-fit h-auto text-white px-3 py-2 rounded-lg`} onClick={() => handleAddDataKasir(record.no)}>
+            <BsCartPlusFill className='mr-1 text-xl'/>
+            <span>Pilih</span>
+          </div>
+        </>
+      ) : null,
     },
     
   ];
   
-  const columns = tambahcolumnsKasir.map((col) => {
+  const columns = tambahColumnsKasir.map((col) => {
     if (!col.editable) {
       return col;
     }
@@ -505,176 +527,132 @@ export default function Pembelian() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
-
-            <div className='grid lg:flex lg:justify-between'>
-              <div>
-                <table className='flex'>
-                  <tleft>
-                    <tr>
-                      <td className='text-left w-fit h-14'>Kode</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-fit h-14'>Tanggal</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-fit h-14'>Pelanggan</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-fit h-14'>Nama Pelanggan</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-fit h-14'>No HP</td>
-                    </tr>
-                  </tleft>
-                  <tcenter>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                  </tcenter>
-                  <tright>
-                    <tr>
-                      <td className='text-left w-52 h-14'>PRJM-UTN-0006</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-52 h-14'>07-10-2023 15:06:07</td>
-                    </tr>
-                    <tr>
-                      <td className='text-left w-52 h-14'>
-                        <Select
-                        className='border border-black w-52 h-11 -mt-2 bg-white rounded-lg select'
-                        showSearch
-                        placeholder="Pilih Pelanggan"
-                        optionFilterProp="children"
-                        onChange={onChange}
-                        onSearch={onSearch}
-                        filterOption={filterOption}
-                        options={[
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                        ]}
-                      />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className=' text-left w-52 h-14'>
-                        <Input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className=' text-left w-52 h-14'>
-                      <Input type="text" className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'/>
-                      </td>
-                    </tr>
-                  </tright>
-                </table>
+            
+            <div className='grid lg:flex w-full h-fit'>
+              <div className='grid w-full'>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Kode</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <p className='flex items-center w-52 h-11'>PRJM-UTN-0001</p>
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Pelanggan</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg'
+                      showSearch
+                      placeholder="Pilih Pelanggan"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'toko1',
+                          label: 'Toko1',
+                        },
+                        {
+                          value: 'toko2',
+                          label: 'Toko2',
+                        },
+                        {
+                          value: 'toko3',
+                          label: 'Toko3',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Nama Pelanggan</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Input type="text" className='flex items-center border-black border w-52 h-11 bg-white rounded-lg'/>
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>Alamat</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Input type="text" className='flex items-center border-black border w-52 h-11 bg-white rounded-lg'/>
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full h-11'>No HP</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Input type="text" className='flex items-center border-black border w-52 h-11 bg-white rounded-lg'/>
+                  </div>
+                </div>
               </div>
-              <div>
-                <table className='flex'>
-                  <tleft>
-                    <tr>
-                      <td className=' text-left w-auto h-14'>Keluar dari</td>
-                    </tr>
-                    <tr>
-                      <td className=' text-left w-auto h-14'>Sales</td>
-                    </tr>
-                  </tleft>
-                  <tcenter>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                    <tr>
-                      <td className='text-center w-10 h-14'>:</td>
-                    </tr>
-                  </tcenter>
-                  <tright>
-                    <tr>
-                      <td className=' text-left w-52 h-14'>
-                      <Select
-                        className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'
-                        showSearch
-                        placeholder="Pilih Pelanggan"
-                        optionFilterProp="children"
-                        onChange={onChange}
-                        onSearch={onSearch}
-                        filterOption={filterOption}
-                        options={[
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                          {
-                            value: 'toko',
-                            label: 'Toko',
-                          },
-                        ]}
-                      />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className=' text-left w-52 h-14'>
-                      <Select
-                        className='border-black border w-52 h-11 -mt-2 bg-white rounded-lg'
-                        showSearch
-                        placeholder="Pilih Sales"
-                        optionFilterProp="children"
-                        onChange={onChange}
-                        onSearch={onSearch}
-                        filterOption={filterOption}
-                        options={[
-                          {
-                            value: 'sales',
-                            label: 'Sales',
-                          },
-                          {
-                            value: 'non_sales',
-                            label: 'Non Sales',
-                          },
-                        ]}
-                      />
-                      </td>
-                    </tr>
-                  </tright>
-                </table>
+              <div className='grid w-full h-fit lg:px-5'>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full lg:w-1/3 h-11'>Keluar dari</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg select'
+                      showSearch
+                      placeholder="Pilih Pelanggan"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'toko1',
+                          label: 'Toko1',
+                        },
+                        {
+                          value: 'toko2',
+                          label: 'Toko2',
+                        },
+                        {
+                          value: 'toko3',
+                          label: 'Toko3',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className='flex w-full h-fit py-1.5'>
+                  <div className='flex items-center w-full lg:w-1/3 h-11'>Sales</div>
+                  <div className='flex items-center w-12 h-11'>:</div>
+                  <div className=''>
+                    <Select
+                      className='border border-black w-52 h-11 bg-white rounded-lg select'
+                      showSearch
+                      placeholder="Pilih Pelanggan"
+                      optionFilterProp="children"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={filterOption}
+                      options={[
+                        {
+                          value: 'sales',
+                          label: 'Sales',
+                        },
+                        {
+                          value: 'non_sales',
+                          label: 'Non Sales',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className='lg:relative flex lg:w-fit h-fit w-full lg:top-20 top-0'>
-                <table className='flex'>
-                  <tright>
-                    <span className='font-semibold my-10'>Total</span>
-                    <tr>
-                      <td className=' text-left w-full'>
-                        <input type="text" className='border-slate-500 bg-blue-200 border w-full h-24 px-2 rounded-lg'/>
-                      </td>
-                    </tr>
-                  </tright>
-                </table>
+              <div className='grid lg:relative w-full bottom-0'>
+                <div className='mt-7 lg:absolute bottom-0 w-full h-fit'>
+                  <div className='w-full h-7 font-bold text-xl'>Total</div>
+                  <div className='flex items-center px-3 justify-end w-full h-32 bg-blue-200 rounded-lg'>
+                    <p className='text-6xl font-bold'>0</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -690,6 +668,8 @@ export default function Pembelian() {
                   
                   {/* <div className='w-full h-fit bg-slate-500'> */}
                     <Table
+                      components={components}
+                      rowClassName={() => 'editable-row'}
                       bordered
                       dataSource={DataKasir}
                       columns={ColumnsKasir}
@@ -699,11 +679,9 @@ export default function Pembelian() {
                   {/* </div> */}
 
                   <Modal
-                  title="Tambah Barang"
                   open={open}
                   onOk={hideModal}
                   onCancel={hideModal}
-                  className='w-96 h-full'
                   okText="Selesai"
                   cancelText="Batal"
                   width={1000}
@@ -714,7 +692,7 @@ export default function Pembelian() {
                     bordered
                     dataSource={tambahDataKasir}
                     columns={columns}
-                    className='my-10 overflow-x-auto'
+                    className='lg:mt-10 mb-5 my-1 overflow-x-auto'
                   />
                 </Modal>
                 </div>

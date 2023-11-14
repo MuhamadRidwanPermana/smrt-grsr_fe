@@ -163,13 +163,13 @@ export default function DataProduk() {
       ...getColumnSearchProps('nama_item'),
       sorter: (a, b) => a.nama_item.length - b.nama_item.length,
     },
-    {
-      title: 'Stok',
-      dataIndex: 'stok',
-      width: '5%',
-      align: 'center',
-      sorter: (a, b) => a.stok - b.stok,
-    },
+    // {
+    //   title: 'Stok',
+    //   dataIndex: 'stok',
+    //   width: '5%',
+    //   align: 'center',
+    //   sorter: (a, b) => a.stok - b.stok,
+    // },
     {
       title: 'Harga Pokok',
       dataIndex: 'harga_pokok',
@@ -193,7 +193,7 @@ export default function DataProduk() {
         dataProduk.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button>
+              {/* <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button> */}
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -229,7 +229,7 @@ export default function DataProduk() {
       kode: 'PRD-' + Math.floor(Math.random() * 10),
       toko: 'Toko Sawarga',
       nama_item: 'Beras',
-      stok: Math.floor(Math.random() * 100),
+      // stok: Math.floor(Math.random() * 100),
       harga_pokok: 'Rp 20.000',
       harga_jual: 'Rp 25.000',
     }
@@ -243,7 +243,7 @@ export default function DataProduk() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl p-5'>
             <div className='flex items-center pb-5 border-b-2 border-slate-300 justify-between'>
               <div className='flex'>
@@ -260,7 +260,7 @@ export default function DataProduk() {
               </Link>
             </div>
 
-            <div className='bg-red w-full h-auto mt-12'>
+            <div className='bg-red w-full h-auto mt-10'>
               <div>
                 <Table
                   bordered

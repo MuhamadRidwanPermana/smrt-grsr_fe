@@ -56,7 +56,7 @@ const router = createBrowserRouter([
     element: <Kasir />
   },
   {
-    path:"penjualan/penjualan",
+    path:"/penjualan/penjualan",
     element: <Penjualan />
   },
   {

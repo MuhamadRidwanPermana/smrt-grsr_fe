@@ -1,95 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Input, Space, Table, Form } from 'antd';
+import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
 
 // Icon
-import { BiSolidTrashAlt, BsGrid3X3GapFill, MdSave, FaPlus } from '../../utils/icons';
+import { BiSolidTrashAlt, BsGrid3X3GapFill, FaPlus } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
-
-// Edit Row
-const EditableContext = React.createContext(null);
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
-const EditableCell = ({
-  title,
-  editable,
-  children,
-  dataIndex,
-  record,
-  handleSave,
-  ...restProps
-}) => {
-  const [editing, setEditing] = useState(false);
-  const inputRef = useRef(null);
-  const form = useContext(EditableContext);
-  useEffect(() => {
-    if (editing) {
-      inputRef.current.focus();
-    }
-  }, [editing]);
-  const toggleEdit = () => {
-    setEditing(!editing);
-    form.setFieldsValue({
-      [dataIndex]: record[dataIndex],
-    });
-  };
-  const save = async () => {
-    try {
-      const values = await form.validateFields();
-      toggleEdit();
-      handleSave({
-        ...record,
-        ...values,
-      });
-    } catch (errInfo) {
-      console.log('Save failed:', errInfo);
-    }
-  };
-  let childNode = children;
-  if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: `${title} is required.`,
-          },
-        ]}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-      </Form.Item>
-    ) : (
-      <div
-        className="editable-cell-value-wrap"
-        style={{
-          paddingRight: 1,
-        }}
-        onClick={toggleEdit}
-      >
-        {children}
-      </div>
-    );
-  }
-  return <td {...restProps}>{childNode}</td>;
-};
 
 export default function Pembelian() {
 
@@ -245,7 +166,7 @@ export default function Pembelian() {
         dataPembelian.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button>
+              {/* <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2'><MdSave/></button> */}
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </>
@@ -304,7 +225,7 @@ export default function Pembelian() {
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-        <div className='bg-slate-100 w-full min-h-[730px] lg:min-h-[738px] lg:p-7 p-4'>
+        <div className='bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-fit border-2 bg-white border-slate-300 rounded-xl p-5'>
 
             <div className='Pembelian'>

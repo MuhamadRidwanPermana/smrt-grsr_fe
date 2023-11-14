@@ -68,7 +68,7 @@ export default function Penjualan(){
 
         <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} openDropdownProfile={openDropdownProfile} setOpenDropdownProfile={setOpenDropdownProfile}/>
 
-        <div className=' bg-slate-100 w-full h-auto lg:p-7 p-4'>
+        <div className=' bg-slate-100 w-full min-h-[calc(100vh-64px)] lg:p-5 p-4'>
           <div className='w-full h-auto border-2 bg-white border-slate-300 rounded-xl lg:py-16'>
             <form action="" onSubmit={handleSubmit}>
               <div className='block lg:flex lg:justify-between'>

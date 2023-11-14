@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from 'antd';
 const originData = [];
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 100; i++) {
   originData.push({
     key: i.toString(),
     name: `Edward ${i}`,
@@ -57,10 +57,6 @@ const App = () => {
     });
     setEditingKey(record.key);
   };
-  const Delete = (key) => {
-    const newData = data.filter((item) => item.key !== key);
-    setData(newData);
-  }
   const cancel = () => {
     setEditingKey('');
   };
@@ -125,12 +121,9 @@ const App = () => {
             </Popconfirm>
           </span>
         ) : (
-          <>
-            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-              Edit
-            </Typography.Link>
-            <Typography.Link onClick={() => Delete(record.key)}>Delete</Typography.Link>
-          </>
+          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+            Edit
+          </Typography.Link>
         );
       },
     },

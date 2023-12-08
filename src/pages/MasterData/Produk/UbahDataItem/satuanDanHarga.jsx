@@ -11,7 +11,7 @@ import Navbar from '../../../../Components/Navbar';
 
 export default function satuanDanHarga(){
 
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(true);
 
@@ -112,7 +112,7 @@ export default function satuanDanHarga(){
                     </div>
                     <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Jumlah Konversi</label>
-                      <InputNumber min={1} max={10} onChange={onChange} className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
+                      <InputNumber min={1} onChange={onChange} className='lg:w-3/4 w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
                     </div>
                     <div className='lg:flex grid my-5 align-middle items-center'>
                       <label htmlFor="barang" className='font-semibold w-40 h-fit'>Harga Pokok</label>

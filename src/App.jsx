@@ -5,7 +5,7 @@ import "../src/assets/style.css";
 
 import Footer from "./Components/LandingPageComponents/Footer";
 
-import { Image, Image2, Image3, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';
+import { Image1, Image2, Image3, RxHamburgerMenu, FaArrowRightLong, BsCheck2, CgClose } from './utils/icons';
 
 function App() {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -98,7 +98,7 @@ function App() {
             <path d="M27.105 3H21C18.0868 3.01358 15.2781 4.08642 13.0977 6.01842C11.07 7.81506 9.71456 10.2406 9.24176 12.896C9.18056 13.2397 8.88818 13.5 8.53908 13.5C7.9652 13.5 7.5 13.9652 7.5 14.5391V33.75C7.5 34.1642 7.83578 34.5 8.25 34.5C8.66422 34.5 9 34.8358 9 35.25V37.5C9 39.1568 10.3431 40.5 12 40.5H16.77C17.0795 41.3754 17.6521 42.1336 18.4094 42.6706C19.1667 43.2076 20.0716 43.4974 21 43.5H24C25.1934 43.5 26.338 43.0258 27.182 42.182C28.0258 41.338 28.5 40.1934 28.5 39C28.5 37.8066 28.0258 36.662 27.182 35.818C26.338 34.9742 25.1934 34.5 24 34.5H21C20.0716 34.5026 19.1667 34.7924 18.4094 35.3294C17.6521 35.8664 17.0795 36.6246 16.77 37.5H13.5C12.6716 37.5 12 36.8284 12 36C12 35.1716 12.6716 34.5 13.5 34.5C14.3284 34.5 15 33.8284 15 33V16.38C15 14.7894 13.7106 13.5 12.12 13.5C12.4746 11.4019 13.5612 9.49726 15.1869 8.12424C16.8125 6.75122 18.8721 5.9986 21 6H27.165C29.28 6.01626 31.3216 6.77686 32.9318 8.14834C34.5418 9.5198 35.6176 11.4145 35.97 13.5C34.3298 13.5 33 14.8297 33 16.47V30.75C33 32.821 34.679 34.5 36.75 34.5C38.821 34.5 40.5 32.821 40.5 30.75V14.4446C40.5 13.9229 40.077 13.5 39.5554 13.5C39.238 13.5 38.972 13.2635 38.9178 12.9508C38.4526 10.2664 37.0862 7.81384 35.0354 6.0036C32.8456 4.07058 30.026 3.00264 27.105 3Z" fill="#C3D9FA"/>
             </svg>
 
-            <a href="https://wa.me/+6281223918932?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target="_blank">
+            <a href="https://wa.me/+6287840166999?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target="_blank">
               <p className="text-sm text-white underline underline-offset-4 duration-300">
                 Ada hal yang ingin di tanyakan?
               </p>
@@ -108,7 +108,7 @@ function App() {
 
         <body className="w-full h-fit p-4 lg:px-28">
           <div className="lg:block hidden w-fit h-fit">
-            <svg width="1170" height="1170" viewBox="0 0 1170 1170" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit">
+            <svg width="1170" height="1170" viewBox="0 0 1170 1170" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 lg:w-[80%] xl:w-fit h-fit">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M1071.41 259.992C1135.69 356.194 1170 469.298 1170 585H1053C1053 492.439 1025.55 401.956 974.128 324.993C922.703 248.031 849.612 188.046 764.096 152.625C678.58 117.203 584.481 107.935 493.698 125.993C402.915 144.051 319.525 188.623 254.074 254.074C188.623 319.525 144.051 402.915 125.993 493.698C107.935 584.481 117.203 678.58 152.625 764.096C188.046 849.612 248.031 922.704 324.993 974.128C397.793 1022.77 482.69 1049.96 570 1052.76V1169.81C459.544 1166.98 352.033 1132.91 259.992 1071.41C163.789 1007.13 88.808 915.765 44.5307 808.87C0.253471 701.975 -11.3315 584.351 11.2409 470.872C33.8132 357.394 89.5291 253.157 171.343 171.343C253.157 89.5291 357.394 33.8132 470.872 11.2409C584.351 -11.3315 701.975 0.253469 808.87 44.5307C915.765 88.808 1007.13 163.789 1071.41 259.992Z" fill="url(#paint0_linear_109_1952)"/>
             <defs>
             <linearGradient id="paint0_linear_109_1952" x1="585" y1="0.000259399" x2="585" y2="1170" gradientUnits="userSpaceOnUse">
@@ -122,12 +122,11 @@ function App() {
             <svg width="168" height="144" viewBox="0 0 168 144" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit top-96 mt-80">
             <path d="M105.068 48.1375C105.959 45.563 108.171 43.5412 111.433 43.3588L120.074 42.8758C120.074 42.8758 120.074 42.8758 120.075 42.8758C120.075 42.8758 120.075 42.8758 120.075 42.8758C120.675 42.8424 121.267 42.7709 121.849 42.6638L128.422 41.4535L123.683 36.7403L95.8479 9.05264C95.8462 9.05091 95.8445 9.04918 95.8427 9.04745C93.7515 6.95378 91.2823 5.49459 88.4677 4.74041C85.6549 3.98674 82.7887 4.01522 79.9329 4.78167L65.6707 8.5121L59.7544 10.0596L64.0853 14.3769L99.2899 49.4715L103.243 53.412L105.068 48.1375ZM75.164 72.7064L73.2133 73.23L72.6906 75.1809L57.3229 132.534L55.7573 138.377L61.603 136.822L112.255 123.354L112.266 123.351C115.112 122.585 117.604 121.191 119.662 119.156L119.663 119.155C121.732 117.108 123.142 114.609 123.905 111.743C123.905 111.741 123.905 111.74 123.906 111.738L129.298 91.6136L130.162 88.3892L126.982 87.3736C124.32 86.5234 122.212 84.2799 122.025 80.9526L118.531 81.1487L122.025 80.9526L121.541 72.3126C121.541 72.3124 121.541 72.3121 121.541 72.3119C121.347 68.8467 119.891 65.6122 117.508 63.184L116.077 61.725L114.103 62.2549L75.164 72.7064ZM45.6928 132.559L49.9781 136.828L51.5437 130.985L66.9114 73.6324L67.4341 71.6815L66.0066 70.2527L23.6116 27.8215L19.3247 23.531L17.7549 29.3895L4.27668 79.6909C3.50932 82.5548 3.48271 85.4239 4.25084 88.2306L4.251 88.2312C5.01506 91.0211 6.47311 93.4733 8.55019 95.5591L8.56013 95.569L45.6928 132.559ZM70.2269 66.0727L71.6478 67.4892L73.5882 66.9788L95.0975 61.3215L100.977 59.7751L96.6874 55.4671L54.721 13.3187L53.2948 11.8863L51.3414 12.4057L29.6334 18.178L23.7513 19.7421L28.0618 24.0392L70.2269 66.0727ZM147.763 33.8544C147.429 27.9127 139.704 25.8427 136.444 30.8217L127.969 43.7681L112.514 44.632C106.571 44.9641 104.501 52.6896 109.482 55.9489L122.434 64.4244L123.301 79.8741C123.634 85.8158 131.36 87.8858 134.619 82.9068L143.095 69.9604L158.549 69.0966C164.493 68.7644 166.563 61.0389 161.582 57.7796L148.63 49.3041L147.763 33.8544Z" fill="#C3D9FA" stroke="#7EAEF5" stroke-width="7"/>
             </svg>
-
           </div>
 
           <div className="relative z-20 lg:flex w-full h-fit justify-center lg:justify-between items-center mt-24 mb-32 lg:mt-40 lg:mb-80">
             <div className="w-full flex lg:hidden">
-              <img src={Image} alt="" />
+              <img src={Image1} alt="" />
             </div>
 
             <div className="lg:w-1/2 p-0 lg:pb-0 pb-10 lg:pr-36">
@@ -147,7 +146,7 @@ function App() {
             </div>
 
             <div className="w-1/2 h-fit pl-10 hidden lg:flex">
-              <img src={Image} alt="" />
+              <img src={Image1} alt="" />
             </div>
           </div>
 
@@ -173,7 +172,7 @@ function App() {
           </div>
 
           <div className="lg:block hidden w-fit h-fit">
-            <svg width="1170" height="1164" viewBox="0 0 1170 1164" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit top-full mt-96">
+            <svg width="1170" height="1164" viewBox="0 0 1170 1164" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 lg:w-[80%] xl:w-fit h-fit top-full mt-96">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M670 1163.79C755.516 1151.23 837.555 1119.82 910.009 1071.41C1006.21 1007.13 1081.19 915.765 1125.47 808.87C1169.75 701.975 1181.33 584.351 1158.76 470.872C1136.19 357.394 1080.47 253.157 998.658 171.343C916.844 89.5291 812.607 33.8133 699.128 11.2409C585.649 -11.3315 468.025 0.253458 361.13 44.5307C254.235 88.808 162.871 163.789 98.5903 259.992C34.3097 356.194 1.74705e-05 469.298 0 585H117C117 492.439 144.448 401.956 195.872 324.993C247.297 248.031 320.388 188.046 405.904 152.625C491.42 117.203 585.519 107.935 676.302 125.993C767.085 144.051 850.475 188.623 915.926 254.074C981.377 319.525 1025.95 402.915 1044.01 493.698C1062.07 584.481 1052.8 678.58 1017.38 764.096C981.954 849.612 921.969 922.704 845.007 974.128C791.862 1009.64 732.271 1033.72 670 1045.22V1163.79Z" fill="url(#paint0_linear_109_1949)"/>
             <defs>
             <linearGradient id="paint0_linear_109_1949" x1="207" y1="-41.2866" x2="581.463" y2="1165.08" gradientUnits="userSpaceOnUse">
@@ -214,7 +213,7 @@ function App() {
           </div>
 
           <div className="lg:block hidden">
-            <svg width="270" height="240" viewBox="0 0 270 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute z-10 w-fit h-fit right-24 -mt-20">
+            <svg width="270" height="240" viewBox="0 0 270 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute -z-10 w-fit h-fit right-24 -mt-20">
             <ellipse cx="9" cy="8" rx="9" ry="8" fill="#ECF3FE"/>
             <ellipse cx="9" cy="136" rx="9" ry="8" fill="#ECF3FE"/>
             <ellipse cx="9" cy="72" rx="9" ry="8" fill="#ECF3FE"/>
@@ -359,7 +358,7 @@ function App() {
                 grosir Anda.
               </p>
             </header>
-            <span ref={ref}></span>
+          <div ref={ref} className="pt-5"></div>
             <body className="lg:flex mb-36 mt-20 grid gap-8 font-inter">
             {/* <body className="lg:flex grid mb-36 mt-20 font-inter w-full"> */}
               <div className="lg:mx-5 mx-0 lg:w-fit sm:w-fit w-full h-fit lg:p-10 p-7 lg:mb-0 mb-10 border-2 border-slate-300 rounded-xl">
@@ -389,7 +388,7 @@ function App() {
                     <p className="text-slate-500 text-sm mt-6 mb-3">
                       Gratis Selamanya!
                     </p>
-                    <p className="text-4xl font-semibold my-3">Rp. 0</p>
+                    <p className="text-4xl font-semibold my-3">Rp 0</p>
                   </div>
                 </header>
                 <div>
@@ -486,7 +485,7 @@ function App() {
                       Kelola Grosir Lebih Produktif!
                     </p>
                     <p className="lg:text-4xl text-2xl text-blue-950 font-semibold my-3">
-                      Rp. 75k/3 bulan
+                      Rp 125k/3 bulan
                     </p>
                   </div>
                 </header>

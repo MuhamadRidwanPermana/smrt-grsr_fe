@@ -11,7 +11,7 @@ import Navbar from '../../../../Components/Navbar';
 
 export default function dataUmum(){
 
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(true);
 
@@ -57,8 +57,8 @@ export default function dataUmum(){
             </div>
 
             <div>
-              <div className='flex justify-between w-full h-full mt-5'>
-                <div className='w-1/2 pr-3'>
+              <div className='lg:flex justify-between w-full h-full mt-5'>
+                <div className='lg:w-1/2 lg:pr-3'>
                   <div className='block my-5'>
                     <label htmlFor="barang" className='font-semibold'>Tipe Item</label>
                     <Select
@@ -127,18 +127,18 @@ export default function dataUmum(){
                           label: 'Merk 1',
                         },
                         {
-                          value: 'merk1',
+                          value: 'merk2',
                           label: 'Merk 2',
                         },
                         {
-                          value: 'merk1',
+                          value: 'merk3',
                           label: 'Merk 3',
                         },
                       ]}
                     />
                   </div>
                 </div>
-                <div className='w-1/2 pl-3'>
+                <div className='lg:w-1/2 lg:pl-3'>
                   <div className='block my-5'>
                     <label htmlFor="barang" className='font-semibold'>Status Jual</label>
                     <Select
@@ -168,13 +168,13 @@ export default function dataUmum(){
                   <div className='my-5'>
                     <label htmlFor="barang" className='font-semibold'>Stok Minimum</label>
                     <div>
-                      <InputNumber min={1} max={10} onChange={onChange} className='w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
+                      <InputNumber min={1} onChange={onChange} className='w-full h-9 border border-slate-300 rounded-md mt-2 bg-white'/>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <button className='flex px-7 py-2 ml-auto rounded-lg text-white bg-blue-500'>Simpan</button>
+              
+              <button className='flex items-center justify-center lg:w-32 lg:mt-0 mt-7 w-full h-11 ml-auto rounded-lg text-white bg-blue-500'>Simpan</button>
             </div>
 
           </div>

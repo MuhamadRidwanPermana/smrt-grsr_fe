@@ -11,7 +11,7 @@ import RegisterPage from './pages/registerPage'
 import InformationPage from './pages/informationPage'
 import Dashboard from './pages/dashboard'
 import Kasir from './pages/Penjualan/kasir'
-import Penjualan from './pages/Penjualan/penjualan'
+import RiwayatTrx from './pages/Penjualan/riwayatTrx'
 import Persediaan from './pages/Penjualan/persediaan'
 import Pembelian from './pages/Pembelian/pembelian'
 import ProsesPembelian from './pages/Pembelian/prosesPembelian'
@@ -56,8 +56,8 @@ const router = createBrowserRouter([
     element: <Kasir />
   },
   {
-    path:"/penjualan/penjualan",
-    element: <Penjualan />
+    path:"/penjualan/riwayat-transaksi",
+    element: <RiwayatTrx />
   },
   {
     path:"penjualan/persediaan",

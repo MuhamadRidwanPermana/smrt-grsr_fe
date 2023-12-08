@@ -44,7 +44,7 @@ export default function Footer() {
       <div className='text-center mt-5 text-blue-950'>
         <p className='hidden lg:block'>© 202X SmartGrosir by <a href="https://www.sadigit.co.id/" className='text-blue-500'>PT. Sawarga Digital Indonesia</a></p>
 
-        {/* <p className='block lg:hidden'>© 202X SmartGrosir by PT. Sawarga Digital <br /> Indonesia</p> */}
+        <p className='text-sm block lg:hidden'>© 2023 SmartGrosir by PT. Sawarga Digital <br /> Indonesia</p>
       </div>
     </footer>
   )

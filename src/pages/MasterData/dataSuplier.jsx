@@ -49,7 +49,7 @@ const EditableCell = ({
 
 export default function DataSuplier(){
   
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(true);
 
@@ -246,7 +246,7 @@ export default function DataSuplier(){
     console.log('changed', value);
   };
 
-
+  const [page, setPage] = useState(1);
   const columnsSuplier = [
     {
       title: 'No',
@@ -254,6 +254,7 @@ export default function DataSuplier(){
       width: '5%',
       align: 'center',
       sorter: (a, b) => a.id - b.id,
+      render: (_, record, index) => index + 1 + (10 * (page - 1)),
     },
     {
       title: 'Kode',
@@ -307,14 +308,14 @@ export default function DataSuplier(){
         return editable ? (
           <span>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-green-600 bg-green-200 rounded-lg mr-2' onClick={() => save(record.id)}><PiCheckBold/></button>
-              <button className='flex items-center justify-center font-semibold text-xl p-1 text-red-600 bg-red-200 rounded-lg' onClick={cancel}><IoClose/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2' onClick={() => save(record.id)}><PiCheckBold/></button>
+              <button className='flex items-center justify-center font-semibold text-xl p-1 text-slate-600  rounded-lg' onClick={cancel}><IoClose/></button>
             </div>
           </span>
         ) : (
           <span>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-blue-500 bg-blue-100 rounded-lg mr-2' disabled={editingKey !== ''} onClick={() => edit(record)}><BiSolidEditAlt/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-slate-500 bg-slate-200 rounded-lg mr-2' disabled={editingKey !== ''} onClick={() => edit(record)}><BiSolidEditAlt/></button>
               <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
             </div>
           </span>
@@ -343,17 +344,20 @@ export default function DataSuplier(){
       title: 'Apakah anda yakin ingin mengahpus data ini?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: "#3B82F6",
       cancelButtonColor: '#d33',
       confirmButtonText: 'Hapus',
       cancelButtonText: 'Batal'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Dihapus!',
-          'Data berhasil dihapus!',
-          'success'
-          )
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Data berhasil dihapus",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "400px",
+        });
         const newData = dataSuplier.filter((item) => item.id !== id);
         setDataSuplier(newData);
       }
@@ -455,6 +459,10 @@ export default function DataSuplier(){
                   rowClassName="editable-row"
                   pagination={{
                     onChange: cancel,
+                    pageSize: 10,
+                    onChange(current){
+                      setPage(current);
+                    }
                   }}
                   bordered={true}
                   dataSource={dataSuplier}
@@ -500,7 +508,7 @@ export default function DataSuplier(){
 
                   <div className='flex justify-end'>
                     <button type='submit' className="text-slate-800 bg-white border border-slate-500 px-5 py-1.5 rounded-lg mx-3" onClick={hideModal}>Batal</button>
-                    <button type='submit' className="text-white bg-blue-500 px-5 py-1.5 rounded-lg" onClick={hideModal}>Tambah</button>
+                    <button type='submit' className="text-white bg-blue-500 px-5 py-1.5 rounded-lg" >Tambah</button>
                   </div>
                 </form>
               </Modal>

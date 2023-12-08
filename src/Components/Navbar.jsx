@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
-import { Dropdown } from 'antd';
+import { Dropdown, Drawer, Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
-// Icon
-import { Image_Admin, RxHamburgerMenu, RxDoubleArrowLeft, IoLogOutOutline, SlSettings } from '../utils/icons';
+//  Icon
+import { Image_Admin, IoLogOutOutline, SlSettings, AiFillHome, RxDotFilled, RxHamburgerMenu, RxDoubleArrowLeft, HiMiniShoppingBag, FaBoxArchive, ImPriceTag } from '../utils/icons';
+
+const logout = () => {
+  Swal.fire({
+    title: "Apakah kamu yakin ingin keluar?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3B82F6",
+    cancelButtonColor: '#d33',
+    confirmButtonText: "Keluar",
+    cancelButtonText: "Batal"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "/";
+    }
+  });
+}
 
 const items = [
   {
@@ -15,23 +32,34 @@ const items = [
     type: 'divider',
   },
   {
-    icon: <IoLogOutOutline className='text-xl mr-3 icon-logout'/>,
-    label: <Link to={'/'}>Logout</Link>,
+    icon: <IoLogOutOutline className='text-xl mr-3 icon-logout' onClick={logout}/>,
+    label: <div onClick={logout}>Logout</div>,
     key: '1',
   },
 ];
 
-export default function Navbar({ openSidebar, setOpenSidebar }) {
+
+export default function Navbar({openSidebar, setOpenSidebar}) {
+
+  // const [openSidebarMobile, setOpenSidebarMobile] = useState(false);
+  // const showSidebarMobile = () => {
+  //   setOpenSidebarMobile(true);
+  // };
+  // const closeSidebarMobile = () => {
+  //   setOpenSidebarMobile(false);
+  // };
+
   return(
-    <nav className='flex w-full sticky top-0 h-16 bg-white justify-between z-10'>
+    <>
+      <nav className='flex w-full sticky top-0 h-16 bg-white justify-between z-10'>
       <div className='flex w-fit h-16'>
-        <span className='bg-blue-500 w-9 h-12 pt-2 rounded-tr-xl rounded-br-xl hidden lg:flex cursor-pointer' onClick={() => setOpenSidebar(!openSidebar)}>
+        {/* <span className='bg-blue-500 w-9 h-12 pt-2 rounded-tr-xl rounded-br-xl hidden lg:flex cursor-pointer' onClick={() => setOpenSidebar(!openSidebar)}>
           <RxDoubleArrowLeft className={`text-xl mt-1.5 text-white ${openSidebar ? '0' : 'rotate-180'}`}/>
-        </span>
+        </span> */}
         <span className=' flex lg:hidden cursor-pointer'>
-          <RxHamburgerMenu className={`text-2xl my-4 mx-4 cursor-pointer text-blue-500 ${openSidebar ? '0' : 'rotate-180'}`} onClick={() => setOpenSidebar(!openSidebar)}/>
+          <RxHamburgerMenu className={`text-2xl my-4 mx-4 cursor-pointer text-blue-500`} onClick={() => setOpenSidebar(!openSidebar)}/>
         </span>
-        <div className='flex py-4 mx-0 lg:mx-6'>
+        {/* <div className='lg:hidden flex py-4 mx-0 lg:mx-6'>
           <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.1674 0.334595L18.5521 3.99951C18.4767 4.0354 18.3986 4.06677 18.3181 4.0932L16.7769 4.6001C15.9171 4.88287 15.4605 5.60333 15.407 6.35101L7.33081 1.70343L9.73389 0.334595C10.1191 0.111511 10.5247 0 10.9506 0C11.3765 0 11.782 0.111511 12.1674 0.334595Z" fill="#3F86F0"/>
           <path d="M12.1674 12.8669L18.7101 9.08441C19.1237 9.32855 19.4402 9.71649 19.5931 10.1818L20.1001 11.7232C20.3892 12.6021 21.1357 13.0598 21.9011 13.096V17.0038C21.902 17.45 21.7957 17.8555 21.5824 18.2205C21.369 18.5856 21.0697 18.8796 20.6844 19.1027L12.1674 24V12.8669Z" fill="#3F86F0"/>
@@ -52,41 +80,95 @@ export default function Navbar({ openSidebar, setOpenSidebar }) {
           </svg>
 
         <span className="text-xs text-blue-400 w-9 h-6 mx-1.5 text-center pt-0.5 bg-blue-100 border border-blue-400 rounded-md">Lite</span>
+        </div> */}
+      
         </div>
-      </div>
-      <div className='flex w-fit h-16 mx-5 items-center cursor-pointer'>
-        
-      <Dropdown
-        menu={{
-          items,
-        }}
-        trigger={['click']}
-      >
-        <div className='flex items-center'>
-          <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
-          <a className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden' onClick={(e) => e.preventDefault()}>
-            Admin
-          </a>
-        </div>
-      </Dropdown>
-
-        {/* <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
-          <span className={`mx-10 py-2 text-dark w-40 bg-white border border-slate-100 rounded-xl ${openDropdownProfile ? 'absolute block z-50 top-16 right-0' : 'hidden'}`}>
-            <Link to={'/settings'}>
-            <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
-              <SlSettings className='text-xl mr-3'/>
-              <li className='list-none text-md'>Settings</li>
+        <div className='flex w-fit h-16 mx-5 items-center cursor-pointer'>
+          
+          <Dropdown
+            menu={{
+              items,
+            }}
+            trigger={['click']}
+          >
+            <div className='flex items-center'>
+              <img src={Image_Admin} alt="" className=' bg-white w-8 h-8 rounded-full border border-blue-500'/>
+              <a className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden' onClick={(e) => e.preventDefault()}>
+                Admin
+              </a>
             </div>
-            </Link>
-            <div className='border-t border-slate-200 w-full h-1'></div>
-            <Link to={'/'}>
-              <div className="flex items-center mt-3 mb-2 mx-5 text-slate-700 hover:text-blue-500">
-                <IoLogOutOutline className='text-xl mr-3'/>
-                <li className='list-none text-md'>Logout</li>
+          </Dropdown>
+
+          {/* <span className='text-sm text-blue-500 mx-3 lg:inline lg:mx-3 hidden'>Admin</span>
+            <span className={`mx-10 py-2 text-dark w-40 bg-white border border-slate-100 rounded-xl ${openDropdownProfile ? 'absolute block z-50 top-16 right-0' : 'hidden'}`}>
+              <Link to={'/settings'}>
+              <div className='flex items-center mt-2 mb-4 mx-5 text-slate-700 hover:text-blue-500'>
+                <SlSettings className='text-xl mr-3'/>
+                <li className='list-none text-md'>Settings</li>
               </div>
-            </Link>
-          </span>*/}
-      </div> 
-    </nav>
+              </Link>
+              <div className='border-t border-slate-200 w-full h-1'></div>
+              <Link to={'/'}>
+                <div className="flex items-center mt-3 mb-2 mx-5 text-slate-700 hover:text-blue-500">
+                  <IoLogOutOutline className='text-xl mr-3'/>
+                  <li className='list-none text-md'>Logout</li>
+                </div>
+              </Link>
+            </span>*/}
+        </div> 
+      </nav>
+
+      {/* <Drawer
+            placement="left"
+            onClose={closeSidebarMobile}
+            open={openSidebarMobileMobile}
+            closable={false}
+            className="bg-blue-500"
+            style={{ background: "#3B82F6", paddingTop: "20px" }}
+            width={300}
+          >
+          <Menu mode="inline" className="block lg:hidden font-inter h-full text-white bg-blue-500 text-base">
+          <Menu.Item key="1" icon={<AiFillHome size={17} />} className="menu-hover">
+           <Link to="/dashboard">
+             Dashboard
+           </Link>
+         </Menu.Item>
+         <Menu.SubMenu title="Penjualan" key="2" icon={<HiMiniShoppingBag size={17} />}>
+           <Menu.Item icon={<RxDotFilled size={17} />} className="menu-hover">
+             <Link to="/penjualan/kasir">
+               Kasir
+             </Link>
+           </Menu.Item>
+           <Menu.Item icon={<RxDotFilled size={17} />} className="menu-hover">
+             <Link to="/penjualan/riwayat-transaksi">
+               Riwayat Transaksi
+             </Link>
+           </Menu.Item>
+           <Menu.Item icon={<RxDotFilled size={17} />} className="menu-hover">
+             <Link to="/penjualan/persediaan">
+               Persediaan
+             </Link>
+           </Menu.Item>
+         </Menu.SubMenu>
+         <Menu.Item key="3" icon={<ImPriceTag size={17} />} className="menu-hover">
+           <Link to="/pembelian">
+             Pembelian
+           </Link>
+         </Menu.Item>
+         <Menu.SubMenu title="Master Data" key="4" icon={<FaBoxArchive size={17} />}>
+           <Menu.Item icon={<RxDotFilled size={17} />} className="menu-hover">
+             <Link to="/master-data/produk">
+               Produk
+             </Link>
+           </Menu.Item>
+           <Menu.Item icon={<RxDotFilled size={17} />} className="menu-hover">
+             <Link to="/master-data/data-suplier">
+               Data Suplier
+             </Link>
+           </Menu.Item>
+         </Menu.SubMenu>
+            </Menu> 
+      </Drawer> */}
+    </>
   )
 }

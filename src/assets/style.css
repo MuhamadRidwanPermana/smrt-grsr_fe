@@ -16,7 +16,7 @@
   background: #3B82F6 !important;
 }
 
-.ant-modal-footer{
+.modal-kasir .ant-modal-footer, .modal-proses-pembelian .ant-modal-footer, .modal-pelanggan .ant-modal-footer, .modal-suplier .ant-modal-footer, .modal-dashboard .ant-modal-footer{
   display: none !important;
 }
 
@@ -115,3 +115,28 @@ h2#swal2-title{
 }
 
 /* ------------------------------------------------------------------------------ */
+
+option{
+  width: 100%;
+  height: 100px !important;
+}
+
+option[value="cash"]{
+  min-height: fit-content;
+}
+
+
+/* antd Label */
+/* .ant-form-item{
+  display: flex !important;
+} */
+
+
+.ant-menu-submenu-title{
+  color:#fff !important;
+}
+
+.menu-hover:hover{
+  background:#fff !important;
+  color:#3B82F6 !important;
+}

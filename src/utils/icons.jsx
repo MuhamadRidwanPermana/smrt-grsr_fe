@@ -1,5 +1,5 @@
 export { default as IconApp } from '../assets/img/app_icon.jpg';
-export { default as Image } from '../assets/img/image_landingpage.png';
+export { default as Image1 } from '../assets/img/image_landingpage.png';
 export { default as Image2 } from '../assets/img/image_landingpage2.png';
 export { default as Image3 } from '../assets/img/image_landingpage3.png';
 export { default as Image_Admin } from '../assets/img/admin.png';

@@ -3,7 +3,7 @@ import '../../src/assets/style.css'
 
 export default function kebijakanPrivasiPengguna() {
   return (
-    <body className="py-10 px-36 font-inter text-justify">
+    <body className="lg:py-10 lg:px-36 p-5 font-inter text-justify">
       <h1 className="text-4xl font-semibold my-5">Privacy Policy</h1>
       <p>
         This Privacy Policy describes Our policies and procedures on the
@@ -500,22 +500,22 @@ export default function kebijakanPrivasiPengguna() {
       </p>
       <ul className="list-disc ml-5">
         <li>
-          <p>By email: smartgrosir@gmail.com</p>
+          <p>By email: smartgrosirlite@gmail.com</p>
         </li>
         <li>
           <p>
             By visiting this page on our website:{" "}
             <a
-              // href="https://daftarmenu.com/help"
+              href="https://smart-grosir-lite.com"
               rel="external nofollow noopener"
               target="_blank"
             >
-              https://smart-grosir.com/help
+              https://smart-grosir-lite.com
             </a>
           </p>
         </li>
         <li>
-          <p>By phone number: +628123456789</p>
+          <p>By phone number: +6287840166999</p>
         </li>
       </ul>
     </body>

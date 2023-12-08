@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Carousel } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Carousel, Form } from 'antd';
 
-import { Image, Image3 } from '../utils/icons';
+import { Image1, Image3 } from '../utils/icons';
 
-import InputForm from '../Components/Elements/Input/InputForm';
+import Label from '../Components/Elements/Input/Label';
 import Button from '../Components/Elements/Button';
 import Header from '../Components/LoginRegisterComponents/Header';
 
@@ -16,15 +16,29 @@ export default function Login() {
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
-
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if(Email.length === 0 || Password.length === 8){
-      setError(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem('authToken')) {
+      navigate.push('/dashboard');
     }
-    console.log(Email, Password);
+  }, [])
+
+  async function handleLogin() {
+    
+    console.warn(Email, Password);
+    let item = { Email, Password };
+    let result = await fetch('src/pages/persediaan.json', {
+      method: 'POST',
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Accept': 'application/json',
+      // },
+      body: JSON.stringify(item)
+    });
+    result = await result.json();
+    localStorage.setItem('authToken', JSON.stringify(result));
+    navigate.push('/dashboard');
+
   }
 
   const contentStyle = {
@@ -53,7 +67,7 @@ export default function Login() {
           <div className="hidden lg:flex w-full px-5 lg:w-fit mt-10 lg:pt-11 items-center">
             <Carousel autoplay style={contentStyle}>
               <div>
-                <img src={Image} alt=""/>
+                <img src={Image1} alt=""/>
               </div>
               <div>
                 <img src={Image3} alt=""/>
@@ -75,22 +89,41 @@ export default function Login() {
               <span className='border border-slate-300 w-28 rounded-lg'></span>
             </div>
 
-            <form action="" onSubmit={handleSubmit} className='font-inter'>
-              <div className='mb-3'>
-                <InputForm label='Email' placeholder="Masukan email" name="email" onChange={e=>setEmail(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Email harus di isi</span> : null}
+            <Form onSubmit={handleLogin} className='font-inter'>
+              <div className='w-full h-fit mb-5'>
+                <Label label="Email"/>
+                <Form.Item
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      message: <span className='text-xs'>Mohon masukan Email anda!</span>,
+                    },
+                  ]}
+                  >
+                  <Input label='Email' placeholder="Masukan email" name="email" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2' type="email" value={Email} onChange={(e) => setEmail(e.target.value)}/>
+                </Form.Item>
+              </div>
+              
+              <div className='w-full h-fit mb-5'>
+                <Label label="Password"/>
+                <Form.Item 
+                    name="password" 
+                    rules={[
+                      {
+                        required: true,
+                        message: <span className='text-xs'>Mohon masukan Kata Sandi!</span>,
+                      },
+                    ]}
+                    >
+                    <Input.Password label='Kata sandi' name="password" type="password" placeholder="Masukan kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2' value={Password} onChange={(e) => setPassword(e.target.value)}/>
+                </Form.Item>
               </div>
 
-              <div className='mb-3'>
-                <label htmlFor="password"  className="text-blue-950 font-inter font-medium">Kata sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Masukan kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setPassword(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Kata Sandi harus di isi</span> : null}
-              </div>
-
-              <a href="#" className='w-fit block ml-auto text-blue-500 text-sm text-end mt-5 mb-2'>Lupa kata sandi?</a>
+              <a href="https://wa.me/+6287840166999?text=Hallo, Saya Ingin menanyakan perihal SmartGrosir" target="_blank"className='w-fit block ml-auto text-blue-500 text-sm text-end mt-5 mb-2'>Lupa kata sandi?</a>
 
               <Button title="Masuk"/>
-            </form>
+            </Form>
             <div className='font-inter'>
               <h1 className='text-center text-sm mt-4 font-inter'>Belum punya akun? <Link to={'/register'} className='text-blue-500'>Daftar</Link></h1>
             </div>

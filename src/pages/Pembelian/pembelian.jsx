@@ -14,7 +14,7 @@ import Navbar from '../../Components/Navbar';
 
 export default function Pembelian() {
 
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
 
@@ -126,6 +126,8 @@ export default function Pembelian() {
     setSearchText('');
   };
 
+  const [page, setPage] = useState(1);
+
   const columnsDataPembelian = [
     {
       title: 'No',
@@ -133,6 +135,7 @@ export default function Pembelian() {
       width: '5%',
       align: 'center',
       sorter: (a, b) => a.id - b.id,
+      render: (_, record, index) => index + 1 + (10 * (page - 1)),
     },
     {
       title: 'Kode',
@@ -179,38 +182,32 @@ export default function Pembelian() {
       title: 'Apakah anda yakin ingin mengahpus data ini?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: "#3B82F6",
+      cancelButtonColor: '#d33',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Hapus',
       cancelButtonText: 'Batal'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Dihapus!',
-          'Data berhasil dihapus!',
-          'success'
-          )
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Data berhasil dihapus",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "400px",
+        });
         const newData = dataPembelian.filter((item) => item.id !== id);
         setDataPembelian(newData);
       }
     })
   };
 
-  const characters ='abcdefghijklmnopqrstuvwxyz';
-  function generateString(length) {
-    let result = '';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
-
   const [dataPembelian, setDataPembelian] = useState([
     {
       id: 1,
-      kode: 'PRJM-UTN-'+ Math.floor(Math.random() * 10000),
-      nama_sales: 'Toko ' + generateString(5),
+      kode: 'PNJ-UTN-'+ Math.floor(Math.random() * 10000),
+      nama_sales: 'Toko Grosir',
       tanggal: '01-01-2022',
     }
   ])
@@ -230,7 +227,7 @@ export default function Pembelian() {
 
             <div className='Pembelian'>
               <header className='flex items-center pb-5 border-b-2 border-slate-300 justify-between'>
-                <div className='flex'>
+                <div className='flex items-center'>
                   <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
                   <h1 className='text-xl font-semibold'>Data Pembelian</h1>
                 </div>
@@ -246,6 +243,12 @@ export default function Pembelian() {
 
               <body>
                 <Table
+                  pagination={{
+                    pageSize: 10,
+                    onChange(current) {
+                      setPage(current);
+                    }
+                  }}
                   bordered
                   dataSource={dataPembelian}
                   columns={columnsDataPembelian}

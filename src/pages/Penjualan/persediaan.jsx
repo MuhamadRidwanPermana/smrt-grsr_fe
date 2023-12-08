@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { Select, Modal, Button, Input, Space, Table, InputNumber, Form } from 'antd';
+import { Button, Input, Space, Table, InputNumber, Form } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
+import axios from 'axios';
 
 // Icon
-import { BsGrid3X3GapFill, BiSolidEditAlt, BiSolidTrashAlt } from '../../utils/icons';
+import { BsGrid3X3GapFill, BiSolidTrashAlt } from '../../utils/icons';
 
 // Component
 import Sidebar from '../../Components/Sidebar';
@@ -96,7 +97,7 @@ const onChange = (value) => {
 
 export default function Persediaan(){
 
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(true);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
 
@@ -215,7 +216,7 @@ export default function Persediaan(){
 
   const handleSave = (row) => {
     const newData = [...dataPersediaan];
-    const index = newData.findIndex((item) => row.id === item.id);
+    const index = newData.findIndex((item) => row.id_stok === item.id_stok);
     const item = newData[index];
     newData.splice(index, 1, {
       ...item,
@@ -230,38 +231,40 @@ export default function Persediaan(){
     },
   };
 
+  const [page, setPage] = useState(1);
   // Data
   const columnsPersediaan = [
     {
       title: 'No',
-      dataIndex: 'id',
+      dataIndex: 'id_stok',
       width: '5%',
       align: 'center',
-      sorter: (a, b) => a.id - b.id,
+      sorter: (a, b) => a.id_stok - b.id_stok,
+      render: (_, record, index) => index + 1 + (10 * (page - 1)),
     },
     {
       title: 'Kode Barang',
-      dataIndex: 'kode_barang',
+      dataIndex: 'kode_id',
       width: '50px',
       align: 'center',
-      ...getColumnSearchProps('kode_barang'),
-      sorter: (a, b) => a.kode_barang - b.kode_barang,
+      ...getColumnSearchProps('kode_id'),
+      sorter: (a, b) => a.kode_id - b.kode_id,
     },
     {
       title: 'Nama Barang',
-      dataIndex: 'nama_barang',
+      dataIndex: 'nama_produk',
       width: '50px',
       align: 'center',
-      ...getColumnSearchProps('nama_barang'),
-      sorter: (a, b) => a.nama_barang.length - b.nama_barang.length,
+      ...getColumnSearchProps('nama_produk'),
+      sorter: (a, b) => a.nama_produk.length - b.nama_produk.length,
     },
     {
       title: 'Stok Awal',
-      dataIndex: 'stok_awal',
+      dataIndex: 'stok',
       width: '50px',
       editable: true,
       align: 'center',
-      sorter: (a, b) => a.stok_awal - b.stok_awal,
+      sorter: (a, b) => a.stok - b.stok,
     },
     {
       title: 'Satuan',
@@ -287,10 +290,10 @@ export default function Persediaan(){
     },
     {
       title: 'Tanggal Input',
-      dataIndex: 'tanggal_input',
+      dataIndex: 'tgl_input',
       width: '50px',
       align: 'center',
-      sorter: (a, b) => a.tanggal_input - b.tanggal_input,
+      sorter: (a, b) => a.tgl_input - b.tgl_input,
     },
     {
       title: 'Aksi',
@@ -301,7 +304,7 @@ export default function Persediaan(){
         dataPersediaan.length >= 1 ? (
           <>
             <div className='flex justify-center mx-auto align-center items-center'>
-              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id)}><BiSolidTrashAlt/></button>
+              <button className='flex items-center justify-center text-xl p-1 text-red-500 bg-red-100 rounded-lg' onClick={() => handleDelete(record.id_stok)}><BiSolidTrashAlt/></button>
             </div>
           </>
         ) : null,
@@ -324,34 +327,52 @@ export default function Persediaan(){
     };
   });
 
-  const [dataPersediaan, setDataPersediaan] = useState([
-    {
-      id: 1,
-      kode_barang: 123,
-      nama_barang: 'Gula',
-      stok_awal: '5',
-      satuan: 'Kg',
-      tanggal_input: '09-10-2023',
-    },
-  ])
+  // const [dataPersediaan, setDataPersediaan] = useState([
+  //   {
+  //     id: 1,
+  //     kode_barang: 123,
+  //     nama_barang: 'Gula',
+  //     stok_awal: '5',
+  //     satuan: 'Kg',
+  //     tanggal_input: '09-10-2023',
+  //   },
+  // ])
+  const [dataPersediaan, setDataPersediaan] = useState([])
 
-  const handleDelete = (id) => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://apisglite.sadigit.co.id/api/stok/show-stok');
+      setDataPersediaan(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  const handleDelete = (id_stok) => {
     Swal.fire({
       title: 'Apakah anda yakin ingin mengahpus data ini?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: "#3B82F6",
+      cancelButtonColor: '#d33',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Hapus',
       cancelButtonText: 'Batal'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Dihapus!',
-          'Data berhasil dihapus!',
-          'success'
-          )
-        const newData = dataPersediaan.filter((item) => item.id !== id);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Data berhasil dihapus",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "400px",
+        });
+        const newData = dataPersediaan.filter((item) => item.id_stok !== id_stok);
         setDataPersediaan(newData);
       }
     })
@@ -373,66 +394,24 @@ export default function Persediaan(){
                 <span className='text-blue-500 mr-4 text-2xl'><BsGrid3X3GapFill/></span>
                 <h1 className='text-xl font-semibold'>Input Stok Awal</h1>
               </div>
-              {/* <button className='px-5 py-2 ml-auto rounded-lg text-white bg-blue-500' onClick={showModal}>Input</button> */}
             </div>
 
               <div>
                 <Table
-                    components={components}
-                    bordered={true}
-                    rowClassName={() => 'editable-row'}
-                    dataSource={dataPersediaan}
-                    columns={columns}
-                    onChange={onChange}
-                    className='my-10 overflow-x-auto'
-                  />
-
-                {/* <Modal
-                  title="Barang"
-                  open={open}
-                  onOk={hideModal}
-                  onCancel={hideModal}
-                  okText="Simpan"
-                  cancelText="Batal"
-                >
-                  <div className=''>
-                    <div className='block my-5'>
-                      <label htmlFor="barang" className='font-semibold'>Barang</label>
-                      <Select
-                        className='w-full h-9 mt-2'
-                        showSearch
-                        placeholder="Pilih Barang"
-                        optionFilterProp="children"
-                        onChange={onInput}
-                        onSearch={onSearch}
-                        filterOption={filterOption}
-                        options={[
-                          {
-                            value: 'beras',
-                            label: 'Beras',
-                          },
-                          {
-                            value: 'gula',
-                            label: 'Gula',
-                          },
-                          {
-                            value: 'kopi',
-                            label: 'Kopi',
-                          },
-                        ]}
-                      />
-                    </div>
-                    <div className='block mb-10'>
-                      <label htmlFor="qty" className='font-semibold'>Qty</label>
-                      <InputNumber 
-                        min={1} 
-                        max={1000} 
-                        onChange={onInputNumber} 
-                        className='w-full h-9 border border-slate-300 rounded-md mt-2'
-                      />
-                    </div>
-                  </div>
-                </Modal> */}
+                  pagination={{
+                    pageSize: 10,
+                    onChange(current) {
+                      setPage(current);
+                    }
+                  }}
+                  components={components}
+                  bordered={true}
+                  rowClassName={() => 'editable-row'}
+                  dataSource={dataPersediaan}
+                  columns={columns}
+                  onChange={onChange}
+                  className='my-10 overflow-x-auto'
+                />
               </div>
           </div>
           <div>

@@ -253,6 +253,7 @@ export default function DataPelanggan(){
       align: 'center',
       // fixed: 'left',
       sorter: (a, b) => a.id - b.id,
+      render: (text, record, index) => index + 1,
     },
     {
       title: 'Kode',
@@ -334,7 +335,7 @@ export default function DataPelanggan(){
       title: 'Apakah anda yakin ingin mengahpus data ini?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: "#3B82F6",
       cancelButtonColor: '#d33',
       confirmButtonText: 'Hapus',
       cancelButtonText: 'Batal'
@@ -441,7 +442,7 @@ export default function DataPelanggan(){
                 </Form>
 
               <Modal
-                className="modal-suplier"
+                className="modal-pelanggan"
                 title="Tambah Data"
                 open={open}
                 onOk={hideModal}

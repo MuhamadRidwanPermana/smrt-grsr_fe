@@ -1,30 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Carousel, Input } from 'antd';
+import { Carousel, Input, Form } from 'antd';
 
-import Image from '../assets/img/image_landingpage.png';
-import Image3 from '../assets/img/image_landingpage3.png';
-import Subtract3 from '../assets/img/Subtract3.svg';
+import { Image1, Image3 } from '../utils/icons';
 
 import Button from '../Components/Elements/Button';
-import InputForm from '../Components/Elements/Input/InputForm';
+import Label from '../Components/Elements/Input/Label';
 import Header from '../Components/LoginRegisterComponents/Header';
 
 export default function registerPage() {
-
-  const [Name, setName] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [ConfirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if(Name.length === 0 || Email.length === 0 || Password.length === 8 || ConfirmPassword.length === 8){
-      setError(true);
-    }
-    console.log(Name, Email, Password, ConfirmPassword);
-  }
 
   const contentStyle = {
     height: '350px',
@@ -52,7 +36,7 @@ export default function registerPage() {
           <div className="hidden lg:flex w-full px-5 lg:w-fit mt-10 lg:pt-11 items-center">
             <Carousel autoplay style={contentStyle}>
               <div>
-                <img src={Image} alt=""/>
+                <img src={Image1} alt=""/>
               </div>
               <div>
                 <img src={Image3} alt=""/>
@@ -63,35 +47,73 @@ export default function registerPage() {
           <div className=" w-full h-fit lg:px-5 lg:w-1/4">
             <Header header='Identitas Pemilik' subHeader='Harap masukan Identitas yang sesuai'/>
 
-            <form onSubmit={handleSubmit} action="">
+            <Form onSubmit="" action="">
 
               <div className='mb-3'>
-                <InputForm label='Nama Pemilik' placeholder="Masukan nama pemilik" name="name" onChange={e=>setName(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Nama Pemilik harus di isi</span> : null}
+                <Label label="Nama Pemilik"/>
+                <Form.Item
+                  name="nama_pemilik"
+                  rules={[
+                    {
+                      required: true,
+                      message: <span className='text-xs'>Mohon masukan Nama Pemilik!</span>,
+                    },
+                  ]}
+                  >
+                  <Input label='Nama Pemilik' placeholder="Masukan nama Pemilik" name="name" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2'/>
+                </Form.Item>
               </div>
 
               <div className='mb-3'>
-                <InputForm label='Email' placeholder="Masukan email" name="email" onChange={e=>setEmail(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Email harus di isi</span> : null}
+                <Label label="Email"/>
+                <Form.Item
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      message: <span className='text-xs'>Mohon masukan Email!</span>,
+                    },
+                  ]}
+                  >
+                  <Input label='Email' placeholder="Masukan email" name="email" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2'/>
+                </Form.Item>
               </div>
 
               <div className='mb-3'>
-                <label htmlFor="password" className="text-blue-950 font-inter font-medium">Kata Sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Buat kata sandi akun SmartGrosir" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setPassword(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Kata Sandi harus lebih dari 8 karakter</span> : null}
+                <Label label="Kata Sandi"/>
+                <Form.Item
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: <span className='text-xs'>Mohon masukan Kata Sandi!</span>,
+                    },
+                  ]}
+                  >
+                  <Input.Password label='Kata Sandi' placeholder="Buat Kata Sandi akun SmartGrosir" type='password' name="password" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2'/>
+                </Form.Item>
               </div>
 
               <div className='mb-3'>
-                <label htmlFor="password" className="text-blue-950 font-inter font-medium">Konfirmasi Kata Sandi</label>  <span className="text-red-500">*</span>
-                <Input.Password placeholder="Konfirmasi kata sandi" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-3' onChange={e=>setConfirmPassword(e.target.value)}/>
-                {error ? <span className='text-red-500 text-sm'>Kata Sandi harus lebih dari 8 karakter</span> : null}
+                <Label label="Konfirmasi Kata Sandi"/>
+                <Form.Item
+                  name="confirm_password"
+                  rules={[
+                    {
+                      required: true,
+                      message: <span className='text-xs'>Mohon masukan Kata Sandi!</span>,
+                    },
+                  ]}
+                  >
+                  <Input.Password label='Konfirmasi Kata Sandi' placeholder="Konfirmasi Kata Sandi" type='password' name="password" className='w-full h-12 border-2 border-slate-300 rounded-lg mt-2'/>
+                </Form.Item>
               </div>
 
               <Button title="Selanjutnya"/>
               {/* <Link to={'/register_identitas_toko'}>
                 <Button title="Selanjutnya"/>
               </Link> */}
-            </form>
+            </Form>
           </div>
         </div>
       </section>

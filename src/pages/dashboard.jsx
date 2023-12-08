@@ -173,33 +173,33 @@ export default function Dashboard() {
                 </button>
               </div>
             </div>
-            <div className="bg-white w-full h-fit p-7 rounded-2xl mb-5 lg:mb-0">
+            <div className="bg-white w-full h-full p-7 rounded-2xl mb-5 lg:mb-0">
               <div className="mb-7">
                 <h1 className="font-medium text-lg text-slate-400">
-                  Total Pendapatan Bulan ini
+                  Total Penjualan Bulan ini
                 </h1>
-                <h1 className="font-bold text-2xl">Rp. 0</h1>
+                <h1 className="mt-10 font-bold text-4xl">Rp. 0</h1>
               </div>
-              <div className="">
+              {/* <div className="">
                 <h1 className="font-medium text-lg text-slate-400">
                   Total Pendapatan Hari ini
                 </h1>
-                <h1 className="font-bold text-2xl">Rp. 0</h1>
-              </div>
+                <h1 className="mt-10 font-bold text-4xl">Rp. 0</h1>
+              </div> */}
             </div>
-            <div className="bg-white w-full h-fit p-7 rounded-2xl mb-5 lg:mb-0">
+            <div className="bg-white w-full h-full p-7 rounded-2xl mb-5 lg:mb-0">
               <div className="mb-7">
                 <h1 className="font-medium text-lg text-slate-400">
-                  Penjualan Bulan ini
+                  Total Penjualan Hari ini
                 </h1>
-                <h1 className="font-bold text-2xl">Rp. 0</h1>
+                <h1 className="mt-10 font-bold text-4xl">Rp. 0</h1>
               </div>
-              <div className="">
+              {/* <div className="">
                 <h1 className="font-medium text-lg text-slate-400">
                   Penjualan Hari ini
                 </h1>
                 <h1 className="font-bold text-2xl">Rp. 0</h1>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="bg-white w-full h-fit p-7 rounded-2xl mt-7 pl-6 lg:pl-10">

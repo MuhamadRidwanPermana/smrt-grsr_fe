@@ -120,7 +120,8 @@ export default function DataSuplier(){
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          // placeholder={`Search ${title}`}
+          placeholder='Cari'
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -133,13 +134,13 @@ export default function DataSuplier(){
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            // icon={<SearchOutlined />}
             size="small"
             style={{
               width: 90,
             }}
           >
-            Search
+            Cari
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}

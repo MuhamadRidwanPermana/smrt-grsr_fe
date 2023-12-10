@@ -112,7 +112,8 @@ export default function Kasir() {
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          // placeholder={`Search ${dataIndex}`}
+          placeholder='Cari'
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -125,13 +126,13 @@ export default function Kasir() {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            // icon={<SearchOutlined />}
             size="small"
             style={{
               width: 90,
             }}
           >
-            Search
+            Cari
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}
@@ -302,21 +303,7 @@ export default function Kasir() {
       width: '20px',
       align: 'center',
       sorter: (a, b) => a.satuan.length - b.satuan.length,
-      filters: [
-        {
-          text: 'Kilogram',
-          value: 'Kg',
-        },
-        {
-          text: 'Gram',
-          value: 'g',
-        },
-        {
-          text: 'Ons',
-          value: 'ons',
-        },
-      ],
-      onFilter: (value, record) => record.satuan.indexOf(value) === 0,
+      ...getColumnSearchProps('satuan'),
     },
     {
       title: 'Harga',

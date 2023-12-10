@@ -11,12 +11,11 @@ import { BiSolidTrashAlt, BsGrid3X3GapFill } from '../../utils/icons';
 // Component
 import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
-import Column from 'antd/es/table/Column';
 
 export default function Penjualan(){
 
   const [openSidebar, setOpenSidebar] = useState(false);
-  const [submenuOpen, setSubmenuOpen] = useState(true);
+  const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpen2, setSubmenuOpen2] = useState(false);
 
   // Cari Berdasarkan Nama
@@ -30,7 +29,8 @@ export default function Penjualan(){
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          // placeholder={`Search ${dataIndex}`}
+          placeholder='Cari'
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -43,13 +43,13 @@ export default function Penjualan(){
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            // icon={<SearchOutlined />}
             size="small"
             style={{
               width: 90,
             }}
           >
-            Search
+            Cari
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}

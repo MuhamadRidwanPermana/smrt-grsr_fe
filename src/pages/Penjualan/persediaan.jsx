@@ -112,7 +112,8 @@ export default function Persediaan(){
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          // placeholder={`Search ${dataIndex}`}
+          placeholder='Cari'
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -125,13 +126,13 @@ export default function Persediaan(){
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            // icon={<SearchOutlined />}
             size="small"
             style={{
               width: 90,
             }}
           >
-            Search
+            Cari
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}
@@ -272,21 +273,7 @@ export default function Persediaan(){
       width: '50px',
       align: 'center',
       sorter: (a, b) => a.satuan - b.satuan,
-      filters: [
-        {
-          text: 'Kilogram',
-          value: 'Kg',
-        },
-        {
-          text: 'Gram',
-          value: 'g',
-        },
-        {
-          text: 'Ons',
-          value: 'ons',
-        },
-      ],
-      onFilter: (value, record) => record.satuan.indexOf(value) === 0,
+      ...getColumnSearchProps('satuan'),
     },
     {
       title: 'Tanggal Input',

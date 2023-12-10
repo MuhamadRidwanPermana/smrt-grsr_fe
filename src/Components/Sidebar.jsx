@@ -66,7 +66,7 @@ export default function Sidebar({openSidebar, setOpenSidebar, submenuOpen, setSu
             </div>
           </NavLink>
         </span>
-        <NavLink to={'/penjualan/riwayat-transaksi'} className={`flex mb-3 w-full h-11' : ' items-center w-fit'} h-11 items-center hover:bg-white hover:duration-300 rounded-lg cursor-pointer hover:text-blue-500 text-white`}>
+        <NavLink to={'/riwayat-transaksi'} className={`flex mb-3 w-full h-11' : ' items-center w-fit'} h-11 items-center hover:bg-white hover:duration-300 rounded-lg cursor-pointer hover:text-blue-500 text-white`}>
           <span><ImPriceTag className='text-xl mx-2 mb-1'/></span>
           <p className={`px-3 text-md block' : 'hidden duration-300'}`}>Riwayat Transaksi</p>
         </NavLink>

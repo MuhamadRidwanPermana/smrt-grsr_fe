@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Input, Space, Table, Modal } from 'antd';
+import { Button, Input, Space, Table, Modal, InputNumber } from 'antd';
 const { TextArea } = Input;
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
@@ -31,7 +31,8 @@ export default function DataProduk() {
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          // placeholder={`Search ${dataIndex}`}
+          placeholder='Cari'
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -44,13 +45,13 @@ export default function DataProduk() {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            // icon={<SearchOutlined />}
             size="small"
             style={{
               width: 90,
             }}
           >
-            Search
+            Cari
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}
@@ -159,13 +160,14 @@ export default function DataProduk() {
       ...getColumnSearchProps('nama_produk'),
       sorter: (a, b) => a.nama_produk.length - b.nama_produk.length,
     },
-    // {
-    //   title: 'Stok',
-    //   dataIndex: 'stok',
-    //   width: '5%',
-    //   align: 'center',
-    //   sorter: (a, b) => a.stok - b.stok,
-    // },
+    {
+      title: 'Satuan',
+      dataIndex: 'satuan',
+      width: '20px',
+      align: 'center',
+      ...getColumnSearchProps('satuan'),
+      sorter: (a, b) => a.satuan.length - b.satuan.length,
+    },
     {
       title: 'Harga Pokok',
       dataIndex: 'harga_beli',
@@ -250,7 +252,7 @@ export default function DataProduk() {
 
     const [kode_id, setKodeId] = useState('');
     const [nama_produk, setNamaProduk] = useState('');
-    const [stok, setStok] = useState('');
+    const [satuan, setSatuan] = useState('');
     const [harga_beli, setHargaBeli] = useState('');
     const [harga_jual, setHargaJual] = useState('');
   
@@ -261,16 +263,16 @@ export default function DataProduk() {
     function handleSubmit(e){
       e.preventDefault();
   
-      if(!kode_id, !nama_produk,!stok, !harga_beli, !harga_jual) return;
+      if(!kode_id, !nama_produk,!satuan, !harga_beli, !harga_jual) return;
   
-      const newData = { id_masterdata: dataProduk.length + 1, kode_id, nama_produk, stok, harga_jual, harga_beli };
+      const newData = { id_masterdata: dataProduk.length + 1, kode_id, nama_produk, satuan, harga_jual, harga_beli };
       handleAddData(newData);
   
       console.log(newData);
       
       setKodeId('');
       setNamaProduk('');
-      setStok('');
+      setSatuan('');
       setHargaBeli('');
       setHargaJual('');
   
@@ -343,27 +345,27 @@ export default function DataProduk() {
       >
         <form action="" onSubmit={handleSubmit}>
           <div className='block my-5'>
-            <label htmlFor="nama" className='font-semibold'>Kode Produk</label>
-            <Input name='name' className='my-2' placeholder="Masukan Kode Produk" type='text' value={kode_id} onChange={(e) => setKodeId(e.target.value)}/>
+            <label htmlFor="kode" className='font-semibold'>Kode Produk</label>
+            <Input name='kode' className='my-2' placeholder="Masukan Kode Produk" type='text' value={kode_id} onChange={(e) => setKodeId(e.target.value)}/>
           </div>
           <div className='block my-5'>
             <label htmlFor="nama" className='font-semibold'>Nama Produk</label>
             <Input name='name' className='my-2' placeholder="Masukan Nama Produk" type='text' value={nama_produk} onChange={(e) => setNamaProduk(e.target.value)}/>
           </div>
           <div className='block my-5'>
-            <label htmlFor="alamat" className='font-semibold'>Stok</label>
-            <Input name='no_tlp' className='my-2' placeholder="Masukan No Telepon" type='number' value={stok} onChange={(e) => setStok(e.target.value)}/>
+            <label htmlFor="satuan" className='font-semibold'>Satuan</label>
+            <Input name='satuan' className='my-2' placeholder="Masukan Satuan" type='text' value={satuan} onChange={(e) => setSatuan(e.target.value)}/>
           </div>
           <div className='block my-5'>
-            <label htmlFor="no_tlp" className='font-semibold'>Harga Pokok</label>
+            <label htmlFor="harga_pokok" className='font-semibold'>Harga Pokok</label>
             <div>
-              <Input name='no_tlp' className='my-2' placeholder="Masukan Harga Pokok" type='number' value={harga_beli} onChange={(e) => setHargaBeli(e.target.value)}/>
+              <Input name='harga_pokok' className='my-2 w-full' placeholder="Masukan Harga Pokok" type='number' value={harga_beli} onChange={(e) => setHargaBeli(e.target.value)}/>
             </div>
           </div>
           <div className='block my-5'>
-            <label htmlFor="no_tlp" className='font-semibold'>Harga Jual</label>
+            <label htmlFor="harga_jual" className='font-semibold'>Harga Jual</label>
             <div>
-              <Input name='no_tlp' className='my-2' placeholder="Masukan Harga Jual" type='text' value={harga_jual} onChange={(e) => setHargaJual(e.target.value)}/>
+              <Input name='harga_jual' className='my-2 w-full' placeholder="Masukan Harga Jual" type='number' value={harga_jual} onChange={(e) => setHargaJual(e.target.value)}/>
             </div>
           </div>
 
